@@ -14,7 +14,7 @@ Stand: 2026-04-07 (priorisiert)
 - [ ] 👤 AVVs pruefen + aktivieren: Vercel, Sanity, Resend (Online-DPAs, kein Unterschriftsprozess)
 - [ ] 👤 AVV zwischen Meyso (Dave) und Max Hirt (Hirmax) erstellen
 - [x] sq-schmidt Auth-Middleware: middleware.ts schuetzt /admin/dashboard + /api/admin (d6998a8) ✓
-- [ ] 🤖 Session Secret (meyso-website): Faellt auf ADMIN_PASSWORD zurueck. Error werfen wenn nicht gesetzt
+- [x] Session Secret (meyso-website): Fallback entfernt, SESSION_SECRET ist Pflicht (fb2e25d) ✓
 
 ---
 
