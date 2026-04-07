@@ -17,7 +17,7 @@ Stand: 2026-04-07 (Tasks geprueft gegen Codebase)
 
 ### meyso-kmu-template
 - [x] JWT Fallback entfernen: "template-fallback-secret" nicht mehr im Code ✓
-- [ ] 🤖 Cookie-Name Mismatch: `middleware.ts` prueft hardcoded `admin_auth` aber Auth setzt dynamischen Cookie mit Config-Prefix. Middleware muss beide pruefen
+- [x] Cookie-Name Mismatch: middleware prueft jetzt alle *_admin Cookies (a3dd6f2) ✓
 
 ### hirmax-scheibenbilder
 - [ ] 🤖 Rate-Limiting von in-memory (Map) auf DB migrieren (blockiert Production-Betrieb)
