@@ -44,7 +44,7 @@ Stand: 2026-04-07 (priorisiert)
 - [ ] 🤖 Quality Gate erzwingen (toolradar): Scoring-System existiert aber unklar ob aktiv
 - [ ] 👤 Sanity Read Token: Separaten Viewer-Token erstellen statt Write-Token an Templates
 - [ ] 👤 CRON_SECRET auf Vercel setzen (meyso-website)
-- [ ] 👤 GitHub Template Repo markieren: meyso-kmu-template → Settings → Template repository
+- [x] 👤 GitHub Template Repo markieren: meyso-kmu-template → Settings → Template repository ✓
 
 ---
 
@@ -58,10 +58,6 @@ Stand: 2026-04-07 (priorisiert)
 - [ ] 🤖 Payment Processing: Bestellungen sind aktuell nur Anfragen
 
 ### sq-schmidt-website (zahlender Kunde)
-- [ ] 🤖 Blog-Bereich implementieren (Sanity Schema + Seiten)
-- [ ] 🤖 FAQ-Bereich implementieren
-- [ ] 🤖 Preise-Seite erstellen
-- [ ] 🤖 CSV-Export fuer Anfragen
 - [ ] 🤖 Admin Dashboard: Filter/Suche erweitern
 - [ ] 🤖 Live-Chat Widget (Tawk.to oder eigene Loesung)
 - [ ] 🤖 Dependency Audit: 66 Packages pruefen, ungenutzte entfernen
@@ -144,7 +140,7 @@ Stand: 2026-04-07 (priorisiert)
 - [ ] 👤 Wartungsvertrag-Zeiten (P1)
 - [ ] 👤 Sanity Read Token erstellen (P2)
 - [ ] 👤 CRON_SECRET auf Vercel (P2)
-- [ ] 👤 GitHub Template Repo markieren (P2)
+- [x] 👤 GitHub Template Repo markieren (P2) ✓
 - [ ] 👤 Ersten Test-Kunden provisionieren (P2)
 - [ ] 👤 PAGESPEED_API_KEY optional (P2)
 
