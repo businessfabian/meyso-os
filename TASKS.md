@@ -22,7 +22,7 @@ Stand: 2026-04-07 (priorisiert)
 
 > Direkt sichtbar fuer Kunden oder bringt Traffic
 
-- [ ] 🤖 301-Redirects toolradar: ~72 geloeschte Tools → 404s schaden SEO
+- [x] 301-Redirects toolradar: permanentRedirect('/tools') statt 404 fuer geloeschte Tools (02dddeb) ✓
 - [ ] 👤 Hirmax als Kunde in Sanity anlegen (Sanity Studio)
 - [ ] 👤 Sanity CORS im Dashboard pruefen (Hirmax, Sanity Studio → API → CORS Origins)
 - [ ] 👤 Google Business Profile: Bilder hochladen + verifizieren
