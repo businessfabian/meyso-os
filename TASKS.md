@@ -58,9 +58,6 @@ Stand: 2026-04-07 (priorisiert)
 - [ ] 🤖 Payment Processing: Bestellungen sind aktuell nur Anfragen
 
 ### sq-schmidt-website (zahlender Kunde)
-- [ ] 🤖 Admin Dashboard: Filter/Suche erweitern
-- [ ] 🤖 Live-Chat Widget (Tawk.to oder eigene Loesung)
-- [ ] 🤖 Dependency Audit: 66 Packages pruefen, ungenutzte entfernen
 
 ### toolradar (eigenes Produkt)
 - [ ] 🤖 Blog-Generator testen: Claude API Kosten im Auge behalten
