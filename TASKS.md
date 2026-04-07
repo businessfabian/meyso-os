@@ -37,8 +37,8 @@ Stand: 2026-04-07 (priorisiert)
 > Kein externer Impact, aber raeumen auf
 
 - [x] 🤖 CSP Header: Content Security Policy in `next.config.ts` auf allen Projekten (08b35f3, 7f80cdb, bec4fa1, d1278ce, ff103d2) ✓
-- [ ] 🤖 CORS: Explizite `Access-Control-Allow-Origin` Header auf API Routes
-- [ ] 🤖 Hardcoded Cookie-Names hirmax: `hirmax_session` in Middleware statt aus Config
+- [x] 🤖 CORS: Explizite `Access-Control-Allow-Origin` Header auf API Routes (d6e7c19, 4c228b7, 3bd16e4, 6ec17d7, 195443c) ✓
+- [x] 🤖 Hardcoded Cookie-Names hirmax: `hirmax_session` in Middleware statt aus Config (3bd16e4) ✓
 - [ ] 🤖 Newsletter Secret: In README erwaehnen (kmu-template)
 - [ ] 🤖 Services-Daten nach Sanity (sq-schmidt): 15KB hardcoded services-data.ts
 - [ ] 🤖 Quality Gate erzwingen (toolradar): Scoring-System existiert aber unklar ob aktiv
