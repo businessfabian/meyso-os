@@ -79,7 +79,6 @@ Stand: 2026-04-07 (priorisiert)
 - [ ] 🤖 Blog Modul testen (ist disabled, muss mit echten Daten validiert werden)
 - [ ] 🤖 Chat Widget: System-Prompt mit Leistungen aus Sanity anreichern
 - [ ] 🤖 Galerie: Direkt-Upload im Admin statt Umweg ueber Sanity Studio
-- [ ] 🤖 Dark Mode fuer Admin Dashboard
 
 ---
 
