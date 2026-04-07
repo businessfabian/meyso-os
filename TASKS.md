@@ -54,7 +54,7 @@ Stand: 2026-04-07 (priorisiert)
 
 ### hirmax-scheibenbilder (zahlender Kunde)
 - [ ] 🤖 Kunden-Self-Service: Passwort aendern, Bestellhistorie einsehen
-- [ ] 🤖 Push Notifications: Benachrichtigung bei Bestellstatus-Aenderung
+- [x] 🤖 Push Notifications: Benachrichtigung bei Bestellstatus-Aenderung ✓
 - [ ] 🤖 Payment Processing: Bestellungen sind aktuell nur Anfragen
 
 ### sq-schmidt-website (zahlender Kunde)
