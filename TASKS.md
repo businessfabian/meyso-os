@@ -2,12 +2,14 @@
 
 Stand: 2026-04-07 (Tasks geprueft gegen Codebase)
 
+> Legende: `🤖 Claude` = kann Claude Code abarbeiten · `👤 Manuell` = braucht menschliche Aktion
+
 ---
 
 ## 🔴 KRITISCH (sofort)
 
 ### Alle Projekte
-- [ ] API-Keys rotieren: Gemini, PageSpeed, CRON_SECRET – alle geleakt
+- [ ] 👤 API-Keys rotieren: Gemini, PageSpeed, CRON_SECRET – alle geleakt (Vercel Dashboard + Google Cloud Console)
 
 ### meyso-website
 - [x] `.env.local` pruefen: Steht in `.gitignore` (.env* Pattern) ✓
@@ -15,10 +17,10 @@ Stand: 2026-04-07 (Tasks geprueft gegen Codebase)
 
 ### meyso-kmu-template
 - [x] JWT Fallback entfernen: "template-fallback-secret" nicht mehr im Code ✓
-- [ ] Cookie-Name Mismatch: `middleware.ts` prueft hardcoded `admin_auth` aber Auth setzt dynamischen Cookie mit Config-Prefix. Middleware muss beide pruefen
+- [ ] 🤖 Cookie-Name Mismatch: `middleware.ts` prueft hardcoded `admin_auth` aber Auth setzt dynamischen Cookie mit Config-Prefix. Middleware muss beide pruefen
 
 ### hirmax-scheibenbilder
-- [ ] Rate-Limiting von in-memory (Map) auf DB migrieren (blockiert Production-Betrieb)
+- [ ] 🤖 Rate-Limiting von in-memory (Map) auf DB migrieren (blockiert Production-Betrieb)
 
 ### sq-schmidt-website
 - [x] `typescript.ignoreBuildErrors` auf false gesetzt in next.config ✓
@@ -31,9 +33,9 @@ Stand: 2026-04-07 (Tasks geprueft gegen Codebase)
 
 ## ⚖️ RECHTLICH / GESCHAEFTLICH
 
-- [ ] AVVs pruefen + aktivieren: Vercel, Sanity, Resend (Online-DPAs, kein Unterschriftsprozess)
-- [ ] AVV zwischen Meyso (Dave) und Max Hirt (Hirmax) erstellen
-- [ ] Wartungsvertrag-Reaktionszeiten realistisch setzen (Achtung: Hauptjob)
+- [ ] 👤 AVVs pruefen + aktivieren: Vercel, Sanity, Resend (Online-DPAs, kein Unterschriftsprozess)
+- [ ] 👤 AVV zwischen Meyso (Dave) und Max Hirt (Hirmax) erstellen
+- [ ] 👤 Wartungsvertrag-Reaktionszeiten realistisch setzen (Achtung: Hauptjob)
 - [x] Hirmax AGB (app/agb/page.tsx, 11 Paragraphen, April 2026)
 - [x] Wartungsvertraege an Felix (SQ Schmidt) + Max (Hirmax) verschickt
 - [x] Nebentaetigkeit schriftlich genehmigt (April 2026)
@@ -44,115 +46,115 @@ Stand: 2026-04-07 (Tasks geprueft gegen Codebase)
 ## 🟡 WICHTIG (diese Woche)
 
 ### Alle Projekte
-- [ ] Rate Limiting persistent machen: In-Memory geht bei Vercel Cold Start verloren. `@upstash/ratelimit` mit Redis einbauen (kostenloser Tier reicht)
-- [ ] CSP Header: Content Security Policy in `next.config.ts` auf allen Projekten
-- [ ] CORS: Explizite `Access-Control-Allow-Origin` Header auf API Routes
+- [ ] 🤖 Rate Limiting persistent machen: In-Memory geht bei Vercel Cold Start verloren. `@upstash/ratelimit` mit Redis einbauen (kostenloser Tier reicht)
+- [ ] 🤖 CSP Header: Content Security Policy in `next.config.ts` auf allen Projekten
+- [ ] 🤖 CORS: Explizite `Access-Control-Allow-Origin` Header auf API Routes
 
 ### meyso-website
-- [ ] Hirmax als Kunde in Sanity anlegen
+- [ ] 👤 Hirmax als Kunde in Sanity anlegen (Sanity Studio)
 - [x] `robots.ts` erstellt (app/robots.ts) ✓
-- [ ] Session Secret: Faellt auf ADMIN_PASSWORD zurueck wenn SESSION_SECRET nicht gesetzt. Dokumentieren oder Error werfen
-- [ ] Sanity Read Token: Separaten Viewer-Token erstellen statt Write-Token an Kunden-Templates zu geben
-- [ ] Google Business Profile: Bilder hochladen + verifizieren
+- [ ] 🤖 Session Secret: Faellt auf ADMIN_PASSWORD zurueck wenn SESSION_SECRET nicht gesetzt. Dokumentieren oder Error werfen
+- [ ] 👤 Sanity Read Token: Separaten Viewer-Token erstellen (sanity.io Dashboard) statt Write-Token an Kunden-Templates zu geben
+- [ ] 👤 Google Business Profile: Bilder hochladen + verifizieren
 
 ### meyso-kmu-template
 - [x] Magic Link Expiry: verifyToken prueft exp Feld korrekt ✓
-- [ ] Newsletter Secret: Kein Generator-Hinweis im Code. In .env.example dokumentieren (erledigt) aber auch in README erwaehnen
+- [ ] 🤖 Newsletter Secret: Kein Generator-Hinweis im Code. In .env.example dokumentieren (erledigt) aber auch in README erwaehnen
 
 ### hirmax-scheibenbilder
-- [ ] Sanity CORS im Dashboard pruefen
-- [ ] Hardcoded Cookie-Names: `hirmax_admin`, `hirmax_session` in Middleware statt aus Config. Sollte konfigurierbar sein
+- [ ] 👤 Sanity CORS im Dashboard pruefen (Sanity Studio → API → CORS Origins)
+- [ ] 🤖 Hardcoded Cookie-Names: `hirmax_admin`, `hirmax_session` in Middleware statt aus Config. Sollte konfigurierbar sein
 - [x] Image Upload Validation: 5MB Limit + Typ-Check in api/upload/route.ts ✓
-- [ ] Lexware Export: Format validieren bevor Kunden es nutzen (XML Schema Check)
+- [ ] 🤖 Lexware Export: Format validieren bevor Kunden es nutzen (XML Schema Check)
 
 ### sq-schmidt-website
 - [x] Rate Limiting eingebaut: lib/rate-limit.ts vorhanden ✓
-- [ ] Auth-Middleware: Kein zentraler Schutz fuer `/admin` Routes. Middleware erstellen
-- [ ] Services-Daten nach Sanity: 15KB hardcoded services-data.ts sollte im CMS sein
+- [ ] 🤖 Auth-Middleware: Kein zentraler Schutz fuer `/admin` Routes. Middleware erstellen
+- [ ] 🤖 Services-Daten nach Sanity: 15KB hardcoded services-data.ts sollte im CMS sein
 
 ### toolradar
-- [ ] 301-Redirects fuer ~72 geloeschte Tools (next.config.ts, aktuell nur 1 Domain-Redirect)
-- [ ] Social Media API Keys konfigurieren: Social Poster ist gebaut aber Keys fehlen
-- [ ] Quality Gate erzwingen: Scoring-System existiert aber unklar ob es aktiv prueft
+- [ ] 🤖 301-Redirects fuer ~72 geloeschte Tools (next.config.ts, aktuell nur 1 Domain-Redirect)
+- [ ] 👤 Social Media API Keys konfigurieren: Social Poster ist gebaut aber Keys fehlen (LinkedIn Developer Portal)
+- [ ] 🤖 Quality Gate erzwingen: Scoring-System existiert aber unklar ob es aktiv prueft
 
 ---
 
 ## 🟢 VERBESSERUNGEN (naechste 2 Wochen)
 
 ### meyso-website
-- [ ] Client-Uebersicht: Letzter Deploy-Zeitpunkt anzeigen (Vercel API)
-- [ ] Wartungs-Dashboard: Template-Version pro Wartungskunde anzeigen
-- [ ] Wartungs-Dashboard: Einzelnen Lighthouse manuell fuer einen Kunden triggern
-- [ ] Provision Wizard: "Schritt wiederholen" Button fuer fehlgeschlagene Steps
-- [ ] Cockpit: Letzte Aktivitaeten Feed (neue Clients, Anfragen, Deploys)
+- [ ] 🤖 Client-Uebersicht: Letzter Deploy-Zeitpunkt anzeigen (Vercel API)
+- [ ] 🤖 Wartungs-Dashboard: Template-Version pro Wartungskunde anzeigen
+- [ ] 🤖 Wartungs-Dashboard: Einzelnen Lighthouse manuell fuer einen Kunden triggern
+- [ ] 🤖 Provision Wizard: "Schritt wiederholen" Button fuer fehlgeschlagene Steps
+- [ ] 🤖 Cockpit: Letzte Aktivitaeten Feed (neue Clients, Anfragen, Deploys)
 
 ### meyso-kmu-template
-- [ ] FAQ Admin-Seite (aktuell nur via Sanity Studio)
-- [ ] Leistungen Admin-Seite (aktuell nur via Sanity Studio)
-- [ ] Blog Modul testen (ist disabled by default, muss mit echten Daten validiert werden)
-- [ ] Chat Widget: System-Prompt mit Leistungen aus Sanity anreichern (aktuell nur siteConfig)
-- [ ] Galerie: Direkt-Upload im Admin statt Umweg ueber Sanity Studio
-- [ ] Dark Mode fuer Admin Dashboard
+- [ ] 🤖 FAQ Admin-Seite (aktuell nur via Sanity Studio)
+- [ ] 🤖 Leistungen Admin-Seite (aktuell nur via Sanity Studio)
+- [ ] 🤖 Blog Modul testen (ist disabled by default, muss mit echten Daten validiert werden)
+- [ ] 🤖 Chat Widget: System-Prompt mit Leistungen aus Sanity anreichern (aktuell nur siteConfig)
+- [ ] 🤖 Galerie: Direkt-Upload im Admin statt Umweg ueber Sanity Studio
+- [ ] 🤖 Dark Mode fuer Admin Dashboard
 
 ### hirmax-scheibenbilder
-- [ ] Payment Processing: Bestellungen sind aktuell nur Anfragen, kein Bezahlvorgang
-- [ ] Kunden-Self-Service: Passwort aendern, Bestellhistorie einsehen
-- [ ] Push Notifications: Benachrichtigung bei Bestellstatus-Aenderung
+- [ ] 🤖 Payment Processing: Bestellungen sind aktuell nur Anfragen, kein Bezahlvorgang
+- [ ] 🤖 Kunden-Self-Service: Passwort aendern, Bestellhistorie einsehen
+- [ ] 🤖 Push Notifications: Benachrichtigung bei Bestellstatus-Aenderung
 
 ### sq-schmidt-website
-- [ ] Blog-Bereich implementieren (Sanity Schema + Seiten)
-- [ ] Preise-Seite erstellen
-- [ ] FAQ-Bereich implementieren
-- [ ] CSV-Export fuer Anfragen
-- [ ] Live-Chat Widget (Tawk.to oder eigene Loesung)
-- [ ] Dependency Audit: 66 Packages pruefen, ungenutzte entfernen
-- [ ] Admin Dashboard: Filter/Suche erweitern
+- [ ] 🤖 Blog-Bereich implementieren (Sanity Schema + Seiten)
+- [ ] 🤖 Preise-Seite erstellen
+- [ ] 🤖 FAQ-Bereich implementieren
+- [ ] 🤖 CSV-Export fuer Anfragen
+- [ ] 🤖 Live-Chat Widget (Tawk.to oder eigene Loesung)
+- [ ] 🤖 Dependency Audit: 66 Packages pruefen, ungenutzte entfernen
+- [ ] 🤖 Admin Dashboard: Filter/Suche erweitern
 
 ### toolradar
-- [ ] Blog-Generator testen: Claude API Kosten im Auge behalten
-- [ ] Price Monitor: Pricing-Aenderungen tracken und alertieren
-- [ ] Dead Tool Detector: Inaktive Tools automatisch markieren
-- [ ] DSGVO-Report als PDF Export
-- [ ] Newsletter Integration vollstaendig testen
+- [ ] 🤖 Blog-Generator testen: Claude API Kosten im Auge behalten
+- [ ] 🤖 Price Monitor: Pricing-Aenderungen tracken und alertieren
+- [ ] 🤖 Dead Tool Detector: Inaktive Tools automatisch markieren
+- [ ] 🤖 DSGVO-Report als PDF Export
+- [ ] 🤖 Newsletter Integration vollstaendig testen
 
 ---
 
 ## 🅿️ GEPARKT (spaeter)
 
-- [ ] DSGVO-Widget live (live Deep-Scan)
-- [ ] Steckbrief-Widget mit Team-Size Preisrechner
-- [ ] meyso Portal: Auth von JWT auf Supabase Auth migrieren
-- [ ] Dokumente/Vertraege auf Supabase Storage (signed URLs)
-- [ ] EN-to-DE Uebersetzung automatisieren (aktuell nur manuelle Scripts)
+- [ ] 🤖 DSGVO-Widget live (live Deep-Scan)
+- [ ] 🤖 Steckbrief-Widget mit Team-Size Preisrechner
+- [ ] 🤖 meyso Portal: Auth von JWT auf Supabase Auth migrieren
+- [ ] 🤖 Dokumente/Vertraege auf Supabase Storage (signed URLs)
+- [ ] 🤖 EN-to-DE Uebersetzung automatisieren (aktuell nur manuelle Scripts)
 
 ---
 
 ## 🔵 LANGFRISTIG
 
 ### Alle Projekte
-- [ ] Automatisierte Tests (mindestens API-Route Tests mit Vitest)
-- [ ] Performance Monitoring (Core Web Vitals, Vercel Speed Insights)
-- [ ] Structured Logging (JSON Format, Vercel Log Drain kompatibel)
-- [ ] Error Tracking (Sentry oder Vercel Error Tracking)
-- [ ] Zod Validation auf ALLEN API-Routes (nicht nur Kontaktformular)
+- [ ] 🤖 Automatisierte Tests (mindestens API-Route Tests mit Vitest)
+- [ ] 🤖 Performance Monitoring (Core Web Vitals, Vercel Speed Insights)
+- [ ] 🤖 Structured Logging (JSON Format, Vercel Log Drain kompatibel)
+- [ ] 🤖 Error Tracking (Sentry oder Vercel Error Tracking)
+- [ ] 🤖 Zod Validation auf ALLEN API-Routes (nicht nur Kontaktformular)
 
 ### meyso-website
-- [ ] Multi-Tenant Architektur: Ab 10+ Kunden eine App statt viele Repos
-- [ ] Automatische Rechnungserstellung fuer Wartungsvertraege
-- [ ] Client Activity Log: Wer hat was wann im Admin gemacht
-- [ ] E-Mail Templates visuell editierbar (Drag & Drop Builder)
+- [ ] 🤖 Multi-Tenant Architektur: Ab 10+ Kunden eine App statt viele Repos
+- [ ] 🤖 Automatische Rechnungserstellung fuer Wartungsvertraege
+- [ ] 🤖 Client Activity Log: Wer hat was wann im Admin gemacht
+- [ ] 🤖 E-Mail Templates visuell editierbar (Drag & Drop Builder)
 
 ### meyso-kmu-template
-- [ ] Internationalisierung (i18n) fuer mehrsprachige Kunden
-- [ ] A/B Testing fuer Landing Pages
-- [ ] Booking-Modul mit Cal.com vollstaendig integrieren
-- [ ] Pricing-Modul mit Stripe Payment Links
+- [ ] 🤖 Internationalisierung (i18n) fuer mehrsprachige Kunden
+- [ ] 🤖 A/B Testing fuer Landing Pages
+- [ ] 🤖 Booking-Modul mit Cal.com vollstaendig integrieren
+- [ ] 🤖 Pricing-Modul mit Stripe Payment Links
 
 ### toolradar
-- [ ] User Accounts: Kunden koennen eigene Tool-Listen speichern
-- [ ] API fuer Tool-Daten (Partner-Integration)
-- [ ] Vergleichs-Feature: Tool A vs Tool B Seite
-- [ ] Chrome Extension: DSGVO-Check direkt im Browser
+- [ ] 🤖 User Accounts: Kunden koennen eigene Tool-Listen speichern
+- [ ] 🤖 API fuer Tool-Daten (Partner-Integration)
+- [ ] 🤖 Vergleichs-Feature: Tool A vs Tool B Seite
+- [ ] 🤖 Chrome Extension: DSGVO-Check direkt im Browser
 
 ---
 
@@ -225,13 +227,13 @@ Stand: 2026-04-07 (Tasks geprueft gegen Codebase)
 
 ---
 
-## MANUELLE SCHRITTE (kein Code)
+## 👤 MANUELLE SCHRITTE (kein Code)
 
-- [ ] Sanity Read Token erstellen: sanity.io → Projekt → API → Tokens → Viewer → auf Vercel als SANITY_READ_TOKEN
-- [ ] CRON_SECRET auf Vercel setzen (meyso-website)
-- [ ] GitHub Template Repo markieren: meyso-kmu-template → Settings → Template repository
-- [ ] Ersten Test-Kunden provisionieren und End-to-End testen
-- [ ] PAGESPEED_API_KEY (optional): Google Cloud Console
-- [ ] Exposed Keys rotieren falls .env.local committed war
-- [ ] AVVs pruefen + aktivieren: Vercel, Sanity, Resend (Online-DPAs)
-- [ ] Google Business Profile: Bilder hochladen + verifizieren
+- [ ] 👤 Sanity Read Token erstellen: sanity.io → Projekt → API → Tokens → Viewer → auf Vercel als SANITY_READ_TOKEN
+- [ ] 👤 CRON_SECRET auf Vercel setzen (meyso-website)
+- [ ] 👤 GitHub Template Repo markieren: meyso-kmu-template → Settings → Template repository
+- [ ] 👤 Ersten Test-Kunden provisionieren und End-to-End testen
+- [ ] 👤 PAGESPEED_API_KEY (optional): Google Cloud Console
+- [ ] 👤 Exposed Keys rotieren falls .env.local committed war
+- [ ] 👤 AVVs pruefen + aktivieren: Vercel, Sanity, Resend (Online-DPAs)
+- [ ] 👤 Google Business Profile: Bilder hochladen + verifizieren
