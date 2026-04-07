@@ -36,7 +36,7 @@ Stand: 2026-04-07 (priorisiert)
 
 > Kein externer Impact, aber raeumen auf
 
-- [ ] 🤖 CSP Header: Content Security Policy in `next.config.ts` auf allen Projekten
+- [x] 🤖 CSP Header: Content Security Policy in `next.config.ts` auf allen Projekten (08b35f3, 7f80cdb, bec4fa1, d1278ce, ff103d2) ✓
 - [ ] 🤖 CORS: Explizite `Access-Control-Allow-Origin` Header auf API Routes
 - [ ] 🤖 Hardcoded Cookie-Names hirmax: `hirmax_session` in Middleware statt aus Config
 - [ ] 🤖 Newsletter Secret: In README erwaehnen (kmu-template)
