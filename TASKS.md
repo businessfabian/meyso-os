@@ -20,7 +20,7 @@ Stand: 2026-04-07 (Tasks geprueft gegen Codebase)
 - [x] Cookie-Name Mismatch: middleware prueft jetzt alle *_admin Cookies (a3dd6f2) ✓
 
 ### hirmax-scheibenbilder
-- [x] Rate-Limiting auf Supabase migriert (2ed7aa1) – SQL muss noch im Dashboard ausgefuehrt werden ✓
+- [x] Rate-Limiting auf Supabase migriert (2ed7aa1) ✓
 
 ### sq-schmidt-website
 - [x] `typescript.ignoreBuildErrors` auf false gesetzt in next.config ✓
