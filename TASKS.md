@@ -13,7 +13,7 @@ Stand: 2026-04-07 (priorisiert)
 - [ ] 👤 API-Keys rotieren: Gemini, PageSpeed, CRON_SECRET (Vercel Dashboard + Google Cloud Console)
 - [ ] 👤 AVVs pruefen + aktivieren: Vercel, Sanity, Resend (Online-DPAs, kein Unterschriftsprozess)
 - [ ] 👤 AVV zwischen Meyso (Dave) und Max Hirt (Hirmax) erstellen
-- [ ] 🤖 sq-schmidt Auth-Middleware: `/admin` komplett ungeschuetzt – Middleware erstellen
+- [x] sq-schmidt Auth-Middleware: middleware.ts schuetzt /admin/dashboard + /api/admin (d6998a8) ✓
 - [ ] 🤖 Session Secret (meyso-website): Faellt auf ADMIN_PASSWORD zurueck. Error werfen wenn nicht gesetzt
 
 ---
