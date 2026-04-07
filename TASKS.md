@@ -46,7 +46,6 @@ Stand: 2026-04-07 (Tasks geprueft gegen Codebase)
 ## 🟡 WICHTIG (diese Woche)
 
 ### Alle Projekte
-- [ ] 🤖 Rate Limiting persistent machen: In-Memory geht bei Vercel Cold Start verloren. `@upstash/ratelimit` mit Redis einbauen (kostenloser Tier reicht)
 - [ ] 🤖 CSP Header: Content Security Policy in `next.config.ts` auf allen Projekten
 - [ ] 🤖 CORS: Explizite `Access-Control-Allow-Origin` Header auf API Routes
 
@@ -126,6 +125,7 @@ Stand: 2026-04-07 (Tasks geprueft gegen Codebase)
 - [ ] 🤖 meyso Portal: Auth von JWT auf Supabase Auth migrieren
 - [ ] 🤖 Dokumente/Vertraege auf Supabase Storage (signed URLs)
 - [ ] 🤖 EN-to-DE Uebersetzung automatisieren (aktuell nur manuelle Scripts)
+- [ ] 🤖 Rate Limiting persistent machen (Upstash Redis): Aktuell in-memory, reicht bei aktuellem Traffic. Erst relevant bei mehr Kunden/Traffic
 
 ---
 
