@@ -27,7 +27,7 @@ Stand: 2026-04-07 (priorisiert)
 - [ ] 👤 Sanity CORS im Dashboard pruefen (Hirmax, Sanity Studio → API → CORS Origins)
 - [ ] 👤 Google Business Profile: Bilder hochladen + verifizieren
 - [ ] 👤 Social Media API Keys konfigurieren (LinkedIn Developer Portal) – Social Poster ist fertig, wartet auf Keys
-- [ ] 🤖 Lexware Export: Format validieren bevor Kunden es nutzen (XML Schema Check)
+- [ ] 👤 Lexware Export end-to-end testen (Testbestellung → XML Export → Import in Lexware bei Max)
 - [ ] 👤 Wartungsvertrag-Reaktionszeiten realistisch setzen (Achtung: Hauptjob)
 
 ---
