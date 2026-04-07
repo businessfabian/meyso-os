@@ -1,6 +1,6 @@
 # Backlog – Alle Meyso Projekte
 
-Stand: 2026-04-07
+Stand: 2026-04-07 (Tasks geprueft gegen Codebase)
 
 ---
 
@@ -10,22 +10,22 @@ Stand: 2026-04-07
 - [ ] API-Keys rotieren: Gemini, PageSpeed, CRON_SECRET – alle geleakt
 
 ### meyso-website
-- [ ] `.env.local` pruefen: Steht in `.gitignore`? Wenn nicht, Keys rotieren (RESEND, Gemini, PageSpeed, CRON_SECRET, Sanity Write Token)
-- [ ] Webhook Signing: `/api/webhooks/*` akzeptiert Requests ohne Signatur-Verifikation. SANITY_WEBHOOK_SECRET einbauen
+- [x] `.env.local` pruefen: Steht in `.gitignore` (.env* Pattern) ✓
+- [x] Webhook Signing: verifySanitySignature() in webhooks/config-changed ✓
 
 ### meyso-kmu-template
-- [ ] JWT Fallback entfernen: `lib/jwt.ts` faellt auf `"template-fallback-secret"` zurueck wenn kein JWT_SECRET gesetzt. Production muss Error werfen
+- [x] JWT Fallback entfernen: "template-fallback-secret" nicht mehr im Code ✓
 - [ ] Cookie-Name Mismatch: `middleware.ts` prueft hardcoded `admin_auth` aber Auth setzt dynamischen Cookie mit Config-Prefix. Middleware muss beide pruefen
 
 ### hirmax-scheibenbilder
 - [ ] Rate-Limiting von in-memory (Map) auf DB migrieren (blockiert Production-Betrieb)
 
 ### sq-schmidt-website
-- [ ] `typescript.ignoreBuildErrors: true` in `next.config` entfernen und alle TS-Fehler fixen. Versteckt potentielle Runtime-Crashes
+- [x] `typescript.ignoreBuildErrors` auf false gesetzt in next.config ✓
 
 ### toolradar
-- [ ] Admin-Auth einbauen: `/admin` ist komplett ungeschuetzt – kein Login, kein Middleware. ADMIN_PASSWORD + Middleware noetig
-- [ ] Cron-Job Auth: `/api/cron/*` Routes brauchen `Authorization: Bearer CRON_SECRET` Check
+- [x] Admin-Auth einbauen: middleware.ts schuetzt /admin mit Login-Redirect ✓
+- [x] Cron-Job Auth: CRON_SECRET Check in allen /api/cron/* Routes ✓
 
 ---
 
@@ -50,23 +50,23 @@ Stand: 2026-04-07
 
 ### meyso-website
 - [ ] Hirmax als Kunde in Sanity anlegen
-- [ ] `robots.ts` erstellen (fehlt, nur `sitemap.ts` vorhanden)
+- [x] `robots.ts` erstellt (app/robots.ts) ✓
 - [ ] Session Secret: Faellt auf ADMIN_PASSWORD zurueck wenn SESSION_SECRET nicht gesetzt. Dokumentieren oder Error werfen
 - [ ] Sanity Read Token: Separaten Viewer-Token erstellen statt Write-Token an Kunden-Templates zu geben
 - [ ] Google Business Profile: Bilder hochladen + verifizieren
 
 ### meyso-kmu-template
-- [ ] Magic Link Expiry: Pruefen ob `verifyToken` tatsaechlich das `exp` Feld validiert
+- [x] Magic Link Expiry: verifyToken prueft exp Feld korrekt ✓
 - [ ] Newsletter Secret: Kein Generator-Hinweis im Code. In .env.example dokumentieren (erledigt) aber auch in README erwaehnen
 
 ### hirmax-scheibenbilder
 - [ ] Sanity CORS im Dashboard pruefen
 - [ ] Hardcoded Cookie-Names: `hirmax_admin`, `hirmax_session` in Middleware statt aus Config. Sollte konfigurierbar sein
-- [ ] Image Upload Validation: Dateityp und Groesse pruefen (max 5MB, nur jpg/png/webp)
+- [x] Image Upload Validation: 5MB Limit + Typ-Check in api/upload/route.ts ✓
 - [ ] Lexware Export: Format validieren bevor Kunden es nutzen (XML Schema Check)
 
 ### sq-schmidt-website
-- [ ] Rate Limiting einbauen: Keine Rate Limits auf Kontaktformular oder Admin-APIs
+- [x] Rate Limiting eingebaut: lib/rate-limit.ts vorhanden ✓
 - [ ] Auth-Middleware: Kein zentraler Schutz fuer `/admin` Routes. Middleware erstellen
 - [ ] Services-Daten nach Sanity: 15KB hardcoded services-data.ts sollte im CMS sein
 
