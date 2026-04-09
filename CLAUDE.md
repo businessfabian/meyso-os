@@ -62,6 +62,15 @@ Markdown + YAML für Konfig und Tasks. Node/TypeScript Tooling wo nötig (Script
 - Bei neuen Architektur-Regeln prüfen ob sie alle Projekte betreffen oder nur eins
 - Nach TASKS.md Updates committen und pushen damit meyso.de/admin/tasks Dashboard aktuell ist
 
+## Hooks
+
+Em-dash Blocker ist aktiv in `~/.claude/settings.json`.
+
+- Blockiert `Write`, `Edit` und `MultiEdit` wenn der geschriebene Inhalt ein em-dash (U+2014) oder en-dash (U+2013) enthaelt
+- Script: `~/.claude/hooks/no-em-dash.ps1` (PowerShell, UTF-8-aware)
+- Mechanik: PreToolUse, exit 0 + JSON `permissionDecision: "deny"`
+- Aktiviert und getestet am 09.04.2026
+
 ## Custom Slash Commands
 
 Globale Commands liegen in ~/.claude/commands/ und sind in jedem Repo verfuegbar.
