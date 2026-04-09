@@ -1,0 +1,37 @@
+{
+  "workflows": [
+    {
+      "id": "morning-brief",
+      "name": "Morning Brief",
+      "description": "Tagesstart: Top 3 Tasks aus TASKS.md, Repo Status, eine konkrete Frage",
+      "cadence": "30 8 * * *",
+      "cadenceHuman": "Taeglich 8:30 Uhr",
+      "outputPattern": "briefings/{date}-morning.md",
+      "status": "active",
+      "lastRun": null,
+      "createdAt": "2026-04-09"
+    },
+    {
+      "id": "news-scout",
+      "name": "News Scout",
+      "description": "Wochen-Update zu Next.js, Vercel, Claude Code, Supabase Releases",
+      "cadence": "0 9 * * 1",
+      "cadenceHuman": "Montags 9:00 Uhr",
+      "outputPattern": "briefings/{date}-news.md",
+      "status": "active",
+      "lastRun": null,
+      "createdAt": "2026-04-09"
+    },
+    {
+      "id": "weekly-health",
+      "name": "Weekly Codebase Health",
+      "description": "Health Report meyso-website: TODO/FIXME count, Lint Status, Audit, Oversized Files",
+      "cadence": "30 9 * * 1",
+      "cadenceHuman": "Montags 9:30 Uhr",
+      "outputPattern": "briefings/{date}-health.md",
+      "status": "active",
+      "lastRun": null,
+      "createdAt": "2026-04-09"
+    }
+  ]
+}
