@@ -50,7 +50,7 @@ Stand: 2026-04-09 (priorisiert)
 - [ ] 🤖 Claude | meyso-website: npm audit fix (10 vulnerabilities: 3 moderate, 7 high)
 - [ ] 🤖 Claude | hirmax: npm audit fix (19 vulnerabilities: 9 moderate, 10 high)
   <!-- Achtung: erst pruefen was sich aendert, nicht blind --force laufen lassen -->
-- [ ] 🤖 Claude | hirmax: package.json name fixen (aktuell: "meyso-kmu-template@1.0.0" → soll: "hirmax-scheibenbilder@1.0.0")
+- [x] 🤖 Claude | hirmax: package.json name fixen (aktuell: "meyso-kmu-template@1.0.0" → soll: "hirmax-scheibenbilder@1.0.0")
 - [ ] 👤 Manuell | sq-schmidt-website: .env.local aus Git-History entfernen + .gitignore
   <!-- Context: aktuell als tracked committed. Inhalt ist nur NEXT_PUBLIC_SITE_URL (public Vercel URL), keine echten Secrets. Kein akutes Security-Risiko, aber best practice. Tool: git filter-repo oder BFG Repo Cleaner. -->
 - [ ] 🤖 Claude | meyso-website: Lint-Errors aufraeumen (183 errors + 30 warnings)
