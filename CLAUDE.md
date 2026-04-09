@@ -62,6 +62,15 @@ Markdown + YAML für Konfig und Tasks. Node/TypeScript Tooling wo nötig (Script
 - Bei neuen Architektur-Regeln prüfen ob sie alle Projekte betreffen oder nur eins
 - Nach TASKS.md Updates committen und pushen damit meyso.de/admin/tasks Dashboard aktuell ist
 
+## Custom Slash Commands
+
+Globale Commands liegen in ~/.claude/commands/ und sind in jedem Repo verfuegbar.
+
+- `/meyso-component <name>` - Erstellt neue React Komponente nach meyso Konventionen (kebab-case input, PascalCase component). Beispiel: `/meyso-component hero-section`
+- `/meyso-preflight` - Pre-deploy sanity check. Prueft git clean, gepusht, type-check, lint und env vars Vollstaendigkeit. Laeuft in ca 30 Sekunden.
+
+Erstellt am 09.04.2026.
+
 ## Was du NIE tun sollst
 - Em-dashes schreiben
 - Tasks ohne Projekt-Zuordnung erstellen
