@@ -1,78 +1,98 @@
 # Autonomous Workflows Layer
 
-Stand: 2026-04-09
+Stand: 2026-04-09 (Wave 3 Abschluss)
 
-Drei scheduled Loops die in Claude Code laufen und das meyso-os autonom aktuell halten.
-
----
-
-## Uebersicht
-
-| Loop | Datei | Zeitplan | Zweck |
-|------|-------|----------|-------|
-| 01 TASKS.md Triage | loop-01-tasks-triage.md | Taeglich 09:03 | Code-Schulden in allen Repos aufspueren und in TASKS.md eintragen |
-| 02 Repo Health Sweep | loop-02-repo-health.md | Montags 08:47 | git status, npm audit, stale branches ueberpruefen |
-| 03 Deploy + Pipeline Monitor | loop-03-pipeline-monitor.md | Di + Fr 10:03 | Template-Version-Drift, uncommitted changes, Deploy-Zustand |
+Drei scheduled Loops die in Claude Code laufen und Dave taeglich und woechentlich informieren.
 
 ---
 
-## Technologie-Entscheidung
+## Loop-Uebersicht
 
-**Gewaehlt: CronCreate mit durable=true**
+| # | Name | Datei | Zeitplan | Status |
+|---|------|-------|----------|--------|
+| 01 | Morning Brief | loop-01-morning-brief.md | Taeglich 08:30 | active |
+| 02 | News Scout | loop-02-news-scout.md | Montags 09:00 | active |
+| 03 | Weekly Codebase Health | loop-03-codebase-health.md | Montags 09:30 | active |
 
-Gruende:
-- Laeuft lokal in Claude Code (REPL), kein externer Service noetig
-- `durable: true` persistiert Jobs in `.claude/scheduled_tasks.json` und ueberlebt Session-Neustarts
-- Voller Zugriff auf das lokale Dateisystem (D:\dev\...) ohne API-Tokens
+---
+
+## Was passiert wann
+
+**Jeden Morgen um 08:30:**
+Loop 01 liest TASKS.md, prueft git status in allen 7 Repos und schreibt:
+`docs/autonomous-workflows/briefings/YYYY-MM-DD-morning.md`
+
+**Jeden Montag um 09:00:**
+Loop 02 sucht nach Stack-Updates (Next.js, Vercel, Claude Code, Supabase) und schreibt:
+`docs/autonomous-workflows/briefings/YYYY-MM-DD-news.md`
+
+**Jeden Montag um 09:30:**
+Loop 03 analysiert meyso-website (TODO/FIXME, Lint, npm audit, grosse Dateien) und schreibt:
+`docs/autonomous-workflows/briefings/YYYY-MM-DD-health.md`
+
+---
+
+## Technologie
+
+**Gewaehlt: CronCreate (Claude Code built-in)**
+
+- Laeuft lokal in Claude Code REPL, kein externer Service noetig
+- Voller Zugriff auf D:\dev\... Dateisystem
 - Sofort aktivierbar ohne Cloud-Konfiguration
 
+**Bekannte Einschraenkung (Windows):**
+`durable: true` wird akzeptiert aber Jobs laufen als `session-only` - die Jobs persistieren nicht ueber Session-Neustarts. Grund vermutlich Windows-Pfad-Inkompatibilitaet mit `.claude/scheduled_tasks.json`.
+
+Workaround: Bei jedem Session-Start neu aktivieren (siehe activate-loops.md).
+
 **Upgrade-Pfad: RemoteTrigger (claude.ai)**
-
-Wenn die Loops unabhaengig vom lokalen Rechner laufen sollen (z.B. 24/7 Monitoring), koennen sie als Remote Trigger auf claude.ai migriert werden. Die Prompt-Dateien sind so geschrieben, dass sie ohne Anpassung uebertragen werden koennen.
-
-**Warum nicht GitHub Actions?**
-
-GitHub Actions ist eine valide Alternative (kostenlos, durable, immer an). Nachteil: kein Zugriff auf lokales Dateisystem, kein Claude Code Kontext. Geeignet als Fallback wenn CronCreate nicht verfuegbar ist.
+Wenn Loops unabhaengig vom lokalen Rechner laufen sollen, koennen sie als Remote Trigger migriert werden. Prompts sind dafuer bereits kompatibel.
 
 ---
 
-## Aktivierung
+## Loops aktivieren
 
-Loops werden beim Start einer neuen Claude Code Session manuell reaktiviert, da CronCreate-Jobs session-bound sind (auch mit durable=true wird nur der Prompt gespeichert, nicht der laufende Job).
+Sag Claude Code am Session-Start:
 
-**Start-Befehl fuer alle 3 Loops:**
+> Lies docs/autonomous-workflows/activate-loops.md und starte alle 3 Loops.
 
-Lies die Datei `docs/autonomous-workflows/activate-loops.md` und fuehre die CronCreate-Aufrufe darin aus.
+Oder manuell testen (ohne auf Scheduling zu warten):
 
-Oder manuell einzeln aktivieren - Prompts und Zeitplaene stehen in den jeweiligen loop-*.md Dateien.
-
----
-
-## Limits und bekannte Einschraenkungen
-
-- CronCreate-Jobs verfallen nach 7 Tagen automatisch
-- Jobs feuern nur wenn die Claude Code REPL idle ist (nicht mid-Query)
-- Maximale Laufzeit pro Loop: haengt vom Repo-Scan-Umfang ab, typisch 1-3 Minuten
-
-**durable=true funktioniert in dieser Umgebung nicht wie dokumentiert:**
-Beim Erstellen der 3 Jobs wurde `durable: true` uebergeben, aber alle Jobs liefen als `session-only` (nicht auf Disk persistiert). Moeglich Ursache: Windows-Pfad-Inkompatibilitaet mit `.claude/scheduled_tasks.json`. Workaround: `activate-loops.md` beschreibt wie Jobs bei jedem Session-Start neu aktiviert werden. Die Prompts stehen in den loop-*.md Dateien und koennen jederzeit als CronCreate-Argument eingesetzt werden.
+> Fuehre den Morning Brief fuer heute aus (Prompt in loop-01-morning-brief.md).
 
 ---
 
-## Repos die gescannt werden
+## Manuellen Test-Run starten
 
-```
-D:\dev\meyso\meyso-website
-D:\dev\meyso\meyso-os
-D:\dev\meyso\meyso-kmu-template
-D:\dev\meyso\meyso-demo-schreinerei
-D:\dev\clients\hirmax-scheibenbilder
-D:\dev\clients\sq-schmidt-website
-D:\dev\products\toolradar
-```
+Fuer jeden Loop funktioniert:
+
+> Fuehre Loop 01 Morning Brief jetzt manuell aus - heute ist 2026-04-09.
 
 ---
 
-## Entscheidungslog
+## Loop deaktivieren
 
-**2026-04-09** - Autonomous Workflows Layer erstellt. Loop-Prompts eigenstaendig definiert da Task-Beschreibung nach Phasen-Uebersicht abgeschnitten war. Gewaehlt wurden 3 Loops die den groessten autonomen Mehrwert liefern: taeglich TASKS.md frisch halten (Loop 01), woechentlich Repo-Gesundheit pruefen (Loop 02), zweimal woechentlich Deploy-Zustand und Template-Drift melden (Loop 03). CronCreate bevorzugt gegenueber Remote Triggers wegen lokalem Dateisystem-Zugriff.
+1. CronList aufrufen um Job-IDs zu sehen
+2. CronDelete mit der jeweiligen ID aufrufen
+
+---
+
+## 7-Tage Limit
+
+Alle Jobs verfallen nach 7 Tagen automatisch. Danach einmalig neu aktivieren.
+
+---
+
+## Output-Dateien
+
+Alle Briefings landen in: `docs/autonomous-workflows/briefings/`
+
+Namensschema: `YYYY-MM-DD-morning.md`, `YYYY-MM-DD-news.md`, `YYYY-MM-DD-health.md`
+
+---
+
+## Geplante naechste Loops (TASKS.md)
+
+- npm audit auto-PR Loop (braucht MCP GitHub integration)
+- Hirmax Order Monitoring Loop (braucht MCP Supabase)
+- toolradar Content Generation Loop (braucht Gemini + Quality Gate)

@@ -85,8 +85,13 @@ Stand: 2026-04-09 (priorisiert)
 
 ### Infrastructure / DevEx
 
-- [x] 🤖 Claude | meyso-os: Autonomous Workflows Layer gebaut (3 Loops + Dokumentation in docs/autonomous-workflows/) ✓
-  <!-- Loop 01: TASKS.md Triage taeglich 09:03, Loop 02: Repo Health Sweep montags 08:47, Loop 03: Pipeline Monitor Di+Fr 10:03. CronJobs IDs: f37a3585 / 6c6fb5fc / 3206a7c9. Aktivierung: docs/autonomous-workflows/activate-loops.md. Hinweis: durable=true funktioniert aktuell nicht auf Windows, Jobs muessen pro Session neu aktiviert werden. -->
+- [x] 🤖 Claude | Autonomous: Morning Brief Loop (09.04.2026) ✓
+- [x] 🤖 Claude | Autonomous: News Scout Loop (09.04.2026, erledigt Wave 3 Roadmap) ✓
+- [x] 🤖 Claude | Autonomous: Weekly Codebase Health Report Loop (09.04.2026) ✓
+  <!-- CronJob IDs (Session): 07b25f68 / b6f169db / 31f67186. Aktivierung: docs/autonomous-workflows/activate-loops.md. Hinweis: durable=true ist session-only auf Windows. -->
+- [ ] 🤖 Claude | Autonomous: npm audit auto-PR Loop (taeglich, braucht MCP GitHub integration)
+- [ ] 🤖 Claude | Autonomous: Hirmax Order Monitoring Loop (alle 6h, braucht MCP Supabase)
+- [ ] 🤖 Claude | Autonomous: toolradar Content Generation Loop (taeglich, braucht Gemini + Quality Gate)
 - [ ] 👤 Manuell | C: Space Cleanup Phase 2
   <!-- Heute nur Dev Repos migriert (+16 GB). Noch offen: .android (17 GB), .nuget (4 GB), OneDrive "Files on Demand" aktivieren, Downloads aufraeumen. Potenzial: +25 bis 30 GB zusaetzlich. Separate Session, 30 bis 60 Minuten. -->
 - [ ] 👤 Manuell | pnpm store + Caches von C: auf D: verlegen

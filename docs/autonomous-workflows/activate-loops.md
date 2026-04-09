@@ -1,36 +1,41 @@
 # Loops aktivieren
 
-Diese Datei beschreibt wie die 3 autonomen Loops in einer neuen Claude Code Session gestartet werden.
-
-## Warum manuell aktivieren?
-
-CronCreate-Jobs sind session-bound. Mit `durable: true` wird der Prompt in `.claude/scheduled_tasks.json` gespeichert, aber der Job muss pro Session neu gestartet werden. Das ist gewollt: Loop laeuft nur wenn der Rechner an ist und Claude Code offen ist.
-
-## Aktivierungsbefehl
-
-Sage Claude Code am Sessionstart:
+Sag Claude Code am Session-Start:
 
 > Lies docs/autonomous-workflows/activate-loops.md und starte alle 3 Loops via CronCreate.
 
-Oder manuell in der Session:
+## Loop 01 - Morning Brief (taeglich 08:30)
 
-**Loop 01 - TASKS.md Triage (taeglich 09:03):**
-CronCreate mit cron="3 9 * * *", durable=true, recurring=true, prompt = vollstaendiger Inhalt aus loop-01-tasks-triage.md
+CronCreate:
+- cron: "30 8 * * *"
+- durable: true
+- recurring: true
+- prompt: vollstaendiger Inhalt aus loop-01-morning-brief.md (Prompt-Block)
 
-**Loop 02 - Repo Health Sweep (montags 08:47):**
-CronCreate mit cron="47 8 * * 1", durable=true, recurring=true, prompt = vollstaendiger Inhalt aus loop-02-repo-health.md
+## Loop 02 - News Scout (montags 09:00)
 
-**Loop 03 - Pipeline Monitor (Di + Fr 10:03):**
-CronCreate mit cron="3 10 * * 2,5", durable=true, recurring=true, prompt = vollstaendiger Inhalt aus loop-03-pipeline-monitor.md
+CronCreate:
+- cron: "0 9 * * 1"
+- durable: true
+- recurring: true
+- prompt: vollstaendiger Inhalt aus loop-02-news-scout.md (Prompt-Block)
+
+## Loop 03 - Weekly Codebase Health (montags 09:30)
+
+CronCreate:
+- cron: "30 9 * * 1"
+- durable: true
+- recurring: true
+- prompt: vollstaendiger Inhalt aus loop-03-codebase-health.md (Prompt-Block)
 
 ## Status pruefen
 
-CronList aufrufen um aktive Jobs anzuzeigen.
+CronList aufrufen.
 
 ## Loop stoppen
 
-CronDelete mit der Job-ID aus CronList.
+CronDelete mit Job-ID aus CronList.
 
-## 7-Tage Limit
+## Hinweis: durable auf Windows
 
-Alle Jobs verfallen nach 7 Tagen automatisch. Danach einmalig neu aktivieren.
+durable=true wird akzeptiert aber Jobs laufen als session-only (Windows-Pfad-Problem mit .claude/scheduled_tasks.json). Deshalb bei jedem Session-Start neu aktivieren.
