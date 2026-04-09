@@ -1,0 +1,149 @@
+# ============================================================
+# ACHTUNG: Dieser Workflow braucht CLAUDE_API_KEY in
+# GitHub Secrets. Settings > Secrets and variables > Actions.
+# Ohne den Key wird der Workflow failen.
+# Dave muss den Secret einmalig einrichten.
+#
+# OPTIONAL: GH_PAT (Personal Access Token mit repo scope)
+# benoetigt um meyso-website auszuchecken (falls privates Repo).
+# Falls nicht gesetzt wird nur TASKS.md Analyse gemacht.
+# ============================================================
+
+name: Weekly Codebase Health
+
+on:
+  schedule:
+    # 08:30 UTC = 09:30 Berlin (winter/CET), montags
+    - cron: '30 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  weekly-health:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout meyso-os
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout meyso-website (optional, braucht GH_PAT)
+        uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          repository: businessfabian/meyso-website
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          path: meyso-website-checkout
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Gather health data
+        id: gather
+        run: |
+          RUN_DATE=$(date +%Y-%m-%d)
+          echo "RUN_DATE=$RUN_DATE" >> $GITHUB_OUTPUT
+
+          # Lint und Audit aus meyso-website (falls ausgecheckt)
+          LINT_OUTPUT="meyso-website nicht ausgecheckt (GH_PAT fehlt oder Repo nicht zugaenglich)"
+          AUDIT_OUTPUT="npm audit nicht verfuegbar"
+
+          if [ -d "meyso-website-checkout" ]; then
+            echo "meyso-website ausgecheckt, installiere Dependencies..."
+            cd meyso-website-checkout
+            npm ci --prefer-offline 2>&1 | tail -3 || true
+
+            echo "Fuhre lint aus..."
+            LINT_OUTPUT=$(npm run lint 2>&1 | tail -5 || echo "lint fehlgeschlagen")
+
+            echo "Fuhre npm audit aus..."
+            AUDIT_OUTPUT=$(npm audit 2>&1 | tail -8 || echo "audit fehlgeschlagen")
+
+            cd ..
+          fi
+
+          # Speichere in temp files
+          echo "$LINT_OUTPUT" > /tmp/lint-output.txt
+          echo "$AUDIT_OUTPUT" > /tmp/audit-output.txt
+
+          echo "Data gathered."
+
+      - name: Build prompt and call Claude API
+        env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+          RUN_DATE: ${{ steps.gather.outputs.RUN_DATE }}
+        run: |
+          python3 - << 'PYEOF'
+          import os
+
+          run_date = os.environ['RUN_DATE']
+
+          with open('TASKS.md', 'r', encoding='utf-8') as f:
+              tasks_content = f.read()
+
+          with open('/tmp/lint-output.txt', 'r', encoding='utf-8') as f:
+              lint_output = f.read()
+
+          with open('/tmp/audit-output.txt', 'r', encoding='utf-8') as f:
+              audit_output = f.read()
+
+          prompt = f"""Du bist ein KI-Assistent der Dave (Fabian) einen woechentlichen Codebase Health Report erstellt.
+
+Datum heute: {run_date}
+
+=== TASKS.md (offene Tech-Debt-Items) ===
+{tasks_content}
+
+=== Lint Output (meyso-website) ===
+{lint_output}
+
+=== npm audit Output (meyso-website) ===
+{audit_output}
+
+Erstelle einen Codebase Health Report als reines Markdown-Dokument:
+
+# Codebase Health Report {run_date}
+
+## Tech Debt aus TASKS.md
+Welche technischen Schulden sind in TASKS.md als offene Tasks gelistet? Kurze Zusammenfassung.
+
+## Lint Status (meyso-website)
+Basierend auf dem Lint Output oben: Errors und Warnings zaehlen, groesste Problemkategorien nennen.
+
+## Audit Status (meyso-website)
+Basierend auf dem npm audit Output: Critical, High, Moderate Counts. Besondere Risiken hervorheben.
+
+## Empfehlung
+1-3 Saetze: was waere der naechste sinnvolle Schritt fuer diese Woche?
+
+Regeln:
+- Keine em-dashes (U+2014), stattdessen Komma oder Zeilenumbruch
+- Falls Lint/Audit nicht verfuegbar: klar so kennzeichnen
+- Antworte NUR mit dem Markdown-Dokument
+"""
+
+          with open('/tmp/health-prompt.txt', 'w', encoding='utf-8') as f:
+              f.write(prompt)
+
+          print('Prompt file written.')
+          PYEOF
+
+          PROMPT_FILE=/tmp/health-prompt.txt \
+          OUTPUT_FILE="docs/autonomous-workflows/briefings/${RUN_DATE}-health.md" \
+          WORKFLOW_ID=weekly-health \
+          node scripts/run-loop.js
+
+      - name: Commit briefing
+        run: |
+          RUN_DATE=${{ steps.gather.outputs.RUN_DATE }}
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add "docs/autonomous-workflows/briefings/${RUN_DATE}-health.md" \
+                  docs/autonomous-workflows/workflows.json
+          git diff --cached --quiet || git commit -m "chore: auto-generated briefing ${RUN_DATE} from weekly-health"
+          git push

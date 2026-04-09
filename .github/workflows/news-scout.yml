@@ -1,0 +1,102 @@
+# ============================================================
+# ACHTUNG: Dieser Workflow braucht CLAUDE_API_KEY in
+# GitHub Secrets. Settings > Secrets and variables > Actions.
+# Ohne den Key wird der Workflow failen.
+# Dave muss den Secret einmalig einrichten.
+# ============================================================
+
+name: News Scout
+
+on:
+  schedule:
+    # 08:00 UTC = 09:00 Berlin (winter/CET), montags
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  news-scout:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout meyso-os
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build prompt and call Claude API
+        env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: |
+          RUN_DATE=$(date +%Y-%m-%d)
+
+          python3 - << 'PYEOF'
+          import os
+
+          run_date = os.environ['RUN_DATE']
+
+          prompt = f"""Du bist ein KI-Assistent der Dave (Fabian) einen woechentlichen Tech-News Scout erstellt.
+
+Datum heute: {run_date}
+
+Dave arbeitet mit folgendem Stack: Next.js, React, TypeScript, Tailwind CSS, Vercel, Sanity CMS, Supabase, Redis (Upstash), Resend, Claude Code (Anthropic), Gemini API.
+
+Erstelle einen News Scout Report als reines Markdown-Dokument. Nutze dein Trainingswissen (Stand August 2025).
+Hinweis am Ende: "Dieser Report basiert auf Trainingsdaten. Fuer aktuelle Releases immer die offiziellen Changelogs pruefen."
+
+# News Scout {run_date}
+
+## Next.js
+Relevante Releases, Breaking Changes, neue Features seit ca. Anfang 2025.
+
+## Vercel
+Relevante Platform-Updates und neue Features.
+
+## Anthropic / Claude Code
+Relevante Updates zu Claude API, Claude Code CLI, neuen Modellen.
+
+## Supabase
+Relevante neue Features, Breaking Changes, Auth-Updates.
+
+## Sanity CMS
+Relevante Updates (falls vorhanden, sonst "Nichts Relevantes bekannt").
+
+## Action Items diese Woche
+Konkrete To-Dos fuer Dave (nur wenn wirklich relevant, sonst Abschnitt weglassen).
+
+---
+*Dieser Report basiert auf Trainingsdaten (Stand Aug 2025). Fuer aktuelle Releases die offiziellen Changelogs pruefen.*
+
+Regeln:
+- Keine em-dashes (U+2014), stattdessen Komma oder Zeilenumbruch
+- Wenn keine relevanten Neuigkeiten: "Nichts Relevantes bekannt" schreiben
+- Antworte NUR mit dem Markdown-Dokument
+"""
+
+          with open('/tmp/news-scout-prompt.txt', 'w', encoding='utf-8') as f:
+              f.write(prompt)
+
+          print('Prompt file written.')
+          PYEOF
+
+          PROMPT_FILE=/tmp/news-scout-prompt.txt \
+          OUTPUT_FILE="docs/autonomous-workflows/briefings/${RUN_DATE}-news.md" \
+          WORKFLOW_ID=news-scout \
+          node scripts/run-loop.js
+
+      - name: Commit briefing
+        run: |
+          RUN_DATE=$(date +%Y-%m-%d)
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add "docs/autonomous-workflows/briefings/${RUN_DATE}-news.md" \
+                  docs/autonomous-workflows/workflows.json
+          git diff --cached --quiet || git commit -m "chore: auto-generated briefing ${RUN_DATE} from news-scout"
+          git push

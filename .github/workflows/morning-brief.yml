@@ -1,0 +1,98 @@
+# ============================================================
+# ACHTUNG: Dieser Workflow braucht CLAUDE_API_KEY in
+# GitHub Secrets. Settings > Secrets and variables > Actions.
+# Ohne den Key wird der Workflow failen.
+# Dave muss den Secret einmalig einrichten.
+# ============================================================
+
+name: Morning Brief
+
+on:
+  schedule:
+    # 07:30 UTC = 08:30 Berlin (winter/CET). Im Sommer (CEST) laeuft er eine Stunde frueh.
+    - cron: '30 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  morning-brief:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout meyso-os
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build prompt and call Claude API
+        env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: |
+          RUN_DATE=$(date +%Y-%m-%d)
+
+          python3 - << 'PYEOF'
+          import os
+
+          run_date = os.environ['RUN_DATE']
+
+          with open('TASKS.md', 'r', encoding='utf-8') as f:
+              tasks_content = f.read()
+
+          prompt = f"""Du bist ein KI-Assistent der Dave (Fabian) einen taeglichen Morning Brief erstellt.
+
+Datum heute: {run_date}
+
+Hier ist der aktuelle Inhalt der TASKS.md:
+
+{tasks_content}
+
+Erstelle einen Morning Brief als reines Markdown-Dokument:
+
+# Morning Brief {run_date}
+
+## Top 3 Tasks heute
+1. [P0/P1] Taskbeschreibung (aus TASKS.md uebernehmen)
+2. ...
+3. ...
+
+## Offene Items im Ueberblick
+Kurze Zusammenfassung: wie viele Tasks sind insgesamt offen, nach Prioritaet aufgeteilt.
+
+## Frage an Dich
+Eine konkrete, entscheidbare Frage basierend auf den Top Tasks.
+
+Regeln:
+- Keine em-dashes (U+2014) verwenden, stattdessen Komma oder Zeilenumbruch
+- Nur offene Tasks beachten (Zeilen mit [ ]), abgeschlossene ([x]) ignorieren
+- P0 vor P1 vor P2 sortieren
+- Maximal 3 Tasks in der Hauptliste
+- Antworte NUR mit dem Markdown-Dokument, kein erklaerende Text davor oder danach
+"""
+
+          with open('/tmp/morning-brief-prompt.txt', 'w', encoding='utf-8') as f:
+              f.write(prompt)
+
+          print('Prompt file written.')
+          PYEOF
+
+          PROMPT_FILE=/tmp/morning-brief-prompt.txt \
+          OUTPUT_FILE="docs/autonomous-workflows/briefings/${RUN_DATE}-morning.md" \
+          WORKFLOW_ID=morning-brief \
+          node scripts/run-loop.js
+
+      - name: Commit briefing
+        run: |
+          RUN_DATE=$(date +%Y-%m-%d)
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add "docs/autonomous-workflows/briefings/${RUN_DATE}-morning.md" \
+                  docs/autonomous-workflows/workflows.json
+          git diff --cached --quiet || git commit -m "chore: auto-generated briefing ${RUN_DATE} from morning-brief"
+          git push
