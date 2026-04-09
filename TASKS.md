@@ -1,6 +1,6 @@
 # Backlog – Alle Meyso Projekte
 
-Stand: 2026-04-07 (priorisiert)
+Stand: 2026-04-09 (priorisiert)
 
 > Legende: `🤖 Claude` = kann Claude Code abarbeiten · `👤 Manuell` = braucht menschliche Aktion
 
@@ -29,6 +29,8 @@ Stand: 2026-04-07 (priorisiert)
 - [ ] 👤 Social Media API Keys konfigurieren (LinkedIn Developer Portal) – Social Poster ist fertig, wartet auf Keys
 - [ ] 👤 Lexware Export end-to-end testen (Testbestellung → XML Export → Import in Lexware bei Max)
 - [ ] 👤 Wartungsvertrag-Reaktionszeiten realistisch setzen (Achtung: Hauptjob)
+- [ ] 🤖 Claude | meyso-website: middleware.ts zu proxy migrieren (Next.js 16 deprecation)
+  <!-- Context: npm run dev zeigt "The middleware file convention is deprecated. Please use proxy instead." Breaking change in kommenden Next.js Versionen. Migration path: https://nextjs.org/docs/messages/middleware-to-proxy -->
 
 ---
 
@@ -45,6 +47,12 @@ Stand: 2026-04-07 (priorisiert)
 - [ ] 👤 Sanity Read Token: Separaten Viewer-Token erstellen statt Write-Token an Templates
 - [ ] 👤 CRON_SECRET auf Vercel setzen (meyso-website)
 - [x] 👤 GitHub Template Repo markieren: meyso-kmu-template → Settings → Template repository ✓
+- [ ] 🤖 Claude | meyso-website: npm audit fix (10 vulnerabilities: 3 moderate, 7 high)
+- [ ] 🤖 Claude | hirmax: npm audit fix (19 vulnerabilities: 9 moderate, 10 high)
+  <!-- Achtung: erst pruefen was sich aendert, nicht blind --force laufen lassen -->
+- [ ] 🤖 Claude | hirmax: package.json name fixen (aktuell: "meyso-kmu-template@1.0.0" → soll: "hirmax-scheibenbilder@1.0.0")
+- [ ] 👤 Manuell | sq-schmidt-website: .env.local aus Git-History entfernen + .gitignore
+  <!-- Context: aktuell als tracked committed. Inhalt ist nur NEXT_PUBLIC_SITE_URL (public Vercel URL), keine echten Secrets. Kein akutes Security-Risiko, aber best practice. Tool: git filter-repo oder BFG Repo Cleaner. -->
 
 ---
 
@@ -72,6 +80,13 @@ Stand: 2026-04-07 (priorisiert)
 - [ ] 🤖 Wartungs-Dashboard: Einzelnen Lighthouse manuell fuer einen Kunden triggern
 - [ ] 🤖 Provision Wizard: "Schritt wiederholen" Button fuer fehlgeschlagene Steps
 - [ ] 🤖 Cockpit: Letzte Aktivitaeten Feed (neue Clients, Anfragen, Deploys)
+
+### Infrastructure / DevEx
+
+- [ ] 👤 Manuell | C: Space Cleanup Phase 2
+  <!-- Heute nur Dev Repos migriert (+16 GB). Noch offen: .android (17 GB), .nuget (4 GB), OneDrive "Files on Demand" aktivieren, Downloads aufraeumen. Potenzial: +25 bis 30 GB zusaetzlich. Separate Session, 30 bis 60 Minuten. -->
+- [ ] 👤 Manuell | pnpm store + Caches von C: auf D: verlegen
+  <!-- Heute nicht gemacht. Potenzial 1 bis 3 GB auf C:, plus saubere Trennung Tools vs OS. -->
 
 ### meyso-kmu-template (Template)
 - [ ] 🤖 FAQ Admin-Seite (aktuell nur via Sanity Studio)
@@ -139,6 +154,9 @@ Stand: 2026-04-07 (priorisiert)
 - [x] 👤 GitHub Template Repo markieren (P2) ✓
 - [ ] 👤 Ersten Test-Kunden provisionieren (P2)
 - [ ] 👤 PAGESPEED_API_KEY optional (P2)
+- [ ] 👤 sq-schmidt-website: .env.local aus Git-History entfernen (P2)
+- [ ] 👤 C: Space Cleanup Phase 2 (P3)
+- [ ] 👤 pnpm store + Caches von C: auf D: (P3)
 
 ---
 
