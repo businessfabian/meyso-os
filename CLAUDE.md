@@ -17,12 +17,12 @@ Markdown + YAML für Konfig und Tasks. Node/TypeScript Tooling wo nötig (Script
 ## Projekte (Repos die TASKS.md konsumieren)
 | Projekt | Pfad |
 |---------|------|
-| meyso-website | C:\Users\fabia\meyso-website |
-| meyso-kmu-template | C:\Users\fabia\meyso-kmu-template |
-| meyso-demo-schreinerei | C:\Users\fabia\meyso-demo-schreinerei |
-| hirmax | C:\Users\fabia\hirmax-scheibenbilder |
-| sq-schmidt | C:\Users\fabia\sq-schmidt-website |
-| toolradar | C:\code\toolradar |
+| meyso-website | D:\dev\meyso\meyso-website |
+| meyso-kmu-template | D:\dev\meyso\meyso-kmu-template |
+| meyso-demo-schreinerei | D:\dev\meyso\meyso-demo-schreinerei |
+| hirmax | D:\dev\clients\hirmax-scheibenbilder |
+| sq-schmidt | D:\dev\clients\sq-schmidt-website |
+| toolradar | D:\dev\products\toolradar |
 
 ## Meyso OS Architektur Rules (für alle Projekte die dieses OS nutzen)
 1. 3-Folder Structure: modules, features, app
