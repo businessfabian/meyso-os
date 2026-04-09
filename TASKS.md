@@ -85,6 +85,8 @@ Stand: 2026-04-09 (priorisiert)
 
 ### Infrastructure / DevEx
 
+- [x] 🤖 Claude | meyso-os: Autonomous Workflows Layer gebaut (3 Loops + Dokumentation in docs/autonomous-workflows/) ✓
+  <!-- Loop 01: TASKS.md Triage taeglich 09:03, Loop 02: Repo Health Sweep montags 08:47, Loop 03: Pipeline Monitor Di+Fr 10:03. CronJobs IDs: f37a3585 / 6c6fb5fc / 3206a7c9. Aktivierung: docs/autonomous-workflows/activate-loops.md. Hinweis: durable=true funktioniert aktuell nicht auf Windows, Jobs muessen pro Session neu aktiviert werden. -->
 - [ ] 👤 Manuell | C: Space Cleanup Phase 2
   <!-- Heute nur Dev Repos migriert (+16 GB). Noch offen: .android (17 GB), .nuget (4 GB), OneDrive "Files on Demand" aktivieren, Downloads aufraeumen. Potenzial: +25 bis 30 GB zusaetzlich. Separate Session, 30 bis 60 Minuten. -->
 - [ ] 👤 Manuell | pnpm store + Caches von C: auf D: verlegen
