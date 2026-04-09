@@ -77,6 +77,7 @@ Globale Commands liegen in ~/.claude/commands/ und sind in jedem Repo verfuegbar
 
 - `/meyso-component <name>` - Erstellt neue React Komponente nach meyso Konventionen (kebab-case input, PascalCase component). Beispiel: `/meyso-component hero-section`
 - `/meyso-preflight` - Pre-deploy sanity check. Prueft git clean, gepusht, type-check, lint und env vars Vollstaendigkeit. Laeuft in ca 30 Sekunden.
+- `/meyso-paths-update` - Aktualisiert CLAUDE.md Pfad-Referenzen zu anderen meyso Repos (8 Pfad-Mappings, zeigt Diff, wartet auf Bestaetigung vor Commit).
 
 Erstellt am 09.04.2026.
 
