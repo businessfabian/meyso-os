@@ -1,5 +1,5 @@
 # ============================================================
-# ACHTUNG: Dieser Workflow braucht CLAUDE_API_KEY in
+# ACHTUNG: Dieser Workflow braucht GEMINI_API_KEY in
 # GitHub Secrets. Settings > Secrets and variables > Actions.
 # Ohne den Key wird der Workflow failen.
 # Dave muss den Secret einmalig einrichten.
@@ -73,9 +73,9 @@ jobs:
 
           echo "Data gathered."
 
-      - name: Build prompt and call Claude API
+      - name: Build prompt and call Gemini API
         env:
-          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           RUN_DATE: ${{ steps.gather.outputs.RUN_DATE }}
         run: |
           python3 - << 'PYEOF'

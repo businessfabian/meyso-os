@@ -19,11 +19,12 @@ Keine manuelle Aktivierung noetig, keine Session-Abhaengigkeit.
 
 ### Voraussetzungen (einmalig)
 
-1. `CLAUDE_API_KEY` als GitHub Secret setzen:
+1. `GEMINI_API_KEY` als GitHub Secret setzen:
    - Repo: `businessfabian/meyso-os`
    - Settings > Secrets and variables > Actions > New repository secret
-   - Name: `CLAUDE_API_KEY`
-   - Value: Anthropic API Key (beginnt mit `sk-ant-...`)
+   - Name: `GEMINI_API_KEY`
+   - Value: Google Gemini API Key
+   - Migration zu Gemini 2.5 Flash am 09.04.2026 abends, weil Dave den Key bereits in toolradar nutzt und keine Anthropic API Credits verbrauchen muss.
 
 2. Fuer Weekly Health optional: `GH_PAT` setzen (Personal Access Token mit `repo` scope),
    damit der Workflow meyso-website auschecken kann fuer Lint und Audit.
@@ -51,7 +52,7 @@ Committed automatisch als `github-actions[bot]`.
 
 ## Section 2: Fallback - Manuelle Claude Code Session
 
-Falls GitHub Actions down sind oder der CLAUDE_API_KEY nicht gesetzt ist:
+Falls GitHub Actions down sind oder der GEMINI_API_KEY nicht gesetzt ist:
 
 Sag Claude Code am Session-Start:
 

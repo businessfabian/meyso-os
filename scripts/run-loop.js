@@ -1,41 +1,46 @@
 #!/usr/bin/env node
-// Generic script: reads a prompt file, calls Anthropic API, writes response to output file.
+// Generic script: reads a prompt file, calls Gemini API, writes response to output file.
 // Used by GitHub Actions workflows for autonomous loops.
 //
 // Required env vars:
-//   CLAUDE_API_KEY  - Anthropic API key
+//   GEMINI_API_KEY  - Google Gemini API key
 //   PROMPT_FILE     - path to file containing the prompt text
 //   OUTPUT_FILE     - path where the response will be written
 //
 // Optional env vars:
 //   WORKFLOW_ID     - workflow id to update in workflows.json lastRun field
+//   LOOP_NAME       - loop identifier; set to "news-scout" to enable Google Search Grounding
 
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-function callAnthropic(prompt) {
-  const apiKey = process.env.CLAUDE_API_KEY;
+function callGemini(prompt, useGrounding) {
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    throw new Error('CLAUDE_API_KEY environment variable is not set');
+    throw new Error('GEMINI_API_KEY environment variable is not set');
   }
 
-  const body = JSON.stringify({
-    model: 'claude-opus-4-6',
-    max_tokens: 2048,
-    messages: [{ role: 'user', content: prompt }]
-  });
+  const bodyObj = {
+    contents: [{ parts: [{ text: prompt }] }],
+    generationConfig: { temperature: 0.3, maxOutputTokens: 8000 }
+  };
+
+  if (useGrounding) {
+    bodyObj.tools = [{ google_search: {} }];
+  }
+
+  const body = JSON.stringify(bodyObj);
+  const apiPath = `/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
   return new Promise((resolve, reject) => {
     const req = https.request(
       {
-        hostname: 'api.anthropic.com',
+        hostname: 'generativelanguage.googleapis.com',
         port: 443,
-        path: '/v1/messages',
+        path: apiPath,
         method: 'POST',
         headers: {
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
           'content-type': 'application/json',
           'content-length': Buffer.byteLength(body)
         }
@@ -47,9 +52,11 @@ function callAnthropic(prompt) {
           try {
             const parsed = JSON.parse(raw);
             if (parsed.error) {
-              reject(new Error(`Anthropic API error: ${parsed.error.message}`));
+              const err = new Error(`Gemini API error (${parsed.error.code}): ${parsed.error.message}`);
+              err.statusCode = parsed.error.code;
+              reject(err);
             } else {
-              resolve(parsed.content[0].text);
+              resolve(parsed.candidates[0].content.parts[0].text);
             }
           } catch (e) {
             reject(new Error(`Failed to parse API response: ${raw.substring(0, 300)}`));
@@ -61,6 +68,20 @@ function callAnthropic(prompt) {
     req.write(body);
     req.end();
   });
+}
+
+async function callGeminiWithRetry(prompt, useGrounding) {
+  try {
+    return await callGemini(prompt, useGrounding);
+  } catch (err) {
+    const code = err.statusCode;
+    if (code === 429 || (typeof code === 'number' && code >= 500)) {
+      console.log(`API error ${code}, retrying once after 5s...`);
+      await new Promise((r) => setTimeout(r, 5000));
+      return await callGemini(prompt, useGrounding);
+    }
+    throw err;
+  }
 }
 
 function updateWorkflowsJson(workflowId) {
@@ -89,10 +110,13 @@ async function main() {
     process.exit(1);
   }
 
-  const prompt = fs.readFileSync(PROMPT_FILE, 'utf-8');
-  console.log(`Calling Claude API (prompt length: ${prompt.length} chars)...`);
+  const loopName = process.env.LOOP_NAME || '';
+  const useGrounding = loopName === 'news-scout';
 
-  const response = await callAnthropic(prompt);
+  const prompt = fs.readFileSync(PROMPT_FILE, 'utf-8');
+  console.log(`Calling Gemini API (model: gemini-2.5-flash, grounding: ${useGrounding}, prompt length: ${prompt.length} chars)...`);
+
+  const response = await callGeminiWithRetry(prompt, useGrounding);
 
   const outputDir = path.dirname(OUTPUT_FILE);
   if (!fs.existsSync(outputDir)) {
