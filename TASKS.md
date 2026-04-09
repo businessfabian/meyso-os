@@ -30,6 +30,17 @@ Stand: 2026-04-09 (priorisiert)
 - [ ] 👤 Lexware Export end-to-end testen (Testbestellung → XML Export → Import in Lexware bei Max)
 - [ ] 👤 Wartungsvertrag-Reaktionszeiten realistisch setzen (Achtung: Hauptjob)
 - [x] 🤖 Claude | meyso-website: middleware.ts zu proxy migrieren (Next.js 16 deprecation) (527f627) ✓
+- [x] 🤖 Claude | hirmax: Submit Button Loading State + Doppel-Submit-Schutz (ffa47d7, 09.04.2026) ✓
+- [x] 🤖 Claude | UI Modernization Audit: 4 Projekte auditiert (09.04.2026) ✓
+  <!-- Audits in docs/ui-audits/: hirmax, villa-nina, toolradar, meyso-website. Summary: docs/ui-audits/2026-04-09-summary.md -->
+- [ ] 🤖 Claude | villa-nina: Mobile Navigation (25 Min, Pre-Launch Blocker)
+  <!-- Quelle: docs/ui-audits/2026-04-09-villa-nina-sardinia.md -->
+- [ ] 🤖 Claude | toolradar: ContactForm Labels (10 Min, WCAG Failure)
+  <!-- Quelle: docs/ui-audits/2026-04-09-toolradar.md -->
+- [ ] 🤖 Claude | meyso-website: CSS Custom Properties Fundament fuer Dark Mode (aus UI Audit)
+- [ ] 🤖 Claude | villa-nina: Weitere Quick Wins aus docs/ui-audits/2026-04-09-villa-nina-sardinia.md
+- [ ] 🤖 Claude | toolradar: Weitere Quick Wins aus docs/ui-audits/2026-04-09-toolradar.md
+- [ ] 🤖 Claude | hirmax: Weitere Quick Wins aus docs/ui-audits/2026-04-09-hirmax-scheibenbilder.md
   <!-- Context: npm run dev zeigt "The middleware file convention is deprecated. Please use proxy instead." Breaking change in kommenden Next.js Versionen. Migration path: https://nextjs.org/docs/messages/middleware-to-proxy -->
 
 ---
@@ -47,14 +58,19 @@ Stand: 2026-04-09 (priorisiert)
 - [ ] 👤 Sanity Read Token: Separaten Viewer-Token erstellen statt Write-Token an Templates
 - [ ] 👤 CRON_SECRET auf Vercel setzen (meyso-website)
 - [x] 👤 GitHub Template Repo markieren: meyso-kmu-template → Settings → Template repository ✓
-- [ ] 🤖 Claude | meyso-website: npm audit fix (10 vulnerabilities: 3 moderate, 7 high)
+- [x] 🤖 Claude | meyso-website: npm audit fix (9 von 10 Vulnerabilities gefixt, 17b428f) ✓
+  <!-- 1 verbleibende moderate Next.js Vuln benoetigt --force (version bump ausserhalb range), separat evaluieren -->
 - [ ] 🤖 Claude | hirmax: npm audit fix (19 vulnerabilities: 9 moderate, 10 high)
   <!-- Achtung: erst pruefen was sich aendert, nicht blind --force laufen lassen -->
 - [x] 🤖 Claude | hirmax: package.json name fixen (aktuell: "meyso-kmu-template@1.0.0" → soll: "hirmax-scheibenbilder@1.0.0")
 - [ ] 👤 Manuell | sq-schmidt-website: .env.local aus Git-History entfernen + .gitignore
   <!-- Context: aktuell als tracked committed. Inhalt ist nur NEXT_PUBLIC_SITE_URL (public Vercel URL), keine echten Secrets. Kein akutes Security-Risiko, aber best practice. Tool: git filter-repo oder BFG Repo Cleaner. -->
-- [ ] 🤖 Claude | meyso-website: Lint-Errors aufraeumen (183 errors + 30 warnings)
+- [ ] 🤖 Claude | meyso-website: 214 Lint Errors aufraeumen (hauptsaechlich @typescript-eslint/no-explicit-any)
   <!-- Hauptsaechlich @typescript-eslint/no-explicit-any in AdminClient.tsx, lib/ai/index.ts, rss.xml/route.ts und vielen weiteren Dateien. Ansatz: echte Typen setzen wo moeglich, oder erklaerende Kommentare bei unavoidable any (laut meyso Konvention "kein any ohne erklaerenden Kommentar"). Entdeckt via /meyso-preflight am 09.04.2026. Schaetzung: 2-4h. -->
+- [ ] 👤 Manuell | Stack: pnpm statt npm evaluieren (shared store fuer 8 Repos spart ca 3 GB auf D:, schnellere installs)
+- [ ] 👤 Manuell | Stack: Turborepo oder pnpm workspace fuer shared dependencies evaluieren
+- [ ] 👤 Manuell | sq-schmidt: Git LFS fuer Bilder in der History (Repo ist 800 MB, sollte unter 100 MB)
+- [ ] 👤 Manuell | Vercel: env var groups fuer shared keys wie RESEND_API_KEY, SUPABASE Credentials
 
 ---
 
@@ -92,7 +108,10 @@ Stand: 2026-04-09 (priorisiert)
 - [x] 🤖 Claude | meyso-website: /admin/workflows Dashboard (09.04.2026) ✓
   <!-- Zeigt Workflow-Uebersicht + Briefings-Viewer. Fetcht workflows.json + Briefings von GitHub raw URL. Sidebar-Nav hinzugefuegt. -->
 - [ ] 🤖 Claude | /admin/workflows: Manual Trigger Buttons (via GitHub Actions repository_dispatch)
+- [x] 🤖 Claude | Autonomous: Loops Gemini Migration (09.04.2026 abends) ✓
+  <!-- Autonomous Loops von OpenAI auf Gemini Flash migriert fuer bessere Kosten/Performance -->
 - [ ] 🤖 Claude | Autonomous: npm audit auto-PR Loop (taeglich, braucht MCP GitHub integration)
+- [ ] 🤖 Claude | /meyso-paths-update Slash Command bauen (fuer zukuenftige Migrationen)
 - [ ] 🤖 Claude | Autonomous: Hirmax Order Monitoring Loop (alle 6h, braucht MCP Supabase)
 - [ ] 🤖 Claude | Autonomous: toolradar Content Generation Loop (taeglich, braucht Gemini + Quality Gate)
 - [ ] 👤 Manuell | C: Space Cleanup Phase 2
