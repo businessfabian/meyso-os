@@ -29,7 +29,7 @@ Stand: 2026-04-09 (priorisiert)
 - [ ] 👤 Social Media API Keys konfigurieren (LinkedIn Developer Portal) – Social Poster ist fertig, wartet auf Keys
 - [ ] 👤 Lexware Export end-to-end testen (Testbestellung → XML Export → Import in Lexware bei Max)
 - [ ] 👤 Wartungsvertrag-Reaktionszeiten realistisch setzen (Achtung: Hauptjob)
-- [ ] 🤖 Claude | meyso-website: middleware.ts zu proxy migrieren (Next.js 16 deprecation)
+- [x] 🤖 Claude | meyso-website: middleware.ts zu proxy migrieren (Next.js 16 deprecation) (527f627) ✓
   <!-- Context: npm run dev zeigt "The middleware file convention is deprecated. Please use proxy instead." Breaking change in kommenden Next.js Versionen. Migration path: https://nextjs.org/docs/messages/middleware-to-proxy -->
 
 ---
