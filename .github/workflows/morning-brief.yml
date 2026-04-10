@@ -1,3 +1,4 @@
+# Autonomous Morning Brief Workflow
 # ============================================================
 # ACHTUNG: Dieser Workflow braucht GEMINI_API_KEY in
 # GitHub Secrets. Settings > Secrets and variables > Actions.
@@ -96,3 +97,4 @@ jobs:
                   docs/autonomous-workflows/workflows.json
           git diff --cached --quiet || git commit -m "chore: auto-generated briefing ${RUN_DATE} from morning-brief"
           git push
+
