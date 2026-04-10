@@ -75,3 +75,18 @@ Quelle: [Artikeltitel](echte URL, keine erfundene)
 Falls ruhige Woche: "Keine relevanten Updates diese Woche. Dein Stack ist aktuell." Fertig, kein Fuellmaterial.
 
 Keine em-dashes. Keine Spekulationen. Keine generischen Zusammenfassungen. Nur konkrete Findings mit echten Quellen.
+
+---
+
+PHASE 2: TASKS.MD UPDATE
+
+Nach dem Schreiben des Briefings:
+1. Lies TASKS.md aus diesem Repo
+2. DUPLIKAT-VERMEIDUNG: Bevor du einen neuen Task schreibst, pruefe ob ein aehnlicher Task bereits existiert. Suche nach dem Kernbegriff (z.B. "Next.js 16.2" oder "Gemini Billing"). Wenn ein offener Task [ ] mit dem gleichen Thema existiert: KEINEN neuen anlegen. Wenn ein erledigter Task [x] existiert: auch keinen neuen anlegen. Nur anlegen wenn das Thema komplett neu ist in TASKS.md.
+3. Fuer jedes Finding mit Action "Dringend updaten": fuege einen P1 Task hinzu
+4. Fuer jedes Finding mit Action "Ausprobieren": fuege einen P2 Task hinzu
+5. Fuer "Nichts tun": keinen Task anlegen
+6. Commit TASKS.md zusammen mit dem Briefing
+
+Format der neuen Tasks:
+- [ ] 🤖 Claude | [Repo oder Bereich]: [Was zu tun ist] (Quelle: News Scout {date})
