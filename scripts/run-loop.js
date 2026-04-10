@@ -88,10 +88,10 @@ async function tryWithRetries(prompt, useGrounding, model, maxRetries, delays) {
   throw lastErr;
 }
 
-async function callGeminiWithRetry(prompt, useGrounding) {
-  const primaryModel = 'gemini-2.5-flash';
-  const fallback1 = 'gemini-flash-latest';
-  const fallback2 = 'gemini-2.5-pro';
+async function callGeminiWithRetry(prompt, useGrounding, models) {
+  const primaryModel = models.primary;
+  const fallback1 = models.fallback1;
+  const fallback2 = models.fallback2;
   const delays = [10000, 30000, 60000];
 
   let primaryErr;
@@ -154,10 +154,14 @@ async function main() {
   const loopName = process.env.LOOP_NAME || '';
   const useGrounding = loopName === 'news-scout';
 
-  const prompt = fs.readFileSync(PROMPT_FILE, 'utf-8');
-  console.log(`Calling Gemini API (primary: gemini-2.5-flash, fallback1: gemini-flash-latest, fallback2: gemini-2.5-pro, grounding: ${useGrounding}, prompt length: ${prompt.length} chars)...`);
+  const models = loopName === 'news-scout'
+    ? { primary: 'gemini-2.5-pro', fallback1: 'gemini-2.5-flash', fallback2: 'gemini-flash-latest' }
+    : { primary: 'gemini-2.5-flash', fallback1: 'gemini-flash-latest', fallback2: 'gemini-2.5-pro' };
 
-  const response = await callGeminiWithRetry(prompt, useGrounding);
+  const prompt = fs.readFileSync(PROMPT_FILE, 'utf-8');
+  console.log(`Calling Gemini API (primary: ${models.primary}, fallback1: ${models.fallback1}, fallback2: ${models.fallback2}, grounding: ${useGrounding}, prompt length: ${prompt.length} chars)...`);
+
+  const response = await callGeminiWithRetry(prompt, useGrounding, models);
 
   const outputDir = path.dirname(OUTPUT_FILE);
   if (!fs.existsSync(outputDir)) {
