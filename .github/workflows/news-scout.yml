@@ -36,7 +36,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           LOOP_NAME: news-scout
         run: |
-          RUN_DATE=$(date +%Y-%m-%d)
+          export RUN_DATE=$(date +%Y-%m-%d)
 
           python3 - << 'PYEOF'
           import os

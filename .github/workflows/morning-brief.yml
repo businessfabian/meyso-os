@@ -36,7 +36,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          RUN_DATE=$(date +%Y-%m-%d)
+          export RUN_DATE=$(date +%Y-%m-%d)
 
           python3 - << 'PYEOF'
           import os
