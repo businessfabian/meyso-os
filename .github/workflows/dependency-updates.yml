@@ -1,0 +1,132 @@
+# ACHTUNG: Braucht GH_PAT Secret mit repo scope
+# Settings > Secrets and variables > Actions > GH_PAT
+# Ohne GH_PAT werden Cross-Repo Updates uebersprungen
+
+name: Dependency Updates
+
+on:
+  schedule:
+    # Sonntag 22:00 Berlin = 20:00 UTC
+    - cron: '0 20 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  dependency-updates:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        repo:
+          - businessfabian/meyso-website
+          - businessfabian/hirmax-scheibenbilder
+          - businessfabian/toolradar
+          - businessfabian/villa-nina-sardinia
+          - businessfabian/sq-schmidt-website
+
+    steps:
+      - name: Check GH_PAT available
+        id: check-pat
+        run: |
+          if [ -z "${{ secrets.GH_PAT }}" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "WARNING: GH_PAT not set, skipping ${{ matrix.repo }}"
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Checkout ${{ matrix.repo }}
+        if: steps.check-pat.outputs.skip == 'false'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ matrix.repo }}
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Setup Node.js 20
+        if: steps.check-pat.outputs.skip == 'false'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        if: steps.check-pat.outputs.skip == 'false'
+        run: npm ci
+
+      - name: Run npm update (minor + patch only)
+        if: steps.check-pat.outputs.skip == 'false'
+        run: npm update
+
+      - name: Run npm audit fix (without --force)
+        if: steps.check-pat.outputs.skip == 'false'
+        run: npm audit fix || true
+
+      - name: Check for changes
+        if: steps.check-pat.outputs.skip == 'false'
+        id: check-changes
+        run: |
+          if git diff --exit-code package.json package-lock.json > /dev/null 2>&1; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No dependency changes in ${{ matrix.repo }}, skipping."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build check
+        if: steps.check-pat.outputs.skip == 'false' && steps.check-changes.outputs.changed == 'true'
+        id: build
+        run: |
+          if npm run build; then
+            echo "success=true" >> $GITHUB_OUTPUT
+          else
+            echo "success=false" >> $GITHUB_OUTPUT
+            echo "Build failed nach Update in ${{ matrix.repo }}, kein PR erstellt."
+          fi
+
+      - name: Create branch and commit
+        if: >
+          steps.check-pat.outputs.skip == 'false' &&
+          steps.check-changes.outputs.changed == 'true' &&
+          steps.build.outputs.success == 'true'
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          BRANCH="auto/dependency-update-${DATE}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "${BRANCH}"
+          git add package.json package-lock.json
+          git commit -m "chore: dependency updates (minor + patch + audit fix)"
+          git push origin "${BRANCH}"
+          echo "BRANCH=${BRANCH}" >> $GITHUB_ENV
+          echo "DATE=${DATE}" >> $GITHUB_ENV
+
+      - name: Create Pull Request
+        if: >
+          steps.check-pat.outputs.skip == 'false' &&
+          steps.check-changes.outputs.changed == 'true' &&
+          steps.build.outputs.success == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          gh pr create \
+            --repo "${{ matrix.repo }}" \
+            --head "${BRANCH}" \
+            --base main \
+            --title "chore: dependency updates ${DATE}" \
+            --body "$(cat <<'EOF'
+          ## Automatische Dependency Updates
+
+          Erstellt vom woechentlichen Dependency Update Workflow.
+
+          Updates enthalten:
+          - npm update (minor + patch versions)
+          - npm audit fix (ohne --force)
+
+          Build Status: gruen (geprueft vor PR-Erstellung)
+
+          Bitte reviewen und mergen wenn alles passt.
+          EOF
+          )"

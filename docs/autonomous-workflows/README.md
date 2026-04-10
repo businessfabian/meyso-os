@@ -1,8 +1,8 @@
 # Autonomous Workflows Layer
 
-Stand: 2026-04-09 (Wave 3 Abschluss)
+Stand: 2026-04-10 (Wave 4 Abschluss)
 
-Drei scheduled Loops die in Claude Code laufen und Dave taeglich und woechentlich informieren.
+Drei scheduled Loops in Claude Code plus ein GitHub Actions Workflow fuer Dependency Updates.
 
 ---
 
@@ -13,6 +13,7 @@ Drei scheduled Loops die in Claude Code laufen und Dave taeglich und woechentlic
 | 01 | Morning Brief | loop-01-morning-brief.md | Taeglich 08:30 | active |
 | 02 | News Scout | loop-02-news-scout.md | Montags 09:00 | active |
 | 03 | Weekly Codebase Health | loop-03-codebase-health.md | Montags 09:30 | active |
+| 04 | Dependency Updates | .github/workflows/dependency-updates.yml | Sonntags 22:00 | active |
 
 ---
 
@@ -29,6 +30,9 @@ Loop 02 sucht nach Stack-Updates (Next.js, Vercel, Claude Code, Supabase) und sc
 **Jeden Montag um 09:30:**
 Loop 03 analysiert meyso-website (TODO/FIXME, Lint, npm audit, grosse Dateien) und schreibt:
 `docs/autonomous-workflows/briefings/YYYY-MM-DD-health.md`
+
+**Jeden Sonntag um 22:00:**
+GitHub Actions Workflow 04 checkt alle 5 Deploy-Repos aus, fuehrt `npm update` und `npm audit fix` aus, prueft den Build und erstellt bei Aenderungen einen PR.
 
 ---
 
@@ -93,6 +97,5 @@ Namensschema: `YYYY-MM-DD-morning.md`, `YYYY-MM-DD-news.md`, `YYYY-MM-DD-health.
 
 ## Geplante naechste Loops (TASKS.md)
 
-- npm audit auto-PR Loop (braucht MCP GitHub integration)
 - Hirmax Order Monitoring Loop (braucht MCP Supabase)
 - toolradar Content Generation Loop (braucht Gemini + Quality Gate)

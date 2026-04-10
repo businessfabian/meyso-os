@@ -115,7 +115,7 @@ Stand: 2026-04-10 (priorisiert)
 - [ ] 🤖 Claude | /admin/workflows: Manual Trigger Buttons (via GitHub Actions repository_dispatch)
 - [x] 🤖 Claude | Autonomous: Loops Gemini Migration (09.04.2026 abends) ✓
   <!-- Autonomous Loops von OpenAI auf Gemini Flash migriert fuer bessere Kosten/Performance -->
-- [ ] 🤖 Claude | Autonomous: npm audit auto-PR Loop (taeglich, braucht MCP GitHub integration)
+- [x] 🤖 Claude | Autonomous: npm audit auto-PR Loop als GitHub Actions Workflow gebaut (woechentlich, 5 Repos, .github/workflows/dependency-updates.yml) ✓
 - [ ] 🤖 Claude | /meyso-paths-update Slash Command bauen (fuer zukuenftige Migrationen)
 - [ ] 🤖 Claude | Autonomous: Hirmax Order Monitoring Loop (alle 6h, braucht MCP Supabase)
 - [ ] 🤖 Claude | Autonomous: toolradar Content Generation Loop (taeglich, braucht Gemini + Quality Gate)
