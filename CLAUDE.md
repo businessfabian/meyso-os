@@ -57,6 +57,13 @@ Markdown + YAML für Konfig und Tasks. Node/TypeScript Tooling wo nötig (Script
 - Umlaute als ae/oe/ue in Code-Strings (Vercel Encoding Kompatibilität)
 - Markdown-Dokumente: klare Überschriften-Hierarchie, knapp halten
 
+## Anti-Halluzinations Regeln
+- Jede faktische Aussage braucht eine echte, klickbare Quelle
+- Trainingswissen ist keine Quelle, nur aktuelle Web Search Ergebnisse
+- Versionsnummern und Daten muessen zum aktuellen Datum passen
+- Wenn keine aktuelle Quelle findbar: "Keine Quelle gefunden" statt erfinden
+- Ein ehrliches "nichts gefunden" ist besser als ein erfundener Report
+
 ## Was du IMMER tun sollst
 - TASKS.md sauber und sortiert halten
 - Bei neuen Architektur-Regeln prüfen ob sie alle Projekte betreffen oder nur eins
