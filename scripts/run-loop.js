@@ -15,7 +15,7 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-function callGemini(prompt, useGrounding) {
+function callGemini(prompt, useGrounding, model) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     throw new Error('GEMINI_API_KEY environment variable is not set');
@@ -31,7 +31,7 @@ function callGemini(prompt, useGrounding) {
   }
 
   const body = JSON.stringify(bodyObj);
-  const apiPath = `/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+  const apiPath = `/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
   return new Promise((resolve, reject) => {
     const req = https.request(
@@ -70,25 +70,48 @@ function callGemini(prompt, useGrounding) {
   });
 }
 
-async function callGeminiWithRetry(prompt, useGrounding) {
-  const delays = [5000, 15000, 45000];
+async function tryWithRetries(prompt, useGrounding, model, maxRetries, delays) {
   let lastErr;
-
-  for (let attempt = 0; attempt <= delays.length; attempt++) {
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
-      return await callGemini(prompt, useGrounding);
+      return await callGemini(prompt, useGrounding, model);
     } catch (err) {
       lastErr = err;
       const code = err.statusCode;
       const isRetryable = code === 429 || (typeof code === 'number' && code >= 500);
-      if (!isRetryable || attempt === delays.length) break;
+      if (!isRetryable || attempt === maxRetries) break;
       const waitMs = delays[attempt];
-      console.log(`Retry ${attempt + 1}/3 nach ${waitMs / 1000}s... (API error ${code})`);
+      console.log(`Retry ${attempt + 1}/${maxRetries} nach ${waitMs / 1000}s... (API error ${code})`);
       await new Promise((r) => setTimeout(r, waitMs));
     }
   }
+  throw lastErr;
+}
 
-  throw new Error(`Gemini API nach 3 Retries nicht erreichbar: ${lastErr.message}`);
+async function callGeminiWithRetry(prompt, useGrounding) {
+  const primaryModel = 'gemini-2.5-flash';
+  const fallbackModel = 'gemini-2.0-flash';
+  const delays = [10000, 30000, 60000];
+
+  try {
+    return await tryWithRetries(prompt, useGrounding, primaryModel, 3, delays);
+  } catch (primaryErr) {
+    console.log(`Primary model ${primaryModel} failed nach 3 Retries. Fallback auf ${fallbackModel}...`);
+
+    let groundingForFallback = useGrounding;
+    if (useGrounding) {
+      console.log('Grounding deaktiviert fuer Fallback Model');
+      groundingForFallback = false;
+    }
+
+    try {
+      return await tryWithRetries(prompt, groundingForFallback, fallbackModel, 2, [10000, 30000]);
+    } catch (fallbackErr) {
+      throw new Error(
+        `Gemini API nicht erreichbar. ${primaryModel}: ${primaryErr.message}. ${fallbackModel}: ${fallbackErr.message}`
+      );
+    }
+  }
 }
 
 function updateWorkflowsJson(workflowId) {
@@ -121,7 +144,7 @@ async function main() {
   const useGrounding = loopName === 'news-scout';
 
   const prompt = fs.readFileSync(PROMPT_FILE, 'utf-8');
-  console.log(`Calling Gemini API (model: gemini-2.5-flash, grounding: ${useGrounding}, prompt length: ${prompt.length} chars)...`);
+  console.log(`Calling Gemini API (primary: gemini-2.5-flash, fallback: gemini-2.0-flash, grounding: ${useGrounding}, prompt length: ${prompt.length} chars)...`);
 
   const response = await callGeminiWithRetry(prompt, useGrounding);
 
