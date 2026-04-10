@@ -1,12 +1,7 @@
 # ============================================================
-# ACHTUNG: Dieser Workflow braucht GEMINI_API_KEY in
-# GitHub Secrets. Settings > Secrets and variables > Actions.
-# Ohne den Key wird der Workflow failen.
-# Dave muss den Secret einmalig einrichten.
-#
-# OPTIONAL: GH_PAT (Personal Access Token mit repo scope)
-# benoetigt um meyso-website auszuchecken (falls privates Repo).
-# Falls nicht gesetzt wird nur TASKS.md Analyse gemacht.
+# Braucht GH_PAT Secret mit repo scope fuer Cross-Repo Access zu meyso-website.
+# Ohne GH_PAT: Checkout schlaegt fehl (continue-on-error), nur TASKS.md Analyse.
+# GEMINI_API_KEY ebenfalls in GitHub Secrets erforderlich.
 # ============================================================
 
 name: Weekly Codebase Health
@@ -35,7 +30,7 @@ jobs:
         continue-on-error: true
         with:
           repository: businessfabian/meyso-website
-          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
           path: meyso-website-checkout
 
       - name: Setup Node.js
