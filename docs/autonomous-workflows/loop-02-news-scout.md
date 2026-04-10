@@ -10,6 +10,7 @@ Bekannter Stand den Dave BEREITS kennt (nicht nochmal melden):
 - Supabase: Dave nutzt aktuelle Version
 - Sanity: Dave nutzt Studio v3.x
 - Gemini: Dave nutzt gemini-2.5-flash
+- npm: Dave nutzt npm (nicht pnpm, nicht yarn)
 
 Nur melden was NEUER ist als dieser Stand.
 
@@ -49,11 +50,13 @@ Nur wenn Daves Packages betroffen sind.
 
 WICHTIG: Maximal 5 Findings. Pro Finding dieses Format:
 
-### [Konkreter Titel mit Versionsnummer]
+### [UNVERIFIED] [Konkreter Titel mit Versionsnummer]
+(Entferne [UNVERIFIED] wenn du dir 100% sicher bist dass das Finding aktuell und korrekt ist.)
 Was: [1 Satz, konkret, mit Versionsnummer wenn vorhanden]
 Impact fuer Dave: [1 Satz was er damit tun kann oder muss]
 Action: [Nichts tun / Ausprobieren / Dringend updaten]
-Quelle: [echte URL, keine erfundene]
+Datum: [TT.MM.YYYY oder "April 2026" wenn kein exaktes Datum verfuegbar]
+Quelle: [Artikeltitel](echte URL, keine erfundene)
 
 Falls ruhige Woche: "Keine relevanten Updates diese Woche. Dein Stack ist aktuell." Fertig, kein Fuellmaterial.
 
