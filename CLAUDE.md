@@ -64,6 +64,12 @@ Markdown + YAML für Konfig und Tasks. Node/TypeScript Tooling wo nötig (Script
 - Wenn keine aktuelle Quelle findbar: "Keine Quelle gefunden" statt erfinden
 - Ein ehrliches "nichts gefunden" ist besser als ein erfundener Report
 
+## Context Management
+- Ein Task pro Session. Nach Abschluss /clear oder neue Session starten.
+- Bei /compact bewahren: geaenderte Files, Test-Status, offene TODOs dieser Session.
+- Subagents nutzen fuer Research statt im Haupt-Context hunderte Files zu lesen.
+- /btw fuer schnelle Fragen die nicht in den Context muessen.
+
 ## Was du IMMER tun sollst
 - TASKS.md sauber und sortiert halten
 - Bei neuen Architektur-Regeln prüfen ob sie alle Projekte betreffen oder nur eins
