@@ -42,54 +42,15 @@ jobs:
           import os
 
           run_date = os.environ['RUN_DATE']
+          template_path = 'docs/autonomous-workflows/loop-02-news-scout.md'
 
-          prompt = f"""Du bist ein KI-Assistent der Dave (Fabian) einen woechentlichen Tech-News Scout erstellt.
-
-          Datum heute: {run_date}
-
-          Dave arbeitet mit folgendem Stack: Next.js, React, TypeScript, Tailwind CSS, Vercel, Sanity CMS, Supabase, Redis (Upstash), Resend, Claude Code (Anthropic), Gemini API.
-
-          Suche aktiv mit Google Search nach den neuesten Informationen zu den unten genannten Themen.
-          Verwende echte, aktuelle Quellen und verlinke konkrete Changelogs, Release Notes oder Blogposts.
-          Nutze KEIN Trainingswissen fuer Versionsnummern oder Release-Daten, sondern suche diese live nach.
-
-          # News Scout {run_date}
-
-          ## Next.js
-          Suche nach den neuesten Releases, Breaking Changes und neuen Features der letzten 4 Wochen.
-          Verlinke den offiziellen Changelog oder Release Notes.
-
-          ## Vercel
-          Suche nach den neuesten Platform-Updates und neuen Features der letzten 4 Wochen.
-          Verlinke offizielle Ankuendigungen oder den Changelog.
-
-          ## Anthropic / Claude Code
-          Suche nach den neuesten Updates zu Claude API, Claude Code CLI und neuen Modellen.
-          Verlinke offizielle Blogposts oder Release Notes.
-
-          ## Supabase
-          Suche nach den neuesten Features, Breaking Changes und Auth-Updates der letzten 4 Wochen.
-          Verlinke den offiziellen Changelog oder Release Notes.
-
-          ## Sanity CMS
-          Suche nach relevanten Updates (falls nichts gefunden: "Nichts Relevantes gefunden").
-
-          ## Action Items diese Woche
-          Konkrete To-Dos fuer Dave basierend auf den gefundenen Updates (nur wenn wirklich relevant, sonst Abschnitt weglassen).
-
-          ---
-
-          Regeln:
-          - Jede genannte Version oder jedes Feature MUSS mit einer echten URL belegt sein
-          - Keine em-dashes (U+2014), stattdessen Komma oder Zeilenumbruch
-          - Wenn keine aktuellen Neuigkeiten gefunden: "Nichts Relevantes gefunden" schreiben
-          - Antworte NUR mit dem Markdown-Dokument
-          """
+          with open(template_path, 'r', encoding='utf-8') as f:
+              prompt = f.read().replace('{date}', run_date)
 
           with open('/tmp/news-scout-prompt.txt', 'w', encoding='utf-8') as f:
               f.write(prompt)
 
-          print('Prompt file written.')
+          print('Prompt file written from', template_path)
           PYEOF
 
           PROMPT_FILE=/tmp/news-scout-prompt.txt \
