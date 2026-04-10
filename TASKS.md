@@ -1,12 +1,12 @@
-# Backlog – Alle Meyso Projekte
+# Backlog - Alle Meyso Projekte
 
-Stand: 2026-04-09 (priorisiert)
+Stand: 2026-04-10 (priorisiert)
 
 > Legende: `🤖 Claude` = kann Claude Code abarbeiten · `👤 Manuell` = braucht menschliche Aktion
 
 ---
 
-## 🔴 P0 – Sofort (Sicherheit + Rechtlich)
+## 🔴 P0 - Sofort (Sicherheit + Rechtlich)
 
 > Geleakte Keys und fehlende Vertraege = echtes Risiko
 
@@ -18,15 +18,16 @@ Stand: 2026-04-09 (priorisiert)
 
 ---
 
-## 🟠 P1 – Diese Woche (Kunden + SEO)
+## 🟠 P1 - Diese Woche (Kunden + SEO)
 
 > Direkt sichtbar fuer Kunden oder bringt Traffic
 
+- [ ] 🤖 Claude | Alle Projekte: Next.js auf gepatchte Version updaten wegen CVE-2026-23869 (DoS via App Router, betrifft 13.x bis 16.x) (Quelle: News Scout 10.04.2026)
 - [x] 301-Redirects toolradar: permanentRedirect('/tools') statt 404 fuer geloeschte Tools (02dddeb) ✓
 - [ ] 👤 Hirmax als Kunde in Sanity anlegen (Sanity Studio)
 - [ ] 👤 Sanity CORS im Dashboard pruefen (Hirmax, Sanity Studio → API → CORS Origins)
 - [ ] 👤 Google Business Profile: Bilder hochladen + verifizieren
-- [ ] 👤 Social Media API Keys konfigurieren (LinkedIn Developer Portal) – Social Poster ist fertig, wartet auf Keys
+- [ ] 👤 Social Media API Keys konfigurieren (LinkedIn Developer Portal) - Social Poster ist fertig, wartet auf Keys
 - [ ] 👤 Lexware Export end-to-end testen (Testbestellung → XML Export → Import in Lexware bei Max)
 - [ ] 👤 Wartungsvertrag-Reaktionszeiten realistisch setzen (Achtung: Hauptjob)
 - [x] 🤖 Claude | meyso-website: middleware.ts zu proxy migrieren (Next.js 16 deprecation) (527f627) ✓
@@ -45,13 +46,17 @@ Stand: 2026-04-09 (priorisiert)
 
 ---
 
-## 🟡 P2 – Naechste 2 Wochen (Tech Debt + Hardening)
+## 🟡 P2 - Naechste 2 Wochen (Tech Debt + Hardening)
 
 > Kein externer Impact, aber raeumen auf
 
 - [x] 🤖 CSP Header: Content Security Policy in `next.config.ts` auf allen Projekten (08b35f3, 7f80cdb, bec4fa1, d1278ce, ff103d2) ✓
 - [x] 🤖 CORS: Explizite `Access-Control-Allow-Origin` Header auf API Routes (d6e7c19, 4c228b7, 3bd16e4, 6ec17d7, 195443c) ✓
 - [x] 🤖 Hardcoded Cookie-Names hirmax: `hirmax_session` in Middleware statt aus Config (3bd16e4) ✓
+- [ ] 🤖 Claude | Claude Code: /powerup ausprobieren und nuetzliche Features in CLAUDE.md dokumentieren (Quelle: News Scout 10.04.2026)
+- [ ] 👤 Manuell | Gemini API: Projekt-Level Spend Cap im AI Studio setzen (Tier 1 = $250/Monat, sonst Pause aller Requests) (Quelle: News Scout 10.04.2026)
+- [ ] 🤖 Claude | Alle Projekte: Next.js 16.1.6 auf 16.2 evaluieren und updaten (stable Adapter API, Agent DevTools, 200+ Turbopack Fixes) (Quelle: News Scout 10.04.2026)
+- [ ] 👤 Manuell | hirmax: Supabase Stripe Sync Engine evaluieren fuer kuenftiges Payment Processing (Quelle: News Scout 10.04.2026)
 - [ ] 🤖 Newsletter Secret: In README erwaehnen (kmu-template)
 - [ ] 🤖 Services-Daten nach Sanity (sq-schmidt): 15KB hardcoded services-data.ts
 - [ ] 🤖 Quality Gate erzwingen (toolradar): Scoring-System existiert aber unklar ob aktiv
@@ -74,7 +79,7 @@ Stand: 2026-04-09 (priorisiert)
 
 ---
 
-## 🟢 P3 – Feature Backlog (Kundenprojekte)
+## 🟢 P3 - Feature Backlog (Kundenprojekte)
 
 > Wertschoepfung fuer Kunden, nach Prio sortiert
 
