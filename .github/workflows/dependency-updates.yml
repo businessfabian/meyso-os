@@ -130,3 +130,24 @@ jobs:
           Bitte reviewen und mergen wenn alles passt.
           EOF
           )"
+
+      - name: Push Notification
+        if: always()
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            curl -s \
+              -H "Title: ${{ github.workflow }} erledigt (${{ matrix.repo }})" \
+              -H "Priority: low" \
+              -H "Tags: white_check_mark" \
+              -H "Click: https://meyso.de/admin/workflows" \
+              -d "${{ github.workflow }} fuer ${{ matrix.repo }} vom $(date +%d.%m.%Y) ist durch." \
+              https://ntfy.sh/meyso-dave || true
+          else
+            curl -s \
+              -H "Title: ${{ github.workflow }} FEHLGESCHLAGEN (${{ matrix.repo }})" \
+              -H "Priority: high" \
+              -H "Tags: warning" \
+              -H "Click: https://github.com/businessfabian/meyso-os/actions" \
+              -d "${{ github.workflow }} fuer ${{ matrix.repo }} vom $(date +%d.%m.%Y) ist fehlgeschlagen." \
+              https://ntfy.sh/meyso-dave || true
+          fi

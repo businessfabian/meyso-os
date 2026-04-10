@@ -67,3 +67,24 @@ jobs:
                   docs/autonomous-workflows/workflows.json
           git diff --cached --quiet || git commit -m "chore: auto-generated briefing ${RUN_DATE} from news-scout"
           git push
+
+      - name: Push Notification
+        if: always()
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            curl -s \
+              -H "Title: ${{ github.workflow }} erledigt" \
+              -H "Priority: low" \
+              -H "Tags: white_check_mark" \
+              -H "Click: https://meyso.de/admin/workflows" \
+              -d "${{ github.workflow }} vom $(date +%d.%m.%Y) ist durch." \
+              https://ntfy.sh/meyso-dave || true
+          else
+            curl -s \
+              -H "Title: ${{ github.workflow }} FEHLGESCHLAGEN" \
+              -H "Priority: high" \
+              -H "Tags: warning" \
+              -H "Click: https://github.com/businessfabian/meyso-os/actions" \
+              -d "${{ github.workflow }} vom $(date +%d.%m.%Y) ist fehlgeschlagen." \
+              https://ntfy.sh/meyso-dave || true
+          fi
