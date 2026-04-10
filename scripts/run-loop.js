@@ -90,27 +90,38 @@ async function tryWithRetries(prompt, useGrounding, model, maxRetries, delays) {
 
 async function callGeminiWithRetry(prompt, useGrounding) {
   const primaryModel = 'gemini-2.5-flash';
-  const fallbackModel = 'gemini-2.0-flash';
+  const fallback1 = 'gemini-flash-latest';
+  const fallback2 = 'gemini-2.5-pro';
   const delays = [10000, 30000, 60000];
 
+  let primaryErr;
   try {
     return await tryWithRetries(prompt, useGrounding, primaryModel, 3, delays);
-  } catch (primaryErr) {
-    console.log(`Primary model ${primaryModel} failed nach 3 Retries. Fallback auf ${fallbackModel}...`);
+  } catch (err) {
+    primaryErr = err;
+    console.log(`Fallback auf ${fallback1}...`);
+  }
 
-    let groundingForFallback = useGrounding;
-    if (useGrounding) {
-      console.log('Grounding deaktiviert fuer Fallback Model');
-      groundingForFallback = false;
-    }
+  let groundingForFallback = useGrounding;
+  if (useGrounding) {
+    console.log('Grounding deaktiviert fuer Fallback Models');
+    groundingForFallback = false;
+  }
 
-    try {
-      return await tryWithRetries(prompt, groundingForFallback, fallbackModel, 2, [10000, 30000]);
-    } catch (fallbackErr) {
-      throw new Error(
-        `Gemini API nicht erreichbar. ${primaryModel}: ${primaryErr.message}. ${fallbackModel}: ${fallbackErr.message}`
-      );
-    }
+  let fallback1Err;
+  try {
+    return await tryWithRetries(prompt, groundingForFallback, fallback1, 1, [10000]);
+  } catch (err) {
+    fallback1Err = err;
+    console.log(`Fallback auf ${fallback2}...`);
+  }
+
+  try {
+    return await tryWithRetries(prompt, groundingForFallback, fallback2, 1, [10000]);
+  } catch (fallback2Err) {
+    throw new Error(
+      `Gemini API nicht erreichbar. ${primaryModel}: ${primaryErr.message}. ${fallback1}: ${fallback1Err.message}. ${fallback2}: ${fallback2Err.message}`
+    );
   }
 }
 
@@ -144,7 +155,7 @@ async function main() {
   const useGrounding = loopName === 'news-scout';
 
   const prompt = fs.readFileSync(PROMPT_FILE, 'utf-8');
-  console.log(`Calling Gemini API (primary: gemini-2.5-flash, fallback: gemini-2.0-flash, grounding: ${useGrounding}, prompt length: ${prompt.length} chars)...`);
+  console.log(`Calling Gemini API (primary: gemini-2.5-flash, fallback1: gemini-flash-latest, fallback2: gemini-2.5-pro, grounding: ${useGrounding}, prompt length: ${prompt.length} chars)...`);
 
   const response = await callGeminiWithRetry(prompt, useGrounding);
 
