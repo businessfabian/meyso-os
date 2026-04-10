@@ -49,35 +49,40 @@ jobs:
 
           Dave arbeitet mit folgendem Stack: Next.js, React, TypeScript, Tailwind CSS, Vercel, Sanity CMS, Supabase, Redis (Upstash), Resend, Claude Code (Anthropic), Gemini API.
 
-          Erstelle einen News Scout Report als reines Markdown-Dokument. Nutze dein Trainingswissen (Stand August 2025).
-          Hinweis am Ende: "Dieser Report basiert auf Trainingsdaten. Fuer aktuelle Releases immer die offiziellen Changelogs pruefen."
+          Suche aktiv mit Google Search nach den neuesten Informationen zu den unten genannten Themen.
+          Verwende echte, aktuelle Quellen und verlinke konkrete Changelogs, Release Notes oder Blogposts.
+          Nutze KEIN Trainingswissen fuer Versionsnummern oder Release-Daten, sondern suche diese live nach.
 
           # News Scout {run_date}
 
           ## Next.js
-          Relevante Releases, Breaking Changes, neue Features seit ca. Anfang 2025.
+          Suche nach den neuesten Releases, Breaking Changes und neuen Features der letzten 4 Wochen.
+          Verlinke den offiziellen Changelog oder Release Notes.
 
           ## Vercel
-          Relevante Platform-Updates und neue Features.
+          Suche nach den neuesten Platform-Updates und neuen Features der letzten 4 Wochen.
+          Verlinke offizielle Ankuendigungen oder den Changelog.
 
           ## Anthropic / Claude Code
-          Relevante Updates zu Claude API, Claude Code CLI, neuen Modellen.
+          Suche nach den neuesten Updates zu Claude API, Claude Code CLI und neuen Modellen.
+          Verlinke offizielle Blogposts oder Release Notes.
 
           ## Supabase
-          Relevante neue Features, Breaking Changes, Auth-Updates.
+          Suche nach den neuesten Features, Breaking Changes und Auth-Updates der letzten 4 Wochen.
+          Verlinke den offiziellen Changelog oder Release Notes.
 
           ## Sanity CMS
-          Relevante Updates (falls vorhanden, sonst "Nichts Relevantes bekannt").
+          Suche nach relevanten Updates (falls nichts gefunden: "Nichts Relevantes gefunden").
 
           ## Action Items diese Woche
-          Konkrete To-Dos fuer Dave (nur wenn wirklich relevant, sonst Abschnitt weglassen).
+          Konkrete To-Dos fuer Dave basierend auf den gefundenen Updates (nur wenn wirklich relevant, sonst Abschnitt weglassen).
 
           ---
-          *Dieser Report basiert auf Trainingsdaten (Stand Aug 2025). Fuer aktuelle Releases die offiziellen Changelogs pruefen.*
 
           Regeln:
+          - Jede genannte Version oder jedes Feature MUSS mit einer echten URL belegt sein
           - Keine em-dashes (U+2014), stattdessen Komma oder Zeilenumbruch
-          - Wenn keine relevanten Neuigkeiten: "Nichts Relevantes bekannt" schreiben
+          - Wenn keine aktuellen Neuigkeiten gefunden: "Nichts Relevantes gefunden" schreiben
           - Antworte NUR mit dem Markdown-Dokument
           """
 
