@@ -45,41 +45,41 @@ jobs:
 
           prompt = f"""Du bist ein KI-Assistent der Dave (Fabian) einen woechentlichen Tech-News Scout erstellt.
 
-Datum heute: {run_date}
+          Datum heute: {run_date}
 
-Dave arbeitet mit folgendem Stack: Next.js, React, TypeScript, Tailwind CSS, Vercel, Sanity CMS, Supabase, Redis (Upstash), Resend, Claude Code (Anthropic), Gemini API.
+          Dave arbeitet mit folgendem Stack: Next.js, React, TypeScript, Tailwind CSS, Vercel, Sanity CMS, Supabase, Redis (Upstash), Resend, Claude Code (Anthropic), Gemini API.
 
-Erstelle einen News Scout Report als reines Markdown-Dokument. Nutze dein Trainingswissen (Stand August 2025).
-Hinweis am Ende: "Dieser Report basiert auf Trainingsdaten. Fuer aktuelle Releases immer die offiziellen Changelogs pruefen."
+          Erstelle einen News Scout Report als reines Markdown-Dokument. Nutze dein Trainingswissen (Stand August 2025).
+          Hinweis am Ende: "Dieser Report basiert auf Trainingsdaten. Fuer aktuelle Releases immer die offiziellen Changelogs pruefen."
 
-# News Scout {run_date}
+          # News Scout {run_date}
 
-## Next.js
-Relevante Releases, Breaking Changes, neue Features seit ca. Anfang 2025.
+          ## Next.js
+          Relevante Releases, Breaking Changes, neue Features seit ca. Anfang 2025.
 
-## Vercel
-Relevante Platform-Updates und neue Features.
+          ## Vercel
+          Relevante Platform-Updates und neue Features.
 
-## Anthropic / Claude Code
-Relevante Updates zu Claude API, Claude Code CLI, neuen Modellen.
+          ## Anthropic / Claude Code
+          Relevante Updates zu Claude API, Claude Code CLI, neuen Modellen.
 
-## Supabase
-Relevante neue Features, Breaking Changes, Auth-Updates.
+          ## Supabase
+          Relevante neue Features, Breaking Changes, Auth-Updates.
 
-## Sanity CMS
-Relevante Updates (falls vorhanden, sonst "Nichts Relevantes bekannt").
+          ## Sanity CMS
+          Relevante Updates (falls vorhanden, sonst "Nichts Relevantes bekannt").
 
-## Action Items diese Woche
-Konkrete To-Dos fuer Dave (nur wenn wirklich relevant, sonst Abschnitt weglassen).
+          ## Action Items diese Woche
+          Konkrete To-Dos fuer Dave (nur wenn wirklich relevant, sonst Abschnitt weglassen).
 
----
-*Dieser Report basiert auf Trainingsdaten (Stand Aug 2025). Fuer aktuelle Releases die offiziellen Changelogs pruefen.*
+          ---
+          *Dieser Report basiert auf Trainingsdaten (Stand Aug 2025). Fuer aktuelle Releases die offiziellen Changelogs pruefen.*
 
-Regeln:
-- Keine em-dashes (U+2014), stattdessen Komma oder Zeilenumbruch
-- Wenn keine relevanten Neuigkeiten: "Nichts Relevantes bekannt" schreiben
-- Antworte NUR mit dem Markdown-Dokument
-"""
+          Regeln:
+          - Keine em-dashes (U+2014), stattdessen Komma oder Zeilenumbruch
+          - Wenn keine relevanten Neuigkeiten: "Nichts Relevantes bekannt" schreiben
+          - Antworte NUR mit dem Markdown-Dokument
+          """
 
           with open('/tmp/news-scout-prompt.txt', 'w', encoding='utf-8') as f:
               f.write(prompt)

@@ -47,34 +47,34 @@ jobs:
 
           prompt = f"""Du bist ein KI-Assistent der Dave (Fabian) einen taeglichen Morning Brief erstellt.
 
-Datum heute: {run_date}
+          Datum heute: {run_date}
 
-Hier ist der aktuelle Inhalt der TASKS.md:
+          Hier ist der aktuelle Inhalt der TASKS.md:
 
-{tasks_content}
+          {tasks_content}
 
-Erstelle einen Morning Brief als reines Markdown-Dokument:
+          Erstelle einen Morning Brief als reines Markdown-Dokument:
 
-# Morning Brief {run_date}
+          # Morning Brief {run_date}
 
-## Top 3 Tasks heute
-1. [P0/P1] Taskbeschreibung (aus TASKS.md uebernehmen)
-2. ...
-3. ...
+          ## Top 3 Tasks heute
+          1. [P0/P1] Taskbeschreibung (aus TASKS.md uebernehmen)
+          2. ...
+          3. ...
 
-## Offene Items im Ueberblick
-Kurze Zusammenfassung: wie viele Tasks sind insgesamt offen, nach Prioritaet aufgeteilt.
+          ## Offene Items im Ueberblick
+          Kurze Zusammenfassung: wie viele Tasks sind insgesamt offen, nach Prioritaet aufgeteilt.
 
-## Frage an Dich
-Eine konkrete, entscheidbare Frage basierend auf den Top Tasks.
+          ## Frage an Dich
+          Eine konkrete, entscheidbare Frage basierend auf den Top Tasks.
 
-Regeln:
-- Keine em-dashes (U+2014) verwenden, stattdessen Komma oder Zeilenumbruch
-- Nur offene Tasks beachten (Zeilen mit [ ]), abgeschlossene ([x]) ignorieren
-- P0 vor P1 vor P2 sortieren
-- Maximal 3 Tasks in der Hauptliste
-- Antworte NUR mit dem Markdown-Dokument, kein erklaerende Text davor oder danach
-"""
+          Regeln:
+          - Keine em-dashes (U+2014) verwenden, stattdessen Komma oder Zeilenumbruch
+          - Nur offene Tasks beachten (Zeilen mit [ ]), abgeschlossene ([x]) ignorieren
+          - P0 vor P1 vor P2 sortieren
+          - Maximal 3 Tasks in der Hauptliste
+          - Antworte NUR mit dem Markdown-Dokument, kein erklaerende Text davor oder danach
+          """
 
           with open('/tmp/morning-brief-prompt.txt', 'w', encoding='utf-8') as f:
               f.write(prompt)
