@@ -38,7 +38,7 @@ Stand: 2026-04-10 (priorisiert)
   <!-- Quelle: docs/ui-audits/2026-04-09-villa-nina-sardinia.md -->
 - [ ] 🤖 Claude | toolradar: ContactForm Labels (10 Min, WCAG Failure)
   <!-- Quelle: docs/ui-audits/2026-04-09-toolradar.md -->
-- [ ] 🤖 Claude | meyso-website: CSS Custom Properties Fundament fuer Dark Mode (aus UI Audit)
+- [x] 🤖 Claude | meyso-website: CSS Custom Properties Fundament fuer Dark Mode (aus UI Audit) (6448516) ✓
 - [ ] 🤖 Claude | villa-nina: Weitere Quick Wins aus docs/ui-audits/2026-04-09-villa-nina-sardinia.md
 - [ ] 🤖 Claude | toolradar: Weitere Quick Wins aus docs/ui-audits/2026-04-09-toolradar.md
 - [ ] 🤖 Claude | hirmax: Weitere Quick Wins aus docs/ui-audits/2026-04-09-hirmax-scheibenbilder.md
