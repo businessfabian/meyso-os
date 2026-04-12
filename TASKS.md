@@ -220,6 +220,8 @@ Stand: 2026-04-10 (priorisiert)
 - [x] Image Upload Validation (hirmax)
 
 ### Features
+- [x] Rechnung & Zahlungen Einstellungen: app_settings Tabelle, IBAN/BIC/Bank/Google Review URL konfigurierbar, PDF dynamisch (3db494c, April 2026)
+- [x] §14 UStG Fixes: Empfaenger-Adresse im PDF, Einzelrechnung-Versand Button mit Rate Limit + ntfy (785ed98, April 2026)
 - [x] /admin/outreach abgesichert (meyso-website)
 - [x] Datenschutzseite vollstaendig (meyso-website)
 - [x] Meyso-CTAs als Werbung gekennzeichnet (toolradar)
