@@ -223,6 +223,7 @@ Stand: 2026-04-10 (priorisiert)
 ### Features
 - [x] Rechnung & Zahlungen Einstellungen: app_settings Tabelle, IBAN/BIC/Bank/Google Review URL konfigurierbar, PDF dynamisch (3db494c, April 2026)
 - [x] §14 UStG Fixes: Empfaenger-Adresse im PDF, Einzelrechnung-Versand Button mit Rate Limit + ntfy (785ed98, April 2026)
+- [x] Rechnungssystem 5 Fixes: Email-HTML modernisiert, Leistungsbeschreibung bereinigt, Firma-Name vereinheitlicht, Client-Kontaktdaten editierbar, Vorschau-PDF als echtes PDF via iframe, Jaehrliche Ausgaben Doppelzaehlung behoben (Cashflow-Sicht) (1c66697, April 2026)
 - [x] /admin/outreach abgesichert (meyso-website)
 - [x] Datenschutzseite vollstaendig (meyso-website)
 - [x] Meyso-CTAs als Werbung gekennzeichnet (toolradar)
