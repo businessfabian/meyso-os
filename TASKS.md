@@ -22,7 +22,7 @@ Stand: 2026-04-10 (priorisiert)
 
 > Direkt sichtbar fuer Kunden oder bringt Traffic
 
-- [ ] 🤖 Claude | Alle Projekte: Next.js auf gepatchte Version updaten wegen CVE-2026-23869 (DoS via App Router, betrifft 13.x bis 16.x) (Quelle: News Scout 10.04.2026)
+- [x] 🤖 Claude | Alle Projekte: Next.js auf gepatchte Version updaten wegen CVE-2026-23869 (16.x: bereits 16.2.3 = clean, 0 Schwachstellen; 15.x: meyso-kmu-template auf 15.5.15 aktualisiert) ✓
 - [x] 301-Redirects toolradar: permanentRedirect('/tools') statt 404 fuer geloeschte Tools (02dddeb) ✓
 - [ ] 👤 Hirmax als Kunde in Sanity anlegen (Sanity Studio)
 - [ ] 👤 Sanity CORS im Dashboard pruefen (Hirmax, Sanity Studio → API → CORS Origins)
