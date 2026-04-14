@@ -11,8 +11,6 @@ Stand: 2026-04-10 (priorisiert)
 > Geleakte Keys und fehlende Vertraege = echtes Risiko
 
 - [ ] 👤 API-Keys rotieren: Gemini, PageSpeed, CRON_SECRET (Vercel Dashboard + Google Cloud Console)
-- [ ] 👤 AVVs pruefen + aktivieren: Vercel, Sanity, Resend (Online-DPAs, kein Unterschriftsprozess)
-- [ ] 👤 AVV zwischen Meyso (Dave) und Max Hirt (Hirmax) erstellen
 - [x] sq-schmidt Auth-Middleware: middleware.ts schuetzt /admin/dashboard + /api/admin (d6998a8) ✓
 - [x] Session Secret (meyso-website): Fallback entfernt, SESSION_SECRET ist Pflicht (fb2e25d) ✓
 
@@ -83,6 +81,21 @@ Stand: 2026-04-10 (priorisiert)
 - [ ] 👤 Manuell | sq-schmidt: Git LFS fuer Bilder in der History (Repo ist 800 MB, sollte unter 100 MB)
 - [ ] 👤 Manuell | Vercel: env var groups fuer shared keys wie RESEND_API_KEY, SUPABASE Credentials
 - [ ] 👤 Dave | Admin Dashboard: Client-Systeme Section bauen (Bitwarden-Integration, keine Credentials in DB). Details: Neue Tabelle client_systems fuer Metadaten (email, hosting, database, domain, analytics, crm, other) mit Dashboard-URLs und Bitwarden-Links. Voraussetzung: Bitwarden Account und Organization "meyso-clients" anlegen. Siehe Chat vom 11.04.2026.
+
+### Rechtliches Hirmax (DSGVO + AVVs)
+
+> LUCID, Duales System, USt-IdNr und Kleinunternehmer § 19 UStG nicht relevant und daher nicht im Backlog.
+
+Max' Seite:
+- [ ] 👤 Max | Verarbeitungsverzeichnis Hirmax anlegen (Art. 30 DSGVO, Vorlage LfDI BW)
+- [ ] 👤 Max | Hirmax TOMs dokumentieren (Art. 32 DSGVO)
+
+Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt weil er auf die Subunternehmer-Liste der anderen verweist):
+- [ ] 👤 Dave | AVV Vercel aktivieren (Self-Service vercel.com/legal/dpa)
+- [ ] 👤 Dave | AVV Supabase aktivieren (Self-Service supabase.com/legal/dpa)
+- [ ] 👤 Dave | AVV Resend aktivieren (Self-Service resend.com/legal/dpa)
+- [ ] 👤 Dave | AVV Sanity aktivieren (Self-Service sanity.io/legal/dpa)
+- [ ] 👤 Dave | AVV zwischen Meyso und Hirmax erstellen (DOCX, verweist auf Subunternehmer-Liste der vier oberen AVVs)
 
 ---
 
@@ -185,8 +198,7 @@ Stand: 2026-04-10 (priorisiert)
 > Bereits oben einsortiert nach Prioritaet. Hier nochmal gesammelt:
 
 - [ ] 👤 API-Keys rotieren (P0)
-- [ ] 👤 AVVs aktivieren: Vercel, Sanity, Resend (P0)
-- [ ] 👤 AVV Hirmax erstellen (P0)
+- [ ] 👤 Rechtliches Hirmax: DSGVO (Max) + 5x AVV (Dave) (P2, siehe Rechtliches-Hirmax Block)
 - [ ] 👤 Hirmax in Sanity anlegen (P1)
 - [ ] 👤 Sanity CORS Hirmax pruefen (P1)
 - [ ] 👤 Google Business Profile (P1)
