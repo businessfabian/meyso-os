@@ -29,6 +29,9 @@ Stand: 2026-04-10 (priorisiert)
 - [ ] 👤 Lexware Export end-to-end testen (Testbestellung → XML Export → Import in Lexware bei Max)
 - [ ] 👤 Wartungsvertrag-Reaktionszeiten realistisch setzen (Achtung: Hauptjob)
 - [x] 🤖 Claude | meyso-website: middleware.ts zu proxy migrieren (Next.js 16 deprecation) (527f627) ✓
+- [x] 🤖 Claude | meyso-website: Rechts-Audit, Impressum auf § 5 DDG, VSBG-Hinweis, Datenschutzerklaerung nach Art 13 DSGVO vollstaendig (7a09c17, 14.04.2026) ✓
+- [ ] 🔴 P0 | 🤖 Claude | meyso-website: Next.js 16 Routing-Konflikt - `app/api/admin/clients/[id]` und `[slug]` kollidieren, Dev-Server crasht beim Start. Entscheiden welcher bleibt und alle Referenzen migrieren.
+- [ ] 👤 Dave | meyso-website: Klaeren ob USt-ID vorhanden - falls ja, Pflichtangabe nach § 5 Abs 1 Nr 6 DDG im Impressum ergaenzen
 - [x] 🤖 Claude | hirmax: Submit Button Loading State + Doppel-Submit-Schutz (ffa47d7, 09.04.2026) ✓
 - [x] 🤖 Claude | UI Modernization Audit: 4 Projekte auditiert (09.04.2026) ✓
   <!-- Audits in docs/ui-audits/: hirmax, villa-nina, toolradar, meyso-website. Summary: docs/ui-audits/2026-04-09-summary.md -->
