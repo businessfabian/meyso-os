@@ -31,6 +31,7 @@ Stand: 2026-04-10 (priorisiert)
 - [x] 🤖 Claude | meyso-website: middleware.ts zu proxy migrieren (Next.js 16 deprecation) (527f627) ✓
 - [x] 🤖 Claude | meyso-website: Rechts-Audit, Impressum auf § 5 DDG, VSBG-Hinweis, Datenschutzerklaerung nach Art 13 DSGVO vollstaendig (7a09c17, 14.04.2026) ✓
 - [x] 🤖 Claude | meyso-website: Next.js 16 Routing-Konflikt gefixt - report-API aus `clients/[slug]/` nach `client-reports/[slug]/` verschoben, Dev-Server startet wieder sauber (f33dbbd, 14.04.2026) ✓
+- [x] 🤖 Claude | meyso-website: Legal-Overhaul Teil 2 - GA4+fake CookieBanner entfernt, Google Fonts lokal, CSP gehaertet, AGB-Seite (13 §§), Kleinunternehmer-Disclaimer bei Preisen, Tawk.to komplett raus (33c32ef..8faec53, 14.04.2026) ✓
 - [ ] 👤 Dave | meyso-website: Klaeren ob USt-ID vorhanden - falls ja, Pflichtangabe nach § 5 Abs 1 Nr 6 DDG im Impressum ergaenzen
 - [x] 🤖 Claude | hirmax: Submit Button Loading State + Doppel-Submit-Schutz (ffa47d7, 09.04.2026) ✓
 - [x] 🤖 Claude | UI Modernization Audit: 4 Projekte auditiert (09.04.2026) ✓
