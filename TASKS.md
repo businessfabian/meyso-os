@@ -36,8 +36,8 @@ Stand: 2026-04-10 (priorisiert)
   <!-- Audits in docs/ui-audits/: hirmax, villa-nina, toolradar, meyso-website. Summary: docs/ui-audits/2026-04-09-summary.md -->
 - [x] 🤖 Claude | villa-nina: Mobile Navigation (25 Min, Pre-Launch Blocker)
   <!-- Quelle: docs/ui-audits/2026-04-09-villa-nina-sardinia.md -->
-- [ ] 🤖 Claude | toolradar: ContactForm Labels (10 Min, WCAG Failure)
-  <!-- Quelle: docs/ui-audits/2026-04-09-toolradar.md -->
+- [x] 🤖 Claude | toolradar: ContactForm Labels (10 Min, WCAG Failure) ✓
+  <!-- Quelle: docs/ui-audits/2026-04-09-toolradar.md. Alle 3 Felder haben sr-only Labels + aria-required + autoComplete. Verifiziert 2026-04-14. -->
 - [x] 🤖 Claude | meyso-website: CSS Custom Properties Fundament fuer Dark Mode (aus UI Audit) (6448516) ✓
 - [ ] 🤖 Claude | villa-nina: Weitere Quick Wins aus docs/ui-audits/2026-04-09-villa-nina-sardinia.md
 - [ ] 🤖 Claude | toolradar: Weitere Quick Wins aus docs/ui-audits/2026-04-09-toolradar.md
