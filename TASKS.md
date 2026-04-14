@@ -34,7 +34,7 @@ Stand: 2026-04-10 (priorisiert)
 - [x] 🤖 Claude | hirmax: Submit Button Loading State + Doppel-Submit-Schutz (ffa47d7, 09.04.2026) ✓
 - [x] 🤖 Claude | UI Modernization Audit: 4 Projekte auditiert (09.04.2026) ✓
   <!-- Audits in docs/ui-audits/: hirmax, villa-nina, toolradar, meyso-website. Summary: docs/ui-audits/2026-04-09-summary.md -->
-- [ ] 🤖 Claude | villa-nina: Mobile Navigation (25 Min, Pre-Launch Blocker)
+- [x] 🤖 Claude | villa-nina: Mobile Navigation (25 Min, Pre-Launch Blocker)
   <!-- Quelle: docs/ui-audits/2026-04-09-villa-nina-sardinia.md -->
 - [ ] 🤖 Claude | toolradar: ContactForm Labels (10 Min, WCAG Failure)
   <!-- Quelle: docs/ui-audits/2026-04-09-toolradar.md -->
