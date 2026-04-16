@@ -34,6 +34,7 @@ Stand: 2026-04-10 (priorisiert)
 - [x] 🤖 Claude | meyso-website: Next.js 16 Routing-Konflikt gefixt - report-API aus `clients/[slug]/` nach `client-reports/[slug]/` verschoben, Dev-Server startet wieder sauber (f33dbbd, 14.04.2026) ✓
 - [x] 🤖 Claude | meyso-website: Legal-Overhaul Teil 2 - GA4+fake CookieBanner entfernt, Google Fonts lokal, CSP gehaertet, AGB-Seite (13 §§), Kleinunternehmer-Disclaimer bei Preisen, Tawk.to komplett raus (33c32ef..8faec53, 14.04.2026) ✓
 - [x] 👤 Dave | meyso-website: Klaeren ob USt-ID vorhanden - Dave hat bestaetigt: keine USt-ID, agiert nur in DE als Einzelunternehmer/Kleinunternehmer, daher nicht relevant (14.04.2026) ✓
+- [x] 🤖 Claude | meyso-website: Landing-Page Design-Refactor mit frontend-design Skill - Emojis raus (Lucide), Hero Code-Block durch editorial Showreel mit Kunden-Screenshot ersetzt, Process 4-col-Cards durch editorial Timeline mit roem Ziffern, warmer Sekundaer-Akzent (Terracotta) gegen Serif-Kaelte, Portfolio nach Leistungen vorgezogen + Filler raus, Atmosphaerische Effekte konsolidiert + Grain-Signature, Numbers-Section weg (8ec414f..167719a, 14.04.2026) ✓
 - [x] 🤖 Claude | hirmax: Submit Button Loading State + Doppel-Submit-Schutz (ffa47d7, 09.04.2026) ✓
 - [x] 🤖 Claude | UI Modernization Audit: 4 Projekte auditiert (09.04.2026) ✓
   <!-- Audits in docs/ui-audits/: hirmax, villa-nina, toolradar, meyso-website. Summary: docs/ui-audits/2026-04-09-summary.md -->
