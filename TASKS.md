@@ -66,7 +66,8 @@ Stand: 2026-04-10 (priorisiert)
 - [ ] 🤖 Claude | Alle Projekte: Next.js 16.1.6 auf 16.2 evaluieren und updaten (stable Adapter API, Agent DevTools, 200+ Turbopack Fixes) (Quelle: News Scout 10.04.2026)
 - [ ] 👤 Manuell | hirmax: Supabase Stripe Sync Engine evaluieren fuer kuenftiges Payment Processing (Quelle: News Scout 10.04.2026)
 - [ ] 🤖 Newsletter Secret: In README erwaehnen (kmu-template)
-- [ ] 🤖 Services-Daten nach Sanity (sq-schmidt): 15KB hardcoded services-data.ts
+- [x] 🤖 Services-Daten nach Sanity (sq-schmidt): Leistungen-Teil komplett. Sanity Schema um bild/leistungsumfang/prozess erweitert, Admin-Dashboard mit StringArrayField + ProzessArrayField (stabile _keys), /leistungen und /leistungen/[slug] rein Sanity-gesteuert, Migration-Script `scripts/migrate-services-features-prozess.ts` (DRY default, APPLY=1 zum Schreiben). Commits fe9f0f7, 629c1ec
+  <!-- Follow-ups: (1) Migration tatsaechlich ausfuehren (APPLY=1), (2) partnersData + certificatesData aus lib/services-data.ts auf Sanity umstellen (Schemas existieren, aber components/partners.tsx, components/certificates.tsx, app/partner/page.tsx lesen noch aus services-data.ts), (3) Leistungen-Admin-Feature ins kmu-template zurueckportieren (siehe Task unten) -->
 - [ ] 🤖 Quality Gate erzwingen (toolradar): Scoring-System existiert aber unklar ob aktiv
 - [ ] 👤 Sanity Read Token: Separaten Viewer-Token erstellen statt Write-Token an Templates
 - [ ] 👤 CRON_SECRET auf Vercel setzen (meyso-website)
