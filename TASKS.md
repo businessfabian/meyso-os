@@ -215,7 +215,7 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 - [x] 👤 GitHub Template Repo markieren (P2) ✓
 - [ ] 👤 Ersten Test-Kunden provisionieren (P2)
 - [ ] 👤 PAGESPEED_API_KEY optional (P2)
-- [ ] 👤 sq-schmidt-website: .env.local aus Git-History entfernen (P2)
+- [x] 👤 sq-schmidt-website: .env.local aus Git-History entfernen (P2)
 - [ ] 👤 C: Space Cleanup Phase 2 (P3)
 - [ ] 👤 pnpm store + Caches von C: auf D: (P3)
 
