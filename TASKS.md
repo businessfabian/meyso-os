@@ -11,6 +11,7 @@ Stand: 2026-04-10 (priorisiert)
 > Geleakte Keys und fehlende Vertraege = echtes Risiko
 
 - [ ] 👤 API-Keys rotieren: Gemini, PageSpeed, CRON_SECRET (Vercel Dashboard + Google Cloud Console)
+- [ ] 👤 sq-schmidt: Credentials rotieren nach .env.local Leak (RESEND_API_KEY + SANITY_WRITE_TOKEN + ADMIN_PASSWORD) -- nicht optional, Keys waren in Git-History
 - [x] sq-schmidt Auth-Middleware: middleware.ts schuetzt /admin/dashboard + /api/admin (d6998a8) ✓
 - [x] Session Secret (meyso-website): Fallback entfernt, SESSION_SECRET ist Pflicht (fb2e25d) ✓
 
@@ -77,8 +78,8 @@ Stand: 2026-04-10 (priorisiert)
 - [ ] 🤖 Claude | hirmax: npm audit fix (19 vulnerabilities: 9 moderate, 10 high)
   <!-- Achtung: erst pruefen was sich aendert, nicht blind --force laufen lassen -->
 - [x] 🤖 Claude | hirmax: package.json name fixen (aktuell: "meyso-kmu-template@1.0.0" → soll: "hirmax-scheibenbilder@1.0.0")
-- [ ] 👤 Manuell | sq-schmidt-website: .env.local aus Git-History entfernen + .gitignore
-  <!-- Context: aktuell als tracked committed. Inhalt ist nur NEXT_PUBLIC_SITE_URL (public Vercel URL), keine echten Secrets. Kein akutes Security-Risiko, aber best practice. Tool: git filter-repo oder BFG Repo Cleaner. -->
+- [x] 🤖 Claude | sq-schmidt-website: .env.local aus Git-History entfernt (git filter-repo, force push, 16.04.2026) ✓
+  <!-- Enthielt RESEND_API_KEY, SANITY_WRITE_TOKEN, ADMIN_PASSWORD=SQ123. Alle drei Credentials muessen noch rotiert werden (Resend Dashboard, Sanity API Tokens, Vercel Env Vars). -->
 - [ ] 🤖 Claude | meyso-website: 214 Lint Errors aufraeumen (hauptsaechlich @typescript-eslint/no-explicit-any)
   <!-- Hauptsaechlich @typescript-eslint/no-explicit-any in AdminClient.tsx, lib/ai/index.ts, rss.xml/route.ts und vielen weiteren Dateien. Ansatz: echte Typen setzen wo moeglich, oder erklaerende Kommentare bei unavoidable any (laut meyso Konvention "kein any ohne erklaerenden Kommentar"). Entdeckt via /meyso-preflight am 09.04.2026. Schaetzung: 2-4h. -->
 - [ ] 👤 Manuell | Stack: pnpm statt npm evaluieren (shared store fuer 8 Repos spart ca 3 GB auf D:, schnellere installs)
