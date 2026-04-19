@@ -107,3 +107,38 @@ Standardmäßig alle grün, da Projekt frisch und sauber gebaut.
 - Ist die Public-Seite eigenes Deployment oder Teil des Portal-Deployments?
 - Hat Hirmax ein Google Business Profile?
 - Ist der Produkt-Katalog für Nicht-Kunden sichtbar (dann SEO-relevant)?
+
+## Auto-Check 2026-04-19
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟡 89 | 🟢 99 |
+| SEO | 🟢 100 | 🟢 100 |
+| Accessibility | 🟢 94 | 🟢 94 |
+| Best Practices | 🟢 100 | 🟢 100 |
+
+**Schwächste Seite:** https://hirmax-scheiben.de (Performance 89)
+
+**Core Web Vitals (Homepage, Mobile):**
+- LCP: 3.54s 🟡
+- CLS: 0.005 🟢
+
+### Google Search Console (letzte 28 Tage)
+
+### Technical SEO
+
+✅ **Sitemap:** 9 URLs, 9 geprüft, alle OK
+✅ **Interne Links:** 15 geprüft, keine broken
+✅ **Schema.org:** LocalBusiness
+⚠️ **Meta-Tags:** 2 Warnung(en)
+  - Description zu lang: 201 Zeichen
+  - Canonical-Tag fehlt
+
+### Priorisierte Empfehlungen
+
+- **MITTEL:** Mobile Performance 89. Optimierungs-Potential.
+- **NIEDRIG:** 2 Meta-Tag-Warnung(en) auf Startseite.
+
+---

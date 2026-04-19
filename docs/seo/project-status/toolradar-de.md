@@ -1,7 +1,7 @@
 # SEO-Status: toolradar.de
 
 **Letzter manueller Audit:** (erster Audit)
-**Letzter automatischer Check:** (Agent noch nicht deployed)
+**Letzter automatischer Check:** 2026-04-19
 
 ---
 
@@ -119,3 +119,54 @@
 - Aktueller Traffic-Stand? (Phase 1 Gate: 500/Monat)
 - GA4 bereits entfernt?
 - Blog-Artikel werden menschlich reviewed oder nur generiert?
+
+## Auto-Check 2026-04-19
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟢 90 | 🔴 65 |
+| SEO | 🟢 100 | 🔴 67 |
+| Accessibility | 🟢 91 | 🔴 62 |
+| Best Practices | 🟢 99 | 🔴 65 |
+
+**Schwächste Seite:** https://toolradar.de/tools (Performance 76)
+
+**Core Web Vitals (Homepage, Mobile):**
+- LCP: 2.55s 🟡
+- CLS: 0.000 🟢
+
+### Google Search Console (letzte 28 Tage)
+
+**Gesamt (Top 25):** 3 Klicks, 43 Impressions
+
+**Top 10 Queries:**
+
+| Query | Klicks | Impr. | CTR | Position | Δ Pos |
+|-------|--------|-------|-----|----------|-------|
+| toolradar | 3 | 10 | 30% | 3.1 | – |
+| copilot alternative | 0 | 2 | 0% | 44.5 | – |
+| copilot alternativen | 0 | 2 | 0% | 26.5 | – |
+| fireflies alternative | 0 | 4 | 0% | 47 | – |
+| gong io | 0 | 2 | 0% | 29 | – |
+| gong.io | 0 | 1 | 0% | 89 | – |
+| instantly | 0 | 2 | 0% | 91 | – |
+| ki translation | 0 | 2 | 0% | 50 | – |
+| ki übersetzen | 0 | 1 | 0% | 28 | – |
+| ki übersetzungen | 0 | 1 | 0% | 39 | – |
+
+### Technical SEO
+
+✅ **Sitemap:** 534 URLs, 10 geprüft, alle OK
+✅ **Interne Links:** 15 geprüft, keine broken
+✅ **Schema.org:** WebSite, Organization, FAQPage
+⚠️ **Meta-Tags:** 2 Warnung(en)
+  - Title zu lang: 61 Zeichen
+  - Description zu lang: 163 Zeichen
+
+### Priorisierte Empfehlungen
+
+- **NIEDRIG:** 2 Meta-Tag-Warnung(en) auf Startseite.
+
+---

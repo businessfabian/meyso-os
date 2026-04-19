@@ -1,7 +1,7 @@
 # SEO-Status: meyso.de
 
 **Letzter manueller Audit:** (bisher nicht, erster Audit startet jetzt)
-**Letzter automatischer Check:** (Agent noch nicht deployed)
+**Letzter automatischer Check:** 2026-04-19
 **Betreut von:** Dave (Fabian Meyer)
 
 ---
@@ -135,3 +135,40 @@
 - **Apr 2026:** V2 (Positionierung) deployed, V3 (Regions-SEO) deployed
 - **Apr 2026:** preisNote-Fix, Layout-Refinement
 - (ältere History siehe Projekt-Memory)
+
+## Auto-Check 2026-04-19
+
+### Lighthouse
+
+### Google Search Console (letzte 28 Tage)
+
+**Gesamt (Top 25):** 1 Klicks, 174 Impressions
+
+**Top 10 Queries:**
+
+| Query | Klicks | Impr. | CTR | Position | Δ Pos |
+|-------|--------|-------|-----|----------|-------|
+| meyso | 1 | 7 | 14.29% | 6 | ↑8.2 |
+| industriedesigner schwarzwald-baar-kreis | 0 | 1 | 0% | 41 | – |
+| mobile app development | 0 | 1 | 0% | 10 | – |
+| moyso | 0 | 1 | 0% | 8 | – |
+| seo optimierung bad-dürrheim | 0 | 1 | 0% | 21 | – |
+| seo optimierung brigachtal | 0 | 1 | 0% | 1 | – |
+| seo st. georgen im schwarzwald | 0 | 1 | 0% | 12 | – |
+| webagentur bad dürrheim | 0 | 25 | 0% | 14.2 | – |
+| webdesign bad dürrheim | 0 | 20 | 0% | 16.9 | – |
+| webdesign triberg | 0 | 7 | 0% | 14.3 | – |
+
+### Technical SEO
+
+✅ **Sitemap:** 18 URLs, 10 geprüft, alle OK
+✅ **Interne Links:** 13 geprüft, keine broken
+✅ **Schema.org:** LocalBusiness
+⚠️ **Meta-Tags:** 1 Warnung(en)
+  - OG:image fehlt
+
+### Priorisierte Empfehlungen
+
+- **NIEDRIG:** 1 Meta-Tag-Warnung(en) auf Startseite.
+
+---

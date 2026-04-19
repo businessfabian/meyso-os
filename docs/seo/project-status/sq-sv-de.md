@@ -208,3 +208,35 @@ Alle grün.
 - Plant Ricardo eine eigene Domain?
 - Welcher Markt hat Priorität (DE, IT, EN)?
 - GBP für Villa Nina sinnvoll oder nur Booking-Plattformen?
+
+## Auto-Check 2026-04-19
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟡 82 | 🟢 94 |
+| SEO | 🟢 97 | 🟢 97 |
+| Accessibility | 🟡 86 | 🟢 91 |
+| Best Practices | 🟢 100 | 🟢 100 |
+
+**Schwächste Seite:** https://sq-sv.de (Performance 77)
+
+**Core Web Vitals (Homepage, Mobile):**
+- LCP: 5.13s 🔴
+- CLS: 0.004 🟢
+
+### Technical SEO
+
+✅ **Sitemap:** 35 URLs, 10 geprüft, alle OK
+✅ **Interne Links:** 15 geprüft, keine broken
+✅ **Schema.org:** ProfessionalService
+⚠️ **Meta-Tags:** 1 Warnung(en)
+  - Title zu lang: 68 Zeichen
+
+### Priorisierte Empfehlungen
+
+- **MITTEL:** Mobile Performance 82. Optimierungs-Potential.
+- **NIEDRIG:** 1 Meta-Tag-Warnung(en) auf Startseite.
+
+---
