@@ -1,0 +1,85 @@
+name: SEO Monthly Monitor
+
+on:
+  schedule:
+    # Jeden 1. des Monats um 9:00 Uhr UTC (10:00 MEZ / 11:00 MESZ)
+    - cron: '0 9 1 * *'
+  workflow_dispatch:
+    inputs:
+      project:
+        description: 'Optional: Nur ein spezifisches Projekt prüfen'
+        required: false
+        type: string
+      dry_run:
+        description: 'Dry-Run ohne Commits oder Notifications'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  seo-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    permissions:
+      contents: write # um Status-Files und Reports zu committen
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies (if package.json)
+        run: |
+          if [ -f package.json ]; then
+            npm ci --prefer-offline --no-audit
+          fi
+
+      - name: Run SEO Check
+        env:
+          GOOGLE_PAGESPEED_API_KEY: ${{ secrets.GOOGLE_PAGESPEED_API_KEY }}
+          GSC_CLIENT_ID: ${{ secrets.GSC_CLIENT_ID }}
+          GSC_CLIENT_SECRET: ${{ secrets.GSC_CLIENT_SECRET }}
+          GSC_REFRESH_TOKEN: ${{ secrets.GSC_REFRESH_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          ARGS="--mode=monthly"
+          if [ -n "${{ inputs.project }}" ]; then
+            ARGS="$ARGS --project=${{ inputs.project }}"
+          fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          node scripts/seo-check.mjs $ARGS
+
+      - name: Commit updated status files
+        if: inputs.dry_run != true
+        run: |
+          git config user.name "Meyso SEO Agent"
+          git config user.email "seo-agent@users.noreply.github.com"
+          git add docs/seo/project-status/ docs/seo/reports/ 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "Keine Änderungen zu committen"
+          else
+            MONTH=$(date +%Y-%m)
+            git commit -m "chore(seo): monatlicher Auto-Check ${MONTH}"
+            git push
+            echo "✅ Status-Updates committed"
+          fi
+
+      - name: Upload logs as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-check-logs-${{ github.run_number }}
+          path: |
+            docs/seo/reports/*.md
+          retention-days: 90
+          if-no-files-found: ignore
