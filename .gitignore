@@ -1,2 +1,16 @@
 .claude/settings.local.json
 .claude/worktrees/
+
+# Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
