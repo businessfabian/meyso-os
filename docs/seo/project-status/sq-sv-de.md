@@ -118,10 +118,6 @@ Alle grün.
 
 ---
 
----
-
-# SEO-Status: villa-nina-sardinia.vercel.app
-
 **Letzter manueller Audit:** (erster Audit)
 **Projekttyp:** Eigenes Produkt / Barter (Ricardo)
 **Hinweis:** Noch auf vercel.app Subdomain, eigenes Domain wäre SEO-Boost

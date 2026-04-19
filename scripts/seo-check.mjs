@@ -131,11 +131,19 @@ async function checkProject(project) {
     // GSC-Daten (nur im Monthly-Mode, komplex wegen OAuth)
     if (mode === 'monthly' && project.gsc_property) {
       console.log('📊 Google Search Console...');
-      result.checks.gsc = await getTopQueriesWithTrend(project.gsc_property);
-      if (!result.checks.gsc.error) {
-        console.log(`   ${result.checks.gsc.topQueries?.length ?? 0} Queries erfasst`);
-      } else {
-        console.log(`   ⚠️ ${result.checks.gsc.error}`);
+      try {
+        result.checks.gsc = await getTopQueriesWithTrend(project.gsc_property);
+        if (!result.checks.gsc.error) {
+          console.log(`   ${result.checks.gsc.topQueries?.length ?? 0} Queries erfasst`);
+        } else {
+          const msg = result.checks.gsc.error.includes('403')
+            ? `GSC-Zugriff fehlt fuer ${project.name}. Siehe SETUP.md fuer Permission-Setup.`
+            : result.checks.gsc.error;
+          console.log(`   ⚠️ ${msg}`);
+        }
+      } catch (gscErr) {
+        result.checks.gsc = { error: gscErr.message, configError: true };
+        console.log(`   ⚠️ GSC-Fehler: ${gscErr.message}`);
       }
     }
 
@@ -172,13 +180,16 @@ async function checkProject(project) {
 }
 
 function countCritical(result) {
-  if (result.error) return 1;
+  // Config-Fehler (GSC 403, fehlende Credentials) sind keine kritischen Agent-Fehler
+  if (result.error && !result.checks?.gsc?.configError) return 1;
   let count = 0;
   const perf = result.checks?.lighthouse?.average?.mobile?.performance;
   if (perf !== undefined && perf < 70) count++;
   const broken = result.checks?.technical?.brokenLinks?.brokenLinks?.length ?? 0;
   if (broken > 0) count++;
-  if (result.checks?.technical?.sitemap?.status === 'error') count++;
+  // 'skipped' (z.B. vercel.app ohne Sitemap) zaehlt nicht als Fehler
+  const sitemapStatus = result.checks?.technical?.sitemap?.status;
+  if (sitemapStatus === 'error') count++;
   return count;
 }
 

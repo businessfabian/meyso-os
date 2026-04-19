@@ -5,6 +5,14 @@ import * as cheerio from 'cheerio';
 
 const USER_AGENT = 'Meyso-SEO-Agent/1.0 (+https://meyso.de)';
 
+function isVercelApp(url) {
+  try {
+    return new URL(url).hostname.endsWith('.vercel.app');
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Prueft Sitemap: erreichbar, valide, alle URLs responden.
  */
@@ -18,6 +26,9 @@ export async function checkSitemap(baseUrl) {
     });
 
     if (!response.ok) {
+      if (isVercelApp(sitemapUrl)) {
+        return { status: 'skipped', reason: 'vercel.app-Subdomain ohne Custom-Domain, Sitemap nicht priorisiert' };
+      }
       return {
         status: 'error',
         reason: `Sitemap HTTP ${response.status}`,
@@ -95,6 +106,9 @@ export async function checkSchemaOrg(url) {
     )];
 
     if (ldJsonBlocks.length === 0) {
+      if (isVercelApp(url)) {
+        return { status: 'skipped', reason: 'vercel.app-Subdomain ohne Custom-Domain, Schema.org nicht priorisiert' };
+      }
       return { status: 'missing', schemas: [] };
     }
 
