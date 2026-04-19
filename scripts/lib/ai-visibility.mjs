@@ -1,10 +1,14 @@
 // scripts/lib/ai-visibility.mjs
-// Prüft ob AI-Systeme (aktuell Claude) Meyso-Projekte bei relevanten Queries erwähnen
-// Nutzt Claude API mit Web-Search-Tool für realistische Ergebnisse
+// Prueft ob AI-Systeme (aktuell Claude) Meyso-Projekte bei relevanten Queries erwaehnen
+// Nutzt Claude API mit Web-Search-Tool fuer realistische Ergebnisse
+
+import { sanitize } from './sanitize.mjs';
+
+const USER_AGENT = 'Meyso-SEO-Agent/1.0 (+https://meyso.de)';
 
 /**
- * Führt AI-Visibility-Checks für ein Projekt durch.
- * Fragt für jede definierte Query, ob Claude die Website erwähnt.
+ * Fuehrt AI-Visibility-Checks fuer ein Projekt durch.
+ * Fragt fuer jede definierte Query, ob Claude die Website erwaehnt.
  */
 export async function checkAiVisibility(project, apiKey) {
   if (!apiKey) {
@@ -43,7 +47,7 @@ export async function checkAiVisibility(project, apiKey) {
 }
 
 /**
- * Führt eine einzelne Query aus und prüft auf Domain-Erwähnung.
+ * Fuehrt eine einzelne Query aus und prueft auf Domain-Erwaehnung.
  */
 async function runSingleQuery(query, domain, apiKey) {
   try {
@@ -59,7 +63,7 @@ async function runSingleQuery(query, domain, apiKey) {
         max_tokens: 1024,
         tools: [
           {
-            type: 'web_search_20250305',
+            type: 'web_search_20260209',
             name: 'web_search',
           },
         ],
@@ -74,14 +78,14 @@ async function runSingleQuery(query, domain, apiKey) {
 
     if (!response.ok) {
       const text = await response.text();
-      return { query, error: `API error ${response.status}: ${text.slice(0, 200)}` };
+      return { query, error: `API error ${response.status}: ${sanitize(text.slice(0, 200))}` };
     }
 
     const data = await response.json();
     const fullText = extractResponseText(data);
     const citations = extractCitations(data);
 
-    const domainMentioned = fullText.toLowerCase().includes(domain.toLowerCase()) ||
+    const domainMentioned = fullText.normalize('NFC').toLowerCase().includes(domain.normalize('NFC').toLowerCase()) ||
       citations.some(c => c.includes(domain));
 
     return {
@@ -96,7 +100,7 @@ async function runSingleQuery(query, domain, apiKey) {
 }
 
 /**
- * Extrahiert Text aus Claude-Response (die aus mehreren Content-Blöcken bestehen kann).
+ * Extrahiert Text aus Claude-Response (die aus mehreren Content-Bloecken bestehen kann).
  */
 function extractResponseText(data) {
   const blocks = data.content ?? [];
@@ -119,7 +123,6 @@ function extractCitations(data) {
         if (citation.url) urls.add(citation.url);
       }
     }
-    // Web-search Result Blöcke enthalten ebenfalls URLs
     if (block.type === 'web_search_tool_result' && block.content) {
       for (const result of block.content) {
         if (result.url) urls.add(result.url);

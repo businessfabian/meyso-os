@@ -1,6 +1,8 @@
 // scripts/lib/lighthouse.mjs
 // Lighthouse-Check via Google PageSpeed Insights API
-// Prüft Performance, SEO, Accessibility, Best Practices plus Core Web Vitals
+// Prueft Performance, SEO, Accessibility, Best Practices plus Core Web Vitals
+
+import { sanitize } from './sanitize.mjs';
 
 const PAGESPEED_API = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
 
@@ -32,7 +34,7 @@ export async function checkLighthouse(url, apiKey, strategy = 'mobile') {
 
     if (!response.ok) {
       const text = await response.text();
-      return { error: `HTTP ${response.status}: ${text.slice(0, 200)}` };
+      return { error: `HTTP ${response.status}: ${sanitize(text.slice(0, 200))}` };
     }
 
     const data = await response.json();

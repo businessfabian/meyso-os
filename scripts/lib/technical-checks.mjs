@@ -1,8 +1,12 @@
 // scripts/lib/technical-checks.mjs
 // Technische SEO-Checks: Sitemap, Broken Links, Schema.org, Meta-Tags
 
+import * as cheerio from 'cheerio';
+
+const USER_AGENT = 'Meyso-SEO-Agent/1.0 (+https://meyso.de)';
+
 /**
- * Prüft Sitemap: erreichbar, valide, alle URLs responden.
+ * Prueft Sitemap: erreichbar, valide, alle URLs responden.
  */
 export async function checkSitemap(baseUrl) {
   const sitemapUrl = new URL('/sitemap.xml', baseUrl).toString();
@@ -10,6 +14,7 @@ export async function checkSitemap(baseUrl) {
   try {
     const response = await fetch(sitemapUrl, {
       signal: AbortSignal.timeout(15_000),
+      headers: { 'User-Agent': USER_AGENT },
     });
 
     if (!response.ok) {
@@ -23,10 +28,9 @@ export async function checkSitemap(baseUrl) {
     const urls = extractUrlsFromSitemap(xml);
 
     if (urls.length === 0) {
-      return { status: 'warning', reason: 'Sitemap enthält keine URLs' };
+      return { status: 'warning', reason: 'Sitemap enthaelt keine URLs' };
     }
 
-    // Sample von max 10 URLs prüfen um Laufzeit zu begrenzen
     const sample = urls.slice(0, 10);
     const brokenUrls = [];
 
@@ -62,6 +66,7 @@ async function quickUrlCheck(url) {
       method: 'HEAD',
       redirect: 'follow',
       signal: AbortSignal.timeout(10_000),
+      headers: { 'User-Agent': USER_AGENT },
     });
     return response.ok;
   } catch {
@@ -70,13 +75,13 @@ async function quickUrlCheck(url) {
 }
 
 /**
- * Prüft Schema.org Präsenz auf einer Seite.
+ * Prueft Schema.org Praesenz auf einer Seite.
  */
 export async function checkSchemaOrg(url) {
   try {
     const response = await fetch(url, {
       signal: AbortSignal.timeout(15_000),
-      headers: { 'User-Agent': 'Meyso SEO Monitor' },
+      headers: { 'User-Agent': USER_AGENT },
     });
 
     if (!response.ok) {
@@ -85,7 +90,6 @@ export async function checkSchemaOrg(url) {
 
     const html = await response.text();
 
-    // Ld+JSON Blocks finden
     const ldJsonBlocks = [...html.matchAll(
       /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi
     )];
@@ -141,13 +145,13 @@ function collectTypes(node) {
 }
 
 /**
- * Prüft Basis-Meta-Tags auf einer Seite.
+ * Prueft Basis-Meta-Tags auf einer Seite mit cheerio (attribut-reihenfolge-unabhaengig).
  */
 export async function checkMetaTags(url) {
   try {
     const response = await fetch(url, {
       signal: AbortSignal.timeout(15_000),
-      headers: { 'User-Agent': 'Meyso SEO Monitor' },
+      headers: { 'User-Agent': USER_AGENT },
     });
 
     if (!response.ok) {
@@ -155,18 +159,16 @@ export async function checkMetaTags(url) {
     }
 
     const html = await response.text();
-    const head = html.match(/<head[^>]*>([\s\S]*?)<\/head>/i)?.[1] ?? html;
+    const $ = cheerio.load(html);
 
-    const title = extract(head, /<title[^>]*>([^<]+)<\/title>/i);
-    const description = extract(head, /<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i);
-    const canonical = extract(head, /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i);
-    const ogTitle = extract(head, /<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i);
-    const ogDescription = extract(head, /<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']+)["']/i);
-    const ogImage = extract(head, /<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i);
-    const robots = extract(head, /<meta[^>]+name=["']robots["'][^>]+content=["']([^"']+)["']/i);
-
-    // H1 aus Body
-    const bodyH1 = extract(html, /<h1[^>]*>([\s\S]*?)<\/h1>/i);
+    const title = $('title').first().text().trim() || null;
+    const description = $('meta[name="description"]').attr('content') || null;
+    const canonical = $('link[rel="canonical"]').attr('href') || null;
+    const ogTitle = $('meta[property="og:title"]').attr('content') || null;
+    const ogDescription = $('meta[property="og:description"]').attr('content') || null;
+    const ogImage = $('meta[property="og:image"]').attr('content') || null;
+    const robots = $('meta[name="robots"]').attr('content') || null;
+    const h1 = $('h1').first().text().trim() || null;
 
     const issues = [];
     if (!title) issues.push('Title-Tag fehlt');
@@ -180,8 +182,7 @@ export async function checkMetaTags(url) {
     if (!canonical) issues.push('Canonical-Tag fehlt');
     if (!ogTitle) issues.push('OG:title fehlt');
     if (!ogImage) issues.push('OG:image fehlt');
-    if (!bodyH1) issues.push('H1 fehlt');
-
+    if (!h1) issues.push('H1 fehlt');
     if (robots?.includes('noindex')) issues.push('Seite ist auf noindex');
 
     return {
@@ -193,17 +194,12 @@ export async function checkMetaTags(url) {
       ogDescription,
       ogImage,
       robots,
-      h1: bodyH1?.replace(/<[^>]+>/g, '').trim().slice(0, 200),
+      h1: h1?.slice(0, 200),
       issues,
     };
   } catch (error) {
     return { status: 'error', reason: error.message };
   }
-}
-
-function extract(text, regex) {
-  const match = text.match(regex);
-  return match?.[1]?.trim() ?? null;
 }
 
 /**
@@ -213,7 +209,7 @@ export async function checkBrokenLinks(baseUrl, maxLinks = 20) {
   try {
     const response = await fetch(baseUrl, {
       signal: AbortSignal.timeout(15_000),
-      headers: { 'User-Agent': 'Meyso SEO Monitor' },
+      headers: { 'User-Agent': USER_AGENT },
     });
 
     if (!response.ok) {
@@ -223,7 +219,6 @@ export async function checkBrokenLinks(baseUrl, maxLinks = 20) {
     const html = await response.text();
     const baseHost = new URL(baseUrl).hostname;
 
-    // Alle Links extrahieren
     const links = [...html.matchAll(/<a[^>]+href=["']([^"']+)["']/gi)]
       .map(m => m[1])
       .filter(href => !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:'))
