@@ -60,6 +60,8 @@ export async function checkLighthouse(url, apiKey, strategy = 'mobile') {
         inp: audits['interaction-to-next-paint']?.numericValue ?? null,
         fcp: audits['first-contentful-paint']?.numericValue ?? null,
         ttfb: audits['server-response-time']?.numericValue ?? null,
+        tbt: audits['total-blocking-time']?.numericValue ?? null,
+        si: audits['speed-index']?.numericValue ?? null,
       },
       // Wichtige Probleme aus den Audits extrahieren
       issues: extractIssues(audits),
