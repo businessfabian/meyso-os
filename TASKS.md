@@ -169,6 +169,60 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 - [ ] 🤖 EN-to-DE Uebersetzung automatisieren (aktuell nur manuelle Scripts)
 - [ ] 🤖 Rate Limiting persistent machen (Upstash Redis): Reicht bei aktuellem Traffic
 
+### Admin-Feature: Automatische Vertragsgenerierung
+
+**Status:** Konzeptioniert, nicht umgesetzt
+
+**Business Case:**
+Manuelle Vertragserstellung skaliert nicht ueber 3-5 Kunden hinaus.
+Jeder neue Kunde soll automatisch Vertrag + AVV generiert bekommen,
+basierend auf Template und seinen Kundendaten.
+
+**Features:**
+
+Phase 1: MVP (8-10h)
+- Supabase-Tabellen: contract_templates, contracts
+- Admin-Route /admin/contracts mit Template-Verwaltung
+- Generate-Button auf Kunden-Detail-Seite
+- Platzhalter-Ersetzung aus Kundendaten
+- PDF-Generation via react-pdf oder puppeteer
+- Speicherung in Supabase Storage
+
+Phase 2: Portal-Integration (2-3h)
+- Im /portal pro Kunde: Vertrags-Downloads
+- Status-Anzeige: unterschrieben / nicht unterschrieben
+- PDF-Viewer-Integration
+
+Phase 3: Signatur-Workflow (5-8h)
+- Integration DocuSign oder HelloSign API
+- Automatische Erinnerungen bei nicht-unterschriebenen Vertraegen
+- Signatur-Tracking in Datenbank
+
+**Templates:**
+- Dienstleistungsvertrag (Basis existiert in docs/legal/)
+- AVV DSGVO (Basis existiert in docs/legal/)
+- Spaeter: NDA, Projekt-Werkvertrag, Angebots-Template
+
+**Offene Fragen:**
+- PDF-Library Entscheidung (react-pdf vs puppeteer vs LaTeX)?
+- Template-Pflege in Sanity oder direkt in Markdown-Files?
+- Signatur-Service: DocuSign vs HelloSign vs SignWell?
+
+**Abhaengigkeiten:**
+- Vertraege muessen einmal anwaltlich geprueft sein bevor automatisch
+  generiert werden (Haftungsrisiko bei Rechtsfehlern)
+- Bestehende Kundendaten in Supabase muessen vollstaendig sein
+
+**Vorgeschlagener Zeitpunkt:**
+Q2/Q3 2026 wenn:
+- Mehr als 3 Kunden ansteht
+- Anwalt-Review der Templates durchgelaufen ist
+- Dashboard-Basis steht
+
+**Aufwand total:** 15-20h verteilt ueber mehrere Sessions
+
+---
+
 ### SEO-Dashboard-Integration /admin/seo
 
 **Status:** Geparkt bis August 2026 (brauche 3+ Monate echte Agent-Daten)
