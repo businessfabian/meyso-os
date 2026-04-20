@@ -51,3 +51,25 @@ PageSpeed-Messung nach Deploy:
 - Speed Index: 1,8s (von 4,7s)
 
 Commit: [hash nach merge einfuegen]
+
+---
+
+## 2026-04-20: Mega SEO-Day
+
+### Infrastruktur
+- SEO-Agent gebaut und produktiv (9 Module, 4 kritische Bugs gefixt)
+- Workflow-Commit-Fix (if: always())
+- Lighthouse-Rendering und Priorisierung verbessert
+- projects.json URLs kanonisch korrigiert
+- Quick-PageSpeed-Script fuer Ad-hoc-Checks
+
+### Performance (meyso-website)
+- /projekte Mobile: 74 -> 100
+- Homepage: Font-Preload fuer InstrumentSerif
+- Footer: WCAG AA Kontrast (Accessibility 92 -> 100)
+- og-image: dynamisch via next/og
+
+### Dokumentation
+- SEO-Baseline-System fuer zukuenftige Projekte dokumentiert
+- Bad Duerrheim Research komplett (Landing Page fuer spaeeteren Build geparkt)
+- Changes-Log begonnen
