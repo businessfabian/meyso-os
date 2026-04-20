@@ -111,7 +111,7 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 > Wertschoepfung fuer Kunden, nach Prio sortiert
 
 ### hirmax-scheibenbilder (zahlender Kunde)
-- [ ] 🤖 Kunden-Self-Service: Passwort aendern, Bestellhistorie einsehen
+- [x] 🤖 Kunden-Self-Service: Passwort aendern, Bestellhistorie einsehen ✓
 - [x] 🤖 Push Notifications: Benachrichtigung bei Bestellstatus-Aenderung ✓
 - [ ] 🤖 Payment Processing: Bestellungen sind aktuell nur Anfragen
 
