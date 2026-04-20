@@ -26,8 +26,9 @@ export function formatProjectReport(result) {
   sections.push('');
 
   // Lighthouse
-  if (result.checks.lighthouse && !result.checks.lighthouse.error) {
-    sections.push(formatLighthouseSection(result.checks.lighthouse));
+  const lh = result.checks.lighthouse;
+  if (lh && !lh.error && (lh.average || Object.keys(lh.pages ?? {}).length > 0)) {
+    sections.push(formatLighthouseSection(lh));
   }
 
   // GSC Data
@@ -76,6 +77,21 @@ function formatLighthouseSection(lh) {
     lines.push(`| Accessibility | ${scoreIcon(m.accessibility)} ${m.accessibility} | ${scoreIcon(d.accessibility)} ${d.accessibility} |`);
     lines.push(`| Best Practices | ${scoreIcon(m.bestPractices)} ${m.bestPractices} | ${scoreIcon(d.bestPractices)} ${d.bestPractices} |`);
     lines.push('');
+  } else {
+    const pages = Object.entries(lh.pages ?? {});
+    const successful = pages.filter(([, p]) => p.mobile?.scores && !p.mobile.error);
+    if (successful.length > 0) {
+      lines.push(`*Kein Gesamt-Durchschnitt (${successful.length}/${pages.length} Seite(n) erfolgreich):*`);
+      lines.push('');
+      for (const [url, p] of successful.slice(0, 3)) {
+        const s = p.mobile.scores;
+        lines.push(`**${url}** (Mobile): Perf ${scoreIcon(s.performance)} ${s.performance}, SEO ${scoreIcon(s.seo)} ${s.seo}`);
+      }
+      lines.push('');
+    } else {
+      lines.push(`*Lighthouse: Alle Checks fehlgeschlagen (siehe Logs).*`);
+      lines.push('');
+    }
   }
 
   if (lh.worstPage && lh.worstPage.score < 90) {
@@ -85,7 +101,7 @@ function formatLighthouseSection(lh) {
 
   // Core Web Vitals von Homepage
   const firstPage = Object.values(lh.pages ?? {})[0];
-  if (firstPage?.mobile?.coreWebVitals) {
+  if (firstPage?.mobile?.coreWebVitals && !firstPage.mobile.error) {
     const cwv = firstPage.mobile.coreWebVitals;
     lines.push(`**Core Web Vitals (Homepage, Mobile):**`);
     if (cwv.lcp) lines.push(`- LCP: ${(cwv.lcp / 1000).toFixed(2)}s ${cwvIcon('lcp', cwv.lcp)}`);
@@ -245,12 +261,34 @@ function deriveActionItems(result) {
     });
   }
 
-  // GSC Opportunities
-  const opps = result.checks.gsc?.opportunities ?? [];
+  // CTR niedrig trotz hoher Impressions
+  const topQueries = result.checks.gsc?.topQueries ?? [];
+  const lowCtrQueries = topQueries.filter(q => q.impressions > 50 && q.ctr < 2);
+  if (lowCtrQueries.length > 0) {
+    items.push({
+      priority: 'MITTEL',
+      text: `${lowCtrQueries.length} Quer${lowCtrQueries.length === 1 ? 'y' : 'ies'} mit >50 Impressions aber CTR < 2%. Title/Description optimieren.`,
+    });
+  }
+
+  // Brand-Query nicht auf Position 1
+  const brandSlug = result.project.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const brandQuery = topQueries.find(q =>
+    q.query.toLowerCase().replace(/[^a-z0-9]/g, '').includes(brandSlug)
+  );
+  if (brandQuery && brandQuery.position > 1.5) {
+    items.push({
+      priority: 'MITTEL',
+      text: `Brand-Query "${brandQuery.query}" nur auf Position ${brandQuery.position}. Brand-SEO prüfen.`,
+    });
+  }
+
+  // GSC Opportunities: Position 11-20 mit echtem Traffic
+  const opps = (result.checks.gsc?.opportunities ?? []).filter(o => o.impressions > 20);
   if (opps.length > 0) {
     items.push({
       priority: 'MITTEL',
-      text: `${opps.length} Queries auf Position 11-20. Top-Chance: "${opps[0].query}" (${opps[0].impressions} Impressions).`,
+      text: `${opps.length} Quer${opps.length === 1 ? 'y' : 'ies'} auf Position 11-20 mit >20 Impressions. Top-Chance: "${opps[0].query}" (${opps[0].impressions} Impressions).`,
     });
   }
 
