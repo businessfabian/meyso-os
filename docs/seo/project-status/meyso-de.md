@@ -1,7 +1,7 @@
 # SEO-Status: meyso.de
 
 **Letzter manueller Audit:** (bisher nicht, erster Audit startet jetzt)
-**Letzter automatischer Check:** 2026-04-19
+**Letzter automatischer Check:** 2026-04-20
 **Betreut von:** Dave (Fabian Meyer)
 
 ---
@@ -169,6 +169,54 @@
 
 ### Priorisierte Empfehlungen
 
+- **NIEDRIG:** 1 Meta-Tag-Warnung(en) auf Startseite.
+
+---
+
+## Auto-Check 2026-04-20
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟡 74 | 🟢 98 |
+| SEO | 🟢 100 | 🟢 100 |
+| Accessibility | 🟢 92 | 🟢 92 |
+| Best Practices | 🟢 100 | 🟢 100 |
+
+**Schwächste Seite:** https://www.meyso.de/projekte (Performance 74)
+
+### Google Search Console (letzte 28 Tage)
+
+**Gesamt (Top 25):** 2 Klicks, 194 Impressions
+
+**Top 10 Queries:**
+
+| Query | Klicks | Impr. | CTR | Position | Δ Pos |
+|-------|--------|-------|-----|----------|-------|
+| meyso | 2 | 8 | 25% | 5.4 | ↑8.9 |
+| industriedesigner schwarzwald-baar-kreis | 0 | 1 | 0% | 41 | – |
+| ki schwenningen | 0 | 2 | 0% | 32 | – |
+| ki villingen | 0 | 4 | 0% | 41 | – |
+| ki villingen-schwenningen | 0 | 1 | 0% | 64 | – |
+| mobile app development | 0 | 1 | 0% | 10 | – |
+| moyso | 0 | 1 | 0% | 8 | – |
+| seo optimierung bad-dürrheim | 0 | 1 | 0% | 21 | – |
+| seo optimierung brigachtal | 0 | 1 | 0% | 1 | – |
+| seo st. georgen im schwarzwald | 0 | 1 | 0% | 12 | – |
+
+### Technical SEO
+
+✅ **Sitemap:** 18 URLs, 10 geprüft, alle OK
+✅ **Interne Links:** 13 geprüft, keine broken
+✅ **Schema.org:** LocalBusiness
+⚠️ **Meta-Tags:** 1 Warnung(en)
+  - OG:image fehlt
+
+### Priorisierte Empfehlungen
+
+- **MITTEL:** Mobile Performance 74. Optimierungs-Potential.
+- **MITTEL:** 1 Query mit >50 Impressions aber CTR < 2%. Title/Description optimieren.
 - **NIEDRIG:** 1 Meta-Tag-Warnung(en) auf Startseite.
 
 ---
