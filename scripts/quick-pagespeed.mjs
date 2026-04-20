@@ -6,9 +6,10 @@ import { checkLighthouse } from './lib/lighthouse.mjs';
 
 const DEFAULT_URLS = [
   'https://www.meyso.de/',
-  'https://www.meyso.de/leistungen',
+  'https://www.meyso.de/leistungen/webseiten',
+  'https://www.meyso.de/leistungen/ki-automatisierung',
+  'https://www.meyso.de/projekte',
   'https://www.meyso.de/webentwicklung-brigachtal',
-  'https://www.meyso.de/webentwicklung-villingen-schwenningen',
   'https://www.meyso.de/analyse',
 ];
 
