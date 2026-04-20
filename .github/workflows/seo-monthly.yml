@@ -60,7 +60,7 @@ jobs:
           node scripts/seo-check.mjs $ARGS
 
       - name: Commit updated status files
-        if: inputs.dry_run != true
+        if: always() && inputs.dry_run != true
         run: |
           git config user.name "Meyso SEO Agent"
           git config user.email "seo-agent@users.noreply.github.com"
