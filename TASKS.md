@@ -169,6 +169,46 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 - [ ] 🤖 EN-to-DE Uebersetzung automatisieren (aktuell nur manuelle Scripts)
 - [ ] 🤖 Rate Limiting persistent machen (Upstash Redis): Reicht bei aktuellem Traffic
 
+### SEO-Dashboard-Integration /admin/seo
+
+**Status:** Geparkt bis August 2026 (brauche 3+ Monate echte Agent-Daten)
+
+**Ziel:**
+SEO-Monitoring-Daten aus dem Agent ins Admin-Dashboard bringen, grafisch und pro Projekt.
+
+**Voraussetzung:**
+- Mindestens 3 Monthly-Runs mit echten Daten (erste ab 1. Mai 2026)
+- Klarheit welche Daten wirklich wichtig sind zu visualisieren
+
+**Umfang:**
+
+Phase 1: Backend
+- Supabase-Schema designen (tabellen fuer metrics, queries, issues, changes)
+- SEO-Agent erweitern um parallel nach Supabase zu schreiben
+- Bestehende MD-Files als Fallback beibehalten
+
+Phase 2: Frontend /admin/seo
+- Uebersichtsseite: alle 5 Projekte mit KPI-Kacheln
+- Pro-Projekt-Detail-Seite:
+  - Lighthouse-Trends ueber Zeit (Line Chart)
+  - Top-Queries-Tabelle mit Position-Sparklines
+  - Technical Issues Liste
+  - AI-Visibility-Status
+  - Change-Timeline
+
+Phase 3: Optional
+- Alert-System bei kritischen Findings
+- Export als PDF fuer Kunden-Reports
+
+**Aufwand:**
+- Phase 1: 4-5h
+- Phase 2: 5-7h
+- Phase 3: 3-4h
+
+**Erste Review:** nach 1. Mai 2026 entscheiden ob Phase 1 startet oder weiter warten.
+
+**Referenz-Dokument:** docs/seo/baseline-system.md
+
 ---
 
 ## 🔵 LANGFRISTIG (ab 10+ Kunden)
