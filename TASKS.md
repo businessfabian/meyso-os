@@ -65,7 +65,7 @@ Stand: 2026-04-10 (priorisiert)
 - [ ] 👤 Manuell | Gemini API: Projekt-Level Spend Cap im AI Studio setzen (Tier 1 = $250/Monat, sonst Pause aller Requests) (Quelle: News Scout 10.04.2026)
 - [ ] 👤 Manuell | Gemini API: gemini-3-flash-preview als Ersatz fuer gemini-2.5-flash in autonomen Loops testen (Quelle: News Scout 10.04.2026)
 - [ ] 👤 Manuell | Gemini API: Flex Inference Tier fuer nicht-zeitkritische Loops evaluieren (Kostenoptimierung) (Quelle: News Scout 10.04.2026)
-- [ ] 🤖 Claude | Alle Projekte: Next.js 16.1.6 auf 16.2 evaluieren und updaten (stable Adapter API, Agent DevTools, 200+ Turbopack Fixes) (Quelle: News Scout 10.04.2026)
+- [x] 🤖 Claude | Alle Projekte: Next.js 16.1.6 auf 16.2 evaluieren und updaten (bereits 16.2.3 auf meyso-website, aktuell) ✓
 - [ ] 👤 Manuell | hirmax: Supabase Stripe Sync Engine evaluieren fuer kuenftiges Payment Processing (Quelle: News Scout 10.04.2026)
 - [ ] 🤖 Newsletter Secret: In README erwaehnen (kmu-template)
 - [x] 🤖 Services-Daten nach Sanity (sq-schmidt): Leistungen-Teil komplett. Sanity Schema um bild/leistungsumfang/prozess erweitert, Admin-Dashboard mit StringArrayField + ProzessArrayField (stabile _keys), /leistungen und /leistungen/[slug] rein Sanity-gesteuert, Migration-Script `scripts/migrate-services-features-prozess.ts` (DRY default, APPLY=1 zum Schreiben). Commits fe9f0f7, 629c1ec
