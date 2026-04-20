@@ -21,7 +21,7 @@
     },
     {
       "name": "toolradar.de",
-      "url": "https://toolradar.de",
+      "url": "https://www.toolradar.de",
       "type": "product",
       "important_pages": [
         "/",
@@ -37,7 +37,7 @@
     },
     {
       "name": "hirmax-scheiben.de",
-      "url": "https://hirmax-scheiben.de",
+      "url": "https://www.hirmax-scheiben.de",
       "type": "client-project",
       "important_pages": [
         "/"
@@ -50,7 +50,7 @@
     },
     {
       "name": "sq-sv.de",
-      "url": "https://sq-sv.de",
+      "url": "https://www.sq-sv.de",
       "type": "client-project",
       "important_pages": [
         "/",
