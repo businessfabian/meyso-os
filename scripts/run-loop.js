@@ -11,9 +11,12 @@
 //   WORKFLOW_ID     - workflow id to update in workflows.json lastRun field
 //   LOOP_NAME       - loop identifier; set to "news-scout" to enable Google Search Grounding
 
-const https = require('https');
-const fs = require('fs');
-const path = require('path');
+import https from 'https';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function callGemini(prompt, useGrounding, model) {
   const apiKey = process.env.GEMINI_API_KEY;
