@@ -64,7 +64,7 @@ Kostet: nichts. Dauer: 15-20 Minuten.
 2. "APIs & Services" → "Library" → "Search Console API" aktivieren
 3. "APIs & Services" → "OAuth consent screen" konfigurieren wenn noch nicht geschehen:
    - User Type: "External" (für personal Account)
-   - App name: "Meyso SEO Agent"
+   - App name: ""
    - Email: deine Meyso-Email
    - Scopes: `auth/webmasters.readonly` hinzufügen
    - Test users: deine Email als Test-User eintragen
