@@ -70,6 +70,7 @@ jobs:
           else
             MONTH=$(date +%Y-%m)
             git commit -m "chore(seo): monatlicher Auto-Check ${MONTH}"
+            git pull --rebase origin main
             git push
             echo "✅ Status-Updates committed"
           fi

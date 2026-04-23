@@ -27,48 +27,63 @@ export async function checkLighthouse(url, apiKey, strategy = 'mobile') {
   apiUrl.searchParams.append('category', 'accessibility');
   apiUrl.searchParams.append('category', 'best-practices');
 
-  try {
-    const response = await fetch(apiUrl.toString(), {
-      signal: AbortSignal.timeout(60_000), // PageSpeed braucht manchmal lang
-    });
+  const delays = [15_000, 30_000];
+  let lastError = { error: 'Unbekannter Fehler' };
 
-    if (!response.ok) {
-      const text = await response.text();
-      return { error: `HTTP ${response.status}: ${sanitize(text.slice(0, 200))}` };
+  for (let attempt = 0; attempt <= 2; attempt++) {
+    try {
+      const response = await fetch(apiUrl.toString(), {
+        signal: AbortSignal.timeout(60_000),
+      });
+
+      if (response.status === 429) {
+        const waitMs = delays[attempt] ?? 60_000;
+        console.log(`   PageSpeed 429 (Rate Limit) - Retry in ${waitMs / 1000}s...`);
+        lastError = { error: 'HTTP 429: Rate Limit' };
+        await new Promise((r) => setTimeout(r, waitMs));
+        continue;
+      }
+
+      if (!response.ok) {
+        const text = await response.text();
+        return { error: `HTTP ${response.status}: ${sanitize(text.slice(0, 200))}` };
+      }
+
+      const data = await response.json();
+      const lighthouse = data.lighthouseResult;
+      if (!lighthouse) {
+        return { error: 'Kein Lighthouse-Ergebnis in Response' };
+      }
+
+      const categories = lighthouse.categories ?? {};
+      const audits = lighthouse.audits ?? {};
+
+      return {
+        strategy,
+        scores: {
+          performance: Math.round((categories.performance?.score ?? 0) * 100),
+          seo: Math.round((categories.seo?.score ?? 0) * 100),
+          accessibility: Math.round((categories.accessibility?.score ?? 0) * 100),
+          bestPractices: Math.round((categories['best-practices']?.score ?? 0) * 100),
+        },
+        coreWebVitals: {
+          lcp: audits['largest-contentful-paint']?.numericValue ?? null,
+          cls: audits['cumulative-layout-shift']?.numericValue ?? null,
+          inp: audits['interaction-to-next-paint']?.numericValue ?? null,
+          fcp: audits['first-contentful-paint']?.numericValue ?? null,
+          ttfb: audits['server-response-time']?.numericValue ?? null,
+          tbt: audits['total-blocking-time']?.numericValue ?? null,
+          si: audits['speed-index']?.numericValue ?? null,
+        },
+        issues: extractIssues(audits),
+      };
+    } catch (error) {
+      lastError = { error: error.message };
+      break;
     }
-
-    const data = await response.json();
-    const lighthouse = data.lighthouseResult;
-    if (!lighthouse) {
-      return { error: 'Kein Lighthouse-Ergebnis in Response' };
-    }
-
-    const categories = lighthouse.categories ?? {};
-    const audits = lighthouse.audits ?? {};
-
-    return {
-      strategy,
-      scores: {
-        performance: Math.round((categories.performance?.score ?? 0) * 100),
-        seo: Math.round((categories.seo?.score ?? 0) * 100),
-        accessibility: Math.round((categories.accessibility?.score ?? 0) * 100),
-        bestPractices: Math.round((categories['best-practices']?.score ?? 0) * 100),
-      },
-      coreWebVitals: {
-        lcp: audits['largest-contentful-paint']?.numericValue ?? null,
-        cls: audits['cumulative-layout-shift']?.numericValue ?? null,
-        inp: audits['interaction-to-next-paint']?.numericValue ?? null,
-        fcp: audits['first-contentful-paint']?.numericValue ?? null,
-        ttfb: audits['server-response-time']?.numericValue ?? null,
-        tbt: audits['total-blocking-time']?.numericValue ?? null,
-        si: audits['speed-index']?.numericValue ?? null,
-      },
-      // Wichtige Probleme aus den Audits extrahieren
-      issues: extractIssues(audits),
-    };
-  } catch (error) {
-    return { error: error.message };
   }
+
+  return lastError;
 }
 
 /**
