@@ -172,6 +172,9 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 - [ ] 🤖 Netatmo-Integration: Temperatur/Feuchte Readings pro Einheit
 - [ ] 👤 Echter Mieter onboarden: Invite-Flow end-to-end testen
 - [ ] 👤 Vercel Deploy + halveo.com Domain konfigurieren
+- [ ] 🤖 Architektur-Refactor: Client-Direct-DB-Inserts zu API-Routes (P3, ~2-3h)
+      Stellen: haeuser/neu (buildings), haeuser/[hausId]/einheiten/neu (units), einheiten/neu (units)
+      Ziel: zentrale Validierung + Audit-Logging statt direktem Client-Supabase-Insert
 
 ### meyso-kmu-template (Template)
 - [ ] 🤖 FAQ Admin-Seite (aktuell nur via Sanity Studio)
