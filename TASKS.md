@@ -210,6 +210,26 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
       Erstellt invoice-Eintrag mit status='ocr_pending',
       Toast "Beleg gespeichert, OCR laeuft", optional direkt zu /belege/[neue-id].
       Aufwand: 3-4 Stunden. Voraussetzung: Storage Bucket "invoices" + invoices.status enum
+- [ ] P1: Beleg-OCR mit Position-Level-Extraktion
+      Mobile FAB ist Foundation (Upload + status-Tracking). Naechster Schritt: echte OCR.
+      Anforderungen:
+         Header: Lieferant, Rechnung-Nr, Datum
+         Betraege: Netto, MwSt, Brutto
+         Einzelpositionen: Bezeichnung, Menge, Einheit, Einzelpreis, MwSt-Satz, Gesamt
+         Optional pro Position: Material vs Arbeitsleistung,
+            Erhaltungsaufwand vs Herstellungsaufwand,
+            Umlagefaehig ja/nein, Wohnungs-Zuordnung
+      Schema: invoices um lieferant/rechnung_nr/datum/netto/mwst/brutto erweitern,
+         NEW invoice_items Tabelle (FK invoice_id, organization_id,
+         optional unit_id + renovation_project_id)
+      Phasen: A Schema-Migration, B Gemini Vision Prompt-Engineering (5-10 Test-Belege),
+         C Webhook-Pipeline nach Upload, D UI fuer OCR-Review + editierbare Positionen,
+         E Klassifizierungs-Logik (KI-Vorschlag, User bestaetigt),
+         F Zuordnung-UI (Position zu Wohnung, Renovierung, Kategorie)
+      Strategischer Wert: Konkurrenz macht Header-OCR, Position-Level erlaubt
+         Anlage V, Erhaltungs- vs Herstellungsaufwand, NK-Abrechnung, Stb-Export.
+      Aufwand: 1-2 Wochenenden. Voraussetzungen: FAB funktional, GEMINI_API_KEY,
+         Test-Belege (Bauhaus, Naturenergie, Baumarkt).
 - [ ] P1: Halveo Doku komplett (Single Source of Truth)
       Ziel: alles dokumentieren was Halveo kann, fuer Founder-Reference und
       spaeteres Onboarding (Bruder, Co-Founder, Praktikant).
