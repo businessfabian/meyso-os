@@ -117,6 +117,12 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 
 ### sq-schmidt-website (zahlender Kunde)
 
+### halveo (zahlender Kunde)
+
+#### halveo-web
+
+---
+
 ### toolradar (eigenes Produkt)
 - [ ] 🤖 Blog-Generator testen: Claude API Kosten im Auge behalten
 - [ ] 🤖 Newsletter Integration vollstaendig testen

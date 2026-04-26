@@ -22,6 +22,7 @@ Markdown + YAML für Konfig und Tasks. Node/TypeScript Tooling wo nötig (Script
 | meyso-demo-schreinerei | D:\dev\meyso\meyso-demo-schreinerei |
 | hirmax | D:\dev\clients\hirmax-scheibenbilder |
 | sq-schmidt | D:\dev\clients\sq-schmidt-website |
+| halveo | D:\dev\clients\halveo-web |
 | toolradar | D:\dev\products\toolradar |
 
 ## Meyso OS Architektur Rules (für alle Projekte die dieses OS nutzen)
