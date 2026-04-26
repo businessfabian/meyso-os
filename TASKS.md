@@ -164,7 +164,6 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 
 **Backlog:**
 - [ ] 🤖 Objekte-Feature: CRUD fuer Immobilien-Ordner (Haeuser, Wohnungen, Einheiten)
-- [ ] 🤖 Steuerberater-Export: Jahresuebersicht als CSV/PDF fuer Anlage V
 - [ ] 🤖 Email-KI: IMAP-Polling + Gemini Klassifizierung + Inbox-View
 - [ ] 🤖 Beleg-Scan: Foto-Upload + Gemini OCR + Kategorisierung
 - [ ] 🤖 Finanz-Cockpit: Einnahmen/Ausgaben Dashboard pro Objekt
@@ -184,6 +183,17 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 ---
 
 ## 🅿️ GEPARKT (spaeter)
+
+### halveo: Steuerberater-Feature (GEPARKT - erst mit echtem Stb)
+
+- [ ] 👤 Steuerberater-Kontakt herstellen als Voraussetzung
+- [ ] 👤 Anforderungen klaeren: DATEV-CSV vs. Excel vs. PDF, Felder pro Beleg,
+      Uebergabe-Modus (Magic Link, Email, Portal), Anlage-V-Format,
+      aktuelle Kommunikation Stb<>Vermieter
+- [ ] 🤖 Danach: Steuerberater-Export bauen (Jahresuebersicht, Beleg-Export)
+
+> Auf halveo-web bleibt StbScene als Vision-Showcase.
+> Implementation erst nach echtem Steuerberater-Input, nicht blind bauen.
 
 - [ ] 🤖 DSGVO-Widget live (live Deep-Scan)
 - [ ] 🤖 Steckbrief-Widget mit Team-Size Preisrechner
