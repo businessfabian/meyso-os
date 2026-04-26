@@ -119,7 +119,9 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 
 ### halveo (zahlender Kunde)
 
-#### halveo-web
+#### halveo (App)
+
+#### halveo-web (Marketing)
 
 ---
 
