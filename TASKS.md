@@ -190,6 +190,40 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
       Aufwand: 2 Wochenenden
 - [ ] P1: Uebergabeprotokoll digital
       Foto-basiert, Mieter-Unterschrift, Auszugs-Dokumentation. Aufwand: 1-2 Wochenenden
+- [ ] P1: Customizable Sidebar pro User
+      Vermieter waehlt welche Kategorien er sieht.
+      Schema schon da: organization_members.permissions JSONB
+      Komponenten: /admin/einstellungen/ansicht Page mit Toggle pro Sidebar-Item,
+      Tier-basierte Defaults (Solo: Cockpit+Objekte+Mieten+Schaeden,
+      Aktiv: +Belege+Email-KI+Dokumente, Profi: +Sensoren+Team+Renovierungen),
+      Sidebar liest permissions und filtert Items, Cockpit-KPIs toggleable.
+      Beispiel-JSON: { "sidebar_items": { "cockpit": true, "email_ki": false },
+      "cockpit_kpis": { "rent": true, "loan": true, "renovation": false } }
+      Aufwand: 4-6 Stunden. Voraussetzung: Permissions-JSONB UI im Platform-Admin (P3)
+- [ ] P1: Mobile Floating Action Button fuer Beleg-Scan
+      Im Cockpit unten-rechts schwebendes Kamera-Icon, direkter Zugang zur
+      Beleg-Erfassung ohne Klick-Tiefe.
+      Komponenten: components/admin/floating-scan-button.tsx, nur Mobile (lg:hidden),
+      Indigo-Gradient 56x56, Lucide Camera oder ScanLine Icon,
+      input type=file capture=environment oeffnet native Kamera (iOS + Android),
+      Upload zu Supabase Storage Bucket "invoices",
+      Erstellt invoice-Eintrag mit status='ocr_pending',
+      Toast "Beleg gespeichert, OCR laeuft", optional direkt zu /belege/[neue-id].
+      Aufwand: 3-4 Stunden. Voraussetzung: Storage Bucket "invoices" + invoices.status enum
+- [ ] P1: Halveo Doku komplett (Single Source of Truth)
+      Ziel: alles dokumentieren was Halveo kann, fuer Founder-Reference und
+      spaeteres Onboarding (Bruder, Co-Founder, Praktikant).
+      Speicherort: D:/dev/products/halveo/docs/ (Markdown, Sektionen getrennt)
+      Sektionen: 1. Architektur (Stack, Repos, Schema, RLS, Multi-Tenant),
+      2. Rollen und Rechte (Platform-Admin, Owner, Admin, Member, Mieter, Stb, Tabelle),
+      3. Seiten und Routen (pro Page: URL, Rolle, Inhalt, Aktionen, API-Endpoints),
+      4. Features und Workflows (Onboarding, Mieter-Einladung, Beleg-OCR, Email-KI,
+         Schaden-Flow, Muell-ICS, Renovierung, Darlehen, Mietzahlung),
+      5. API-Endpunkte (Path, Methode, Auth, Body, Response, Error-Codes),
+      6. Entwicklung (Setup, npm scripts, Migrations-Workflow, Test, Deploy),
+      7. Environment (nur Variablen-Namen, keine Werte),
+      8. Bekannte Begrenzungen, 9. Roadmap-Link auf TASKS.md.
+      Aufwand: 4-6 Stunden. Wann: vor erstem zweiten Halveo-User (Bruder/Eltern).
 - [ ] P2: Foerder-Radar (mit Affiliate-Partner)
       Nur grobe Hinweise + Disclaimer, Verlinkung zu spezialisierten Datenbanken.
       Aufwand: 1 Wochenende
