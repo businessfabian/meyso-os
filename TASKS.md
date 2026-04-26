@@ -117,11 +117,152 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 
 ### sq-schmidt-website (zahlender Kunde)
 
-### halveo (zahlender Kunde)
+### halveo (eigenes Produkt)
 
 #### halveo (App)
 
+**P0 - Fundament**
+- [x] Next.js 14 + TypeScript strict + Tailwind Setup
+- [x] Inter + JetBrains Mono via next/font
+- [x] Design-Tokens in tailwind.config.ts aus DESIGN.md
+- [x] CLAUDE.md mit Architektur-Regeln
+- [x] Supabase Clients (browser, server, middleware)
+- [x] Magic Link Auth Routes (login, verify, callback, logout)
+- [x] Middleware: Role-Routing landlord → /admin, tenant → /mieter/heute
+- [x] Login-Screen, /admin Dummy, /mieter/heute Dummy
+- [x] Build sauber: 11 Routen, 0 TS-Errors
+- [x] Git initialisiert, lokal committed
+
+**P0 - Deploy**
+- [ ] (manual) GitHub Repo `businessfabian/halveo` privat anlegen
+- [ ] `git remote add origin` + `git push -u origin main`
+- [ ] (manual) Supabase Projekt anlegen, EU Frankfurt, Org meyso-products
+- [ ] SCHEMA.sql im Supabase SQL Editor ausfuehren
+- [ ] (manual) Vercel Projekt mit halveo-Repo verbinden
+- [ ] Vercel Env-Vars setzen: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `NEXT_PUBLIC_SITE_URL`
+- [ ] (manual) Custom Domain konfigurieren: app.halveo.com (DNS bei Namecheap)
+- [ ] Supabase Auth URL Configuration: Site URL + Redirect URL auf Production
+- [ ] (manual) Ersten User einloggen, dann in Supabase profiles.role auf 'landlord' setzen
+- [ ] End-to-End Login-Test auf Production durchfuehren
+
+**P1 - Objekt-Hierarchie**
+- [ ] Admin-UI: Objekt-Wizard (Adresse, Typ, Kaufdatum, Kaufpreis)
+- [ ] Schema-Erweiterung: properties, buildings, units Tabellen pruefen/anlegen
+- [ ] Haus-Anlage Flow innerhalb Objekt
+- [ ] Einheiten-Anlage Flow innerhalb Haus
+- [ ] Status pro Objekt: leer, renovierung, vermietet, verkauft
+- [ ] Mieter-Invite Flow: Vermieter traegt Email ein, Magic Link Mail raus
+- [ ] Profile-Auto-Creation beim ersten Mieter-Login mit Pre-Linked Einheit
+- [ ] Breadcrumb-Navigation Header (Halveo / Objekt / Haus / Einheit)
+- [ ] Modern-Tech-Design konsequent (Status-Line, KPI-Tiles aus DESIGN.md)
+- [ ] Acceptance: Brigachtal-Haus angelegt, Bruder als Co-Landlord eingeladen, Mieter 1 kann sich einloggen
+
+**P1 - Beleg-Scan**
+- [ ] PWA-Manifest + Service Worker
+- [ ] Kamera-Button "Beleg scannen" (navigator.mediaDevices)
+- [ ] Foto-Upload zu Supabase Storage Bucket `belege`
+- [ ] Gemini 2.5 Flash Vision OCR Integration (Pattern aus toolradar uebernehmen)
+- [ ] Extraktion: Datum, Betrag, Haendler, Positionen, MwSt
+- [ ] Beleg-Vorschau-UI mit KI-Extraktion + Manual-Override
+- [ ] Zuordnung zu Objekt + Kategorie (Material, Arbeit, Versorger, Sonstiges)
+- [ ] KI-Vorschlag: Reparatur (sofort absetzbar) vs Modernisierung (ueber Jahre)
+- [ ] Belege-Liste mit Filter (Objekt, Kategorie, Zeitraum)
+- [ ] Acceptance: Bauhaus-Beleg per Handy fotografieren, landet strukturiert in der DB
+
+**P1 - Email-KI**
+- [ ] IMAP-Client fuer mailbox.org (immo@meyso.de)
+- [ ] GitHub Action Cron alle 15 Min Mails pullen
+- [ ] Gemini-Analyse: Betrag, Faelligkeit, Absender, Kategorie
+- [ ] Inbox-UI im Admin mit Auto-Kategorisierung
+- [ ] Verknuepfung Email zu Vertrag/Rechnung
+- [ ] Acceptance: Test-Mail "Naturenergie 142 EUR faellig 15. Mai" wird automatisch erkannt
+
+**P1 - Finanz-Cockpit**
+- [ ] Darlehen-Tabelle anlegen mit echtem Brigachtal-Darlehen
+- [ ] Restschuld-Berechnung (Annuitaet, Sondertilgung)
+- [ ] Renovierungs-Budget-Tracking (Keller-Apartment)
+- [ ] Progress-Bars mit Shimmer-Animation aus ANIMATIONS.md
+- [ ] Mieteingaenge-Uebersicht
+- [ ] Vermieter-Dashboard-Landing
+- [ ] Acceptance: Morgens Halveo oeffnen zeigt Restschuld, Reno-Budget, Mieten-Status, naechste Faelligkeit
+
+**P2 - Mieter-Features**
+- [ ] Mieter-Inbox: Nachrichten vom Vermieter
+- [ ] Anliegen melden (Foto + Text)
+- [ ] Eigene Belege hochladen (z.B. Versicherungsschaeden)
+- [ ] Vertragsdokumente einsehen
+- [ ] Push-Notifications via ntfy.sh oder Web Push API
+
+**P2 - Steuerberater-Export**
+- [ ] ZIP-Export Pattern aus Hirmax Lexware OpenTRANS adaptieren
+- [ ] Belege als strukturierte CSV + Original-PDFs
+- [ ] Mieteingaenge-Report
+- [ ] Werbungskosten-Uebersicht
+- [ ] Anlage V Vorbereitung
+
+**P2 - Polish**
+- [ ] Onboarding-Flow fuer ersten Login (Vermieter)
+- [ ] Onboarding-Flow fuer ersten Login (Mieter)
+- [ ] Empty States ueberall
+- [ ] Error Boundaries
+- [ ] Lighthouse-Audit, Ziel 95+
+- [ ] (manual) Echt-Test: eigenes Haus + Bruder + ein Mieter live fuer 2 Wochen
+
 #### halveo-web (Marketing)
+
+**P0 - Logo-System Integration**
+- [ ] HalveoLogo.tsx Component nach `src/components/`
+- [ ] Navbar-Update: Platzhalter-"H" durch `<HalveoLogo variant="lockup" size={32} />` ersetzen
+- [ ] Footer-Update: gleiche Component mit `theme="dark"`
+- [ ] Favicons (16, 32, 180) nach `public/`
+- [ ] OG-Image nach `public/og-image.png`
+- [ ] `layout.tsx` Metadata: `verification.google` + `openGraph.images` referenzieren
+
+**P0 - Pre-Launch Polish**
+- [ ] (manual) `src/app/impressum/page.tsx`: Platzhalter durch Marbacher Str. 11/1, 78086 Brigachtal ersetzen
+- [ ] Datenschutz-Seite auf Vollstaendigkeit pruefen (Resend, Vercel, Supabase als Verarbeiter)
+
+**P0 - Deploy**
+- [ ] (manual) GitHub Repo `businessfabian/halveo-web` privat anlegen
+- [ ] `git init`, `git remote add origin`, `git push -u origin main`
+- [ ] (manual) Vercel Projekt mit halveo-web-Repo verbinden
+- [ ] Vercel Deploy starten, Build-Errors fixen falls vorhanden
+- [ ] (manual) Custom Domain halveo.com bei Namecheap, DNS-Records nach Vercel-Vorgabe
+- [ ] (manual) Custom Domain halveo.de bei IONOS, DNS-Records nach Vercel-Vorgabe
+- [ ] www-Redirects: www.halveo.com → halveo.com, www.halveo.de → halveo.de
+- [ ] (manual) DNS-Propagation abwarten, halveo.com im Browser testen
+
+**P1 - SEO**
+- [ ] `src/app/robots.ts` Pattern aus sq-schmidt-website kopieren, Domain auf halveo.com
+- [ ] `src/app/sitemap.ts` statisch mit 3 URLs (/, /impressum, /datenschutz)
+- [ ] GSC-Verification Meta-Tag in `layout.tsx`, Platzhalter `PLACEHOLDER_GSC_CODE`
+- [ ] (manual) Google Search Console Property anlegen, echten Verification-Code einsetzen
+- [ ] JSON-LD SoftwareApplication Schema: featureList, screenshot, audience (Kleinvermieter DACH)
+- [ ] (manual) Sitemap in GSC einreichen
+
+**P1 - Content**
+- [ ] App-Screenshots integrieren sobald App live (Hero-Mockup ersetzen)
+- [ ] Pricing-Zahlen finalisieren (aktuell Platzhalter)
+- [ ] Erste echte Testimonials sobald Beta-User da
+- [ ] Blog-Section vorbereiten (Ordner-Struktur, MDX-Setup)
+
+#### halveo - Repo-uebergreifend
+
+- [ ] CLAUDE.md auch in halveo-web ergaenzen (Stack, Konventionen, no-em-dashes)
+- [ ] Beide Repos: `.gitignore` pruefen, `.env*.local` ausgeschlossen
+- [ ] (manual) Vercel-Projekte: AVV mit Vercel aktivieren
+- [ ] (manual) Supabase: AVV aktivieren
+- [ ] (manual) Resend: AVV aktivieren (fuer Magic Link Mails)
+
+#### halveo - Briefing & Validation
+
+- [x] PDF-Briefing 8 Seiten Modern-Tech (fuer Bruder Ricardo)
+- [x] PROJECT.md, DECISIONS.md, SCHEMA.sql, DESIGN.md, ANIMATIONS.md
+- [ ] (manual) Phase 0 Validation: objego als Wettbewerber durchklicken (1h)
+- [ ] (manual) Mieter 1 im Brigachtal-Haus 15 Min Pain-Interview
+- [ ] (manual) Mieter 2 gleiches
+- [ ] (manual) Mieter 3 gleiches
+- [ ] (manual) Findings dokumentieren, Go/No-Go Entscheidung schriftlich
 
 ---
 
