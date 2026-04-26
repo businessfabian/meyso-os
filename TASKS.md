@@ -1,6 +1,6 @@
 # Backlog - Alle Meyso Projekte
 
-Stand: 2026-04-10 (priorisiert)
+Stand: 2026-04-26 (priorisiert)
 
 > Legende: `🤖 Claude` = kann Claude Code abarbeiten · `👤 Manuell` = braucht menschliche Aktion
 
@@ -150,6 +150,29 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
   <!-- Heute nur Dev Repos migriert (+16 GB). Noch offen: .android (17 GB), .nuget (4 GB), OneDrive "Files on Demand" aktivieren, Downloads aufraeumen. Potenzial: +25 bis 30 GB zusaetzlich. Separate Session, 30 bis 60 Minuten. -->
 - [ ] 👤 Manuell | pnpm store + Caches von C: auf D: verlegen
   <!-- Heute nicht gemacht. Potenzial 1 bis 3 GB auf C:, plus saubere Trennung Tools vs OS. -->
+
+### halveo (eigenes Produkt)
+
+**Erledigt 26.04.2026:**
+- [x] 🤖 Auth-Migration: Magic Link → Email + Passwort (jose JWT, Edge-Runtime)
+- [x] 🤖 Multi-Tenant Schema: organizations, organization_members, RLS-Policies
+- [x] 🤖 OrgSwitcher: Server/Client RSC-Pattern, view_mode=tenant Cookie
+- [x] 🤖 Platform-Admin UI: /platform/* mit Org-Verwaltung + Audit-Log
+- [x] 🤖 Team-Verwaltung: /admin/team, Invite-Flow via Resend + Token
+- [x] 🤖 Design-System Phase 5: CountUp, useReveal, Skeleton/Reveal CSS
+- [x] 🤖 DB-Reset: Familie Meyer Org clean (1 User Dave, 0 Daten, solo tier)
+
+**Backlog:**
+- [ ] 🤖 Objekte-Feature: CRUD fuer Immobilien-Ordner (Haeuser, Wohnungen, Einheiten)
+- [ ] 🤖 Steuerberater-Export: Jahresuebersicht als CSV/PDF fuer Anlage V
+- [ ] 🤖 Email-KI: IMAP-Polling + Gemini Klassifizierung + Inbox-View
+- [ ] 🤖 Beleg-Scan: Foto-Upload + Gemini OCR + Kategorisierung
+- [ ] 🤖 Finanz-Cockpit: Einnahmen/Ausgaben Dashboard pro Objekt
+- [ ] 🤖 Mieter-PWA: Heute-View, Muell-Kalender, Dokumente, Melden
+- [ ] 🤖 Kehrwoche: Automatischer Wochenplan mit Push-Notifications
+- [ ] 🤖 Netatmo-Integration: Temperatur/Feuchte Readings pro Einheit
+- [ ] 👤 Echter Mieter onboarden: Invite-Flow end-to-end testen
+- [ ] 👤 Vercel Deploy + halveo.com Domain konfigurieren
 
 ### meyso-kmu-template (Template)
 - [ ] 🤖 FAQ Admin-Seite (aktuell nur via Sanity Studio)
