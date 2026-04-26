@@ -176,6 +176,36 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
       Stellen: haeuser/neu (buildings), haeuser/[hausId]/einheiten/neu (units), einheiten/neu (units)
       Ziel: zentrale Validierung + Audit-Logging statt direktem Client-Supabase-Insert
 
+**Phase 2+ Ideen (Sammlung 26.04.2026):**
+- [ ] P0: Marketing-Seiten Vermieter und Mieter getrennt auf halveo.de
+      Eigene Stories pro Zielgruppe, Hub-Page verlinkt zu beiden. Aufwand: 1-2 Wochenenden
+- [ ] P1: Schluessel- und Wohnungs-Historie
+      Tabelle unit_history, type/date/description/file. Timeline-View pro Wohnung.
+      Versicherungs-relevant, rechtssicher. Aufwand: 1 Wochenende
+- [ ] P1: Stripe Subscriptions Integration
+      Customer Portal, Webhooks, Sync mit organizations.subscription_tier.
+      Voraussetzung: erster zahlender Kunde. Aufwand: 1-2 Wochenenden
+- [ ] P1: Mietvertrag-Generator
+      Template-basiert, Variablen aus Halveo-Daten, optional digitale Unterschrift.
+      Aufwand: 2 Wochenenden
+- [ ] P1: Uebergabeprotokoll digital
+      Foto-basiert, Mieter-Unterschrift, Auszugs-Dokumentation. Aufwand: 1-2 Wochenenden
+- [ ] P2: Foerder-Radar (mit Affiliate-Partner)
+      Nur grobe Hinweise + Disclaimer, Verlinkung zu spezialisierten Datenbanken.
+      Aufwand: 1 Wochenende
+- [ ] P2: Multi-Sensor pro Mieter
+      Generisches sensors-Schema, Mieter-Dashboard mit Raumwerten.
+      Voraussetzung: Shelly oder anderer Hersteller integriert. Aufwand: 1-2 Wochenenden
+- [ ] P2: Nebenkostenabrechnung-Generator
+      Aus Belegen + rent_payments + Mieter-Daten. Hoher Pain-Punkt jaehrlich.
+      Ergaenzt Steuerberater-Feature. Aufwand: 2-3 Wochenenden
+- [ ] GEPARKT: Halveo Sensor (Hardware)
+      ESP32-basiert. PARKIERT: Hardware = eigenes Business, Aufwand Recherche 4-6 Wochen.
+      Stattdessen Phase 2: Shelly Flood + Netatmo. Wiederbewertung bei 100+ Kunden.
+- [ ] GEPARKT mit Risiko: OCR-Vertragsanalyse
+      Risiko: falsche Klausel-Erkennung = Haftung.
+      Bessere Alternative: strukturiertes Eingabeformular. Statt bauen: Vermieter traegt manuell ein.
+
 ### meyso-kmu-template (Template)
 - [ ] 🤖 FAQ Admin-Seite (aktuell nur via Sanity Studio)
 - [ ] 🤖 Leistungen Admin-Seite (aktuell nur via Sanity Studio)
