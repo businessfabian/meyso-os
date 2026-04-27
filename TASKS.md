@@ -14,6 +14,7 @@ Stand: 2026-04-26 (priorisiert)
 - [ ] 👤 sq-schmidt: Credentials rotieren nach .env.local Leak (RESEND_API_KEY + ADMIN_PASSWORD noch offen) -- SANITY_WRITE_TOKEN bereits rotiert (16.04.2026)
 - [x] sq-schmidt Auth-Middleware: middleware.ts schuetzt /admin/dashboard + /api/admin (d6998a8) ✓
 - [x] Session Secret (meyso-website): Fallback entfernt, SESSION_SECRET ist Pflicht (fb2e25d) ✓
+- [x] 🤖 halveo-web: OG-Image fuer halveo.de bestaetigt (1200x630, Halveo-Logo + Tagline + Private Beta Q3 2026 Pill) ✓
 
 ---
 
@@ -177,6 +178,9 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
       Ziel: zentrale Validierung + Audit-Logging statt direktem Client-Supabase-Insert
 
 **Phase 2+ Ideen (Sammlung 26.04.2026):**
+- [ ] 🤖 halveo-web: OG-Image Pill aktualisieren bei Beta → Public-Launch
+      Aktuell zeigt "PRIVATE BETA · Q3 2026"
+      Bei Public-Launch: anderes Pill oder weglassen
 - [ ] P0: Marketing-Seiten Vermieter und Mieter getrennt auf halveo.de
       Eigene Stories pro Zielgruppe, Hub-Page verlinkt zu beiden. Aufwand: 1-2 Wochenenden
 - [ ] P1: Schluessel- und Wohnungs-Historie
