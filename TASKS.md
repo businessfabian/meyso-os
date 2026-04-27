@@ -163,9 +163,20 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 - [x] 🤖 Design-System Phase 5: CountUp, useReveal, Skeleton/Reveal CSS
 - [x] 🤖 DB-Reset: Familie Meyer Org clean (1 User Dave, 0 Daten, solo tier)
 
+**Erledigt 27.04.2026:**
+- [x] 🤖 Email-KI: IMAP-Polling + Gemini Klassifizierung + Inbox-View
+      Pipeline live: mailbox.org halveo/Halveo-Inbox → Gemini Vision PDF-OCR →
+      invoices-Tabelle. naturenergie-Rechnung 149,74 EUR, confidence 1.0.
+      ALLOWED_FOLDERS Whitelist: fail-closed bei Fehlkonfiguration (DSGVO Art. 5).
+- [x] 🤖 PDF-Vorschau in Beleg-Detail: Bucket-Auswahl nach invoice.source
+      email_import → invoices-Bucket, scan/manual → belege-Bucket.
+- [x] 🔒 IMAP-Datenleck behoben (eigene Daten, kein externer User betroffen)
+      63 Mails aus INBOX fälschlich gepullt vor ALLOWED_FOLDERS-Fix.
+      Mitigation: Whitelist + IMAP_FOLDER ENV required, fail-closed.
+- [x] 👤 Bruder-Test eingeleitet (Brigachtal OG, Einladung raus)
+
 **Backlog:**
 - [ ] 🤖 Objekte-Feature: CRUD fuer Immobilien-Ordner (Haeuser, Wohnungen, Einheiten)
-- [ ] 🤖 Email-KI: IMAP-Polling + Gemini Klassifizierung + Inbox-View
 - [ ] 🤖 Beleg-Scan: Foto-Upload + Gemini OCR + Kategorisierung
 - [ ] 🤖 Finanz-Cockpit: Einnahmen/Ausgaben Dashboard pro Objekt
 - [ ] 🤖 Mieter-PWA: Heute-View, Muell-Kalender, Dokumente, Melden
@@ -174,6 +185,15 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 - [ ] 👤 Echter Mieter onboarden: Invite-Flow end-to-end testen
 - [ ] 👤 Vercel Deploy + halveo.com Domain konfigurieren
 - [ ] 🤖 Architektur-Refactor: Client-Direct-DB-Inserts zu API-Routes (P3, ~2-3h)
+- [ ] 🤖 UTF-8 Encoding in Email-Body fixen
+      Aktuell: "RÃ¼ckfragen" statt "Rückfragen". MIME-Parser charset-Handling.
+      Aufwand: 30-60 Min
+- [ ] 🤖 Email-Kategorie zu Invoice-Kategorie syncen
+      Inkonsistenz: Email ai_category "sonstiges" obwohl Invoice "Energie".
+      Aufwand: 1-2 Stunden
+- [ ] 🤖 Beleg-Storage-Buckets konsolidieren
+      belege + invoices Bucket vereinen, source als Unterscheidungsmerkmal.
+      Aufwand: 2-3 Stunden
       Stellen: haeuser/neu (buildings), haeuser/[hausId]/einheiten/neu (units), einheiten/neu (units)
       Ziel: zentrale Validierung + Audit-Logging statt direktem Client-Supabase-Insert
 
