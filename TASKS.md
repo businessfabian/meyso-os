@@ -190,7 +190,7 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
       Aufwand: 2 Wochenenden
 - [ ] P1: Uebergabeprotokoll digital
       Foto-basiert, Mieter-Unterschrift, Auszugs-Dokumentation. Aufwand: 1-2 Wochenenden
-- [ ] P1: Customizable Sidebar pro User
+- [x] P1: Customizable Sidebar pro User (erledigt 27.04.2026)
       Vermieter waehlt welche Kategorien er sieht.
       Schema schon da: organization_members.permissions JSONB
       Komponenten: /admin/einstellungen/ansicht Page mit Toggle pro Sidebar-Item,
@@ -199,17 +199,12 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
       Sidebar liest permissions und filtert Items, Cockpit-KPIs toggleable.
       Beispiel-JSON: { "sidebar_items": { "cockpit": true, "email_ki": false },
       "cockpit_kpis": { "rent": true, "loan": true, "renovation": false } }
-      Aufwand: 4-6 Stunden. Voraussetzung: Permissions-JSONB UI im Platform-Admin (P3)
-- [ ] P1: Mobile Floating Action Button fuer Beleg-Scan
+- [x] P1: Mobile Floating Action Button fuer Beleg-Scan (erledigt 27.04.2026)
       Im Cockpit unten-rechts schwebendes Kamera-Icon, direkter Zugang zur
       Beleg-Erfassung ohne Klick-Tiefe.
-      Komponenten: components/admin/floating-scan-button.tsx, nur Mobile (lg:hidden),
-      Indigo-Gradient 56x56, Lucide Camera oder ScanLine Icon,
-      input type=file capture=environment oeffnet native Kamera (iOS + Android),
-      Upload zu Supabase Storage Bucket "invoices",
-      Erstellt invoice-Eintrag mit status='ocr_pending',
-      Toast "Beleg gespeichert, OCR laeuft", optional direkt zu /belege/[neue-id].
-      Aufwand: 3-4 Stunden. Voraussetzung: Storage Bucket "invoices" + invoices.status enum
+      components/admin/floating-scan-button.tsx, nur Mobile (lg:hidden),
+      Indigo-Gradient 56x56, ScanLine Icon, input capture=environment,
+      Upload zu Storage Bucket "belege", invoice mit status='ocr_pending'.
 - [ ] P1: Beleg-OCR mit Position-Level-Extraktion
       Mobile FAB ist Foundation (Upload + status-Tracking). Naechster Schritt: echte OCR.
       Anforderungen:
