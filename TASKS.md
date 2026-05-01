@@ -1,6 +1,6 @@
 # Backlog - Alle Meyso Projekte
 
-Stand: 2026-04-26 (priorisiert)
+Stand: 2026-04-30 (priorisiert)
 
 > Legende: `🤖 Claude` = kann Claude Code abarbeiten · `👤 Manuell` = braucht menschliche Aktion
 
@@ -10,6 +10,12 @@ Stand: 2026-04-26 (priorisiert)
 
 > Geleakte Keys und fehlende Vertraege = echtes Risiko
 
+### Halveo (heute/morgen)
+- [ ] 👤 Daniel-Mail rausschicken mit BETA-DANIEL Stripe-Coupon
+- [ ] 👤 Smoke-Test H-6 + H-1 auf Production (Multi-Eigentuemer + Mischnutzung)
+- [ ] 👤 Telefonnummer im Impressum eintragen (Sipgate Nummer)
+
+### Meyso-Projekte
 - [ ] 👤 API-Keys rotieren: Gemini, PageSpeed, CRON_SECRET (Vercel Dashboard + Google Cloud Console)
 - [ ] 👤 sq-schmidt: Credentials rotieren nach .env.local Leak (RESEND_API_KEY + ADMIN_PASSWORD noch offen) -- SANITY_WRITE_TOKEN bereits rotiert (16.04.2026)
 - [x] sq-schmidt Auth-Middleware: middleware.ts schuetzt /admin/dashboard + /api/admin (d6998a8) ✓
@@ -22,6 +28,12 @@ Stand: 2026-04-26 (priorisiert)
 
 > Direkt sichtbar fuer Kunden oder bringt Traffic
 
+### Halveo (diese Woche)
+- [ ] 👤 Anwalt-Termin buchen: Legal-Review AGB + AVV + Datenschutz
+- [ ] 👤 Stripe Customer Portal Branding (Halveo-Logo hochladen)
+- [ ] 🤖 H-3 + H-4 Tests schreiben: AfA-Calculator + Anlage V Mapping Unit-Tests
+
+### Meyso-Projekte
 - [x] 🤖 Claude | Alle Projekte: Next.js auf gepatchte Version updaten wegen CVE-2026-23869 (16.x: bereits 16.2.3 = clean, 0 Schwachstellen; 15.x: meyso-kmu-template auf 15.5.15 aktualisiert) ✓
 - [x] 301-Redirects toolradar: permanentRedirect('/tools') statt 404 fuer geloeschte Tools (02dddeb) ✓
 - [x] 👤 Hirmax als Kunde in Sanity anlegen (Sanity Studio)
@@ -57,6 +69,13 @@ Stand: 2026-04-26 (priorisiert)
 
 > Kein externer Impact, aber raeumen auf
 
+### Halveo (naechste 2-4 Wochen)
+- [ ] 🤖 C-5 Folge-Schema: objects.gebaeude_anteil_pct Spalte hinzufuegen (AfA-Basis konfigurierbar)
+- [ ] 👤 UI-Verifikation H-6 + H-1 manuell mit echten Brigachtal-Daten
+- [ ] 🤖 DATEV-Export aufsetzen (Voraussetzung fuer Steuerberater-Affiliate Tier 1)
+- [ ] 👤 Externes Sicherheits-Audit anfragen (Cure53 oder Securai) -- Preisanfrage senden
+
+### Meyso-Projekte
 - [x] 🤖 CSP Header: Content Security Policy in `next.config.ts` auf allen Projekten (08b35f3, 7f80cdb, bec4fa1, d1278ce, ff103d2) ✓
 - [x] 🤖 CORS: Explizite `Access-Control-Allow-Origin` Header auf API Routes (d6e7c19, 4c228b7, 3bd16e4, 6ec17d7, 195443c) ✓
 - [x] 🤖 Hardcoded Cookie-Names hirmax: `hirmax_session` in Middleware statt aus Config (3bd16e4) ✓
@@ -110,6 +129,28 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 ## 🟢 P3 - Feature Backlog (Kundenprojekte)
 
 > Wertschoepfung fuer Kunden, nach Prio sortiert
+
+### halveo (eigenes Produkt)
+
+#### P3 (Quartal 2-3, nach 5+ Pilotkunden)
+- [ ] 🤖 tax_rules Infrastruktur (dynamische Steuersaetze statt Hardcoding)
+- [ ] 🤖 NKA-Modul (Nebenkostenabrechnung)
+- [ ] 🤖 Anlage V PDF/Excel Export
+- [ ] 🤖 H-2 §7b Sonder-AfA
+- [ ] 🤖 H-5 Anschaffungsnah aus invoices (automatisch aus Belegdaten)
+- [ ] 🤖 Mietvertrag-Generator
+- [ ] 🤖 Uebergabeprotokoll digital
+- [ ] 🤖 Mieter-Portal Chat + Schwarzes Brett
+- [ ] 🤖 Audit-Trail Mieter-Aktionen
+- [ ] 🤖 Position-OCR Phase 2
+- [ ] 👤 Bank-Anbindung evaluieren (GoCardless/FinAPI/Tink)
+
+#### P4 (spaeter)
+- [ ] 🤖 Schema-Cleanup Legacy-Spalten (profiles.organization_id deprecation)
+- [ ] 👤 Stripe Tax aktivieren (ab ca. 50 Kunden)
+- [ ] 🤖 Onboarding-Wizard "Erste Wohnung in 5 Min"
+- [ ] 🤖 Sentry Error-Tracking
+- [ ] 👤 meyso.de: Halveo als Portfolio-Item
 
 ### hirmax-scheibenbilder (zahlender Kunde)
 - [x] 🤖 Kunden-Self-Service: Passwort aendern, Bestellhistorie einsehen ✓
@@ -288,6 +329,41 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 
 ---
 
+---
+
+## 📣 Affiliate-Roadmap (Halveo)
+
+> Ziel: Wachstum ueber Steuerberater- + Hausverwalter-Netzwerke und Bestandskunden-Empfehlungen.
+> Affiliate-Targets priorisiert: Tier 1 Steuerberater (DATEV-Export Voraussetzung), Tier 2 Hausverwalter, Tier 3 Vermieter-Communities, Tier 4 Bestandskunden.
+
+### Phase 1 (Monat 0-3, aktuell): Manueller Coupon-Modus
+- [ ] 👤 Bei Empfehlungs-Anfragen: Custom-Stripe-Coupon manuell anlegen
+- [ ] 👤 Excel-Tabelle fuer Affiliate-Tracking initial anlegen
+- [ ] 👤 Standard-Provision festlegen: 30% Lifetime Recurring (manuelle Auszahlung)
+<!-- Kein Tool, kein Setup, alles reaktiv bis Trigger -->
+
+### Phase 2 (Monat 3-6, Trigger: 5+ zahlende Kunden)
+- [ ] 👤 Rewardful Account aufsetzen ($49/mo)
+- [ ] 👤 Stripe-Integration via OAuth verbinden
+- [ ] 👤 Default-Provision konfigurieren: 30% Lifetime Recurring
+- [ ] 👤 Affiliate-Sektion auf halveo.de mit Anmeldeformular
+- [ ] 👤 White-Label-Portal aktivieren
+
+### Phase 3 (Monat 6-12, Trigger: aktives Affiliate-Recruiting)
+- [ ] 🤖 Affiliate-Kit erstellen (Banner, E-Mail-Templates, Demo-Videos)
+- [ ] 👤 Steuerberater-Outreach: 10 personalisierte Pitches
+- [ ] 👤 1 Webinar fuer Steuerberater organisieren
+- [ ] 👤 Hausverwalter-Verbaende kontaktieren
+- [ ] 🤖 Bestandskunden-Empfehlungs-Programm: 1 Monat free beidseitig (Halveo-Admin Feature)
+- [ ] 🤖 Affiliate-Tier-System: Bronze/Silver/Gold in Rewardful
+
+### Phase 4 (Monat 12-24)
+- [ ] 👤 PartnerStack evaluieren wenn 50+ Affiliates
+- [ ] 👤 Self-built System pruefen wenn ARR > 1M EUR und Affiliate-Anteil > 25%
+- [ ] 🤖 Affiliate-Performance-Dashboard im Halveo-Cockpit
+
+---
+
 ## 🅿️ GEPARKT (spaeter)
 
 ### halveo: Steuerberater-Feature (GEPARKT - erst mit echtem Stb)
@@ -456,6 +532,15 @@ Phase 3: Optional
 ---
 
 ## ✅ ERLEDIGT
+
+### Halveo (30.04.2026)
+- [x] 🤖 C1-C5 Critical Steuer-Bugs gefixt (Zinsberechnung Phase A, Tilgungsfreie Phase, AfA-Monatsregel, Restschuld-Drift, rentalShare Kapselung)
+- [x] 🤖 H-6 Multi-Eigentuemer komplett (Phase 1 Schema, Phase 2 Berechnung anteilig, Phase 3 UI)
+  <!-- object_owners + loan_owners Tabellen, OwnersSection, LoanOwnersPanel, Cockpit View-Toggle ?view=mine, Anlage V User-Filter ?user=profileId -->
+- [x] 🤖 H-1 Mischnutzung komplett (Phase 1 Schema, Phase 2 Berechnung, Phase 3 UI)
+  <!-- units.nutzungs_typ ENUM, calculateRentalShare helper, rentalShare in ueberschuss.ts + mapping.ts, NutzungsTypSelect, RentalShareBanner, UnitsStatusList, MischnutzungHinweis Cockpit-Banner -->
+- [x] 🤖 Container-Test gegen Brigachtal-Realdaten erstellt (scripts/verify-against-brigachtal.ts, 26 Tests, 25/26 PASS -- Test 7 Tageszins-Diff bekannt)
+- [x] 🤖 5-Sprint-Audit (ueberschuss.ts, Anlage V mapping.ts, AfA-Berechnungen, Owner-Share-Logik, rentalShare-Logik)
 
 ### Rechtlich / Geschaeftlich
 - [x] Hirmax AGB (app/agb/page.tsx, 11 Paragraphen, April 2026)
