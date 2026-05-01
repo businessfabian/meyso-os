@@ -1,7 +1,7 @@
 # SEO-Status: meyso.de
 
 **Letzter manueller Audit:** (bisher nicht, erster Audit startet jetzt)
-**Letzter automatischer Check:** 2026-04-20
+**Letzter automatischer Check:** 2026-05-01
 **Betreut von:** Dave (Fabian Meyer)
 
 ---
@@ -261,5 +261,31 @@
 ### Priorisierte Empfehlungen
 
 - **MITTEL:** 1 Query mit >50 Impressions aber CTR < 2%. Title/Description optimieren.
+
+---
+
+## Auto-Check 2026-05-01
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟡 87 | 🔴 50 |
+| SEO | 🟢 92 | 🔴 46 |
+| Accessibility | 🟢 96 | 🔴 48 |
+| Best Practices | 🟢 100 | 🔴 50 |
+
+**Schwächste Seite:** https://www.meyso.de/leistungen/webseiten (Performance 86)
+
+### Technical SEO
+
+✅ **Sitemap:** 19 URLs, 10 geprüft, alle OK
+✅ **Interne Links:** 13 geprüft, keine broken
+✅ **Schema.org:** LocalBusiness
+✅ **Meta-Tags:** vollständig
+
+### Priorisierte Empfehlungen
+
+- **MITTEL:** Mobile Performance 87. Optimierungs-Potential.
 
 ---
