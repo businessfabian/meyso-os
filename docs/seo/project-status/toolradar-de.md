@@ -1,7 +1,7 @@
 # SEO-Status: toolradar.de
 
 **Letzter manueller Audit:** (erster Audit)
-**Letzter automatischer Check:** 2026-05-01
+**Letzter automatischer Check:** 2026-06-01
 
 ---
 
@@ -301,6 +301,38 @@
 ### Priorisierte Empfehlungen
 
 - **MITTEL:** Mobile Performance 81. Optimierungs-Potential.
+- **NIEDRIG:** 2 Meta-Tag-Warnung(en) auf Startseite.
+
+---
+
+## Auto-Check 2026-06-01
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟡 87 | 🟢 97 |
+| SEO | 🟢 100 | 🟢 100 |
+| Accessibility | 🟢 91 | 🟢 92 |
+| Best Practices | 🟢 99 | 🟢 97 |
+
+**Schwächste Seite:** https://www.toolradar.de/tools (Performance 75)
+
+**Core Web Vitals (Homepage, Mobile):**
+- LCP: 3.45s 🟡
+
+### Technical SEO
+
+✅ **Sitemap:** 533 URLs, 10 geprüft, alle OK
+✅ **Interne Links:** 15 geprüft, keine broken
+✅ **Schema.org:** WebSite, Organization, FAQPage
+⚠️ **Meta-Tags:** 2 Warnung(en)
+  - Title zu lang: 61 Zeichen
+  - Description zu lang: 163 Zeichen
+
+### Priorisierte Empfehlungen
+
+- **MITTEL:** Mobile Performance 87. Optimierungs-Potential.
 - **NIEDRIG:** 2 Meta-Tag-Warnung(en) auf Startseite.
 
 ---

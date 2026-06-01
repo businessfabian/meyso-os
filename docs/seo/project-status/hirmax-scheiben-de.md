@@ -239,3 +239,33 @@ Standardmäßig alle grün, da Projekt frisch und sauber gebaut.
 - **NIEDRIG:** 2 Meta-Tag-Warnung(en) auf Startseite.
 
 ---
+
+## Auto-Check 2026-06-01
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟢 97 | 🟡 89 |
+| SEO | 🟢 100 | 🟢 100 |
+| Accessibility | 🟢 94 | 🟢 94 |
+| Best Practices | 🟢 96 | 🟢 96 |
+
+**Core Web Vitals (Homepage, Mobile):**
+- LCP: 2.57s 🟡
+- CLS: 0.005 🟢
+
+### Technical SEO
+
+✅ **Sitemap:** 9 URLs, 9 geprüft, alle OK
+✅ **Interne Links:** 15 geprüft, keine broken
+✅ **Schema.org:** LocalBusiness
+⚠️ **Meta-Tags:** 2 Warnung(en)
+  - Description zu lang: 201 Zeichen
+  - Canonical-Tag fehlt
+
+### Priorisierte Empfehlungen
+
+- **NIEDRIG:** 2 Meta-Tag-Warnung(en) auf Startseite.
+
+---
