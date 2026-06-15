@@ -19,7 +19,7 @@
       "cadenceHuman": "Montags 9:00 Uhr",
       "outputPattern": "briefings/{date}-news.md",
       "status": "active",
-      "lastRun": "2026-06-08T12:18:36.974Z",
+      "lastRun": "2026-06-15T13:44:19.288Z",
       "createdAt": "2026-04-09"
     },
     {
