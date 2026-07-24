@@ -8,7 +8,7 @@
       "cadenceHuman": "Taeglich 8:30 Uhr",
       "outputPattern": "briefings/{date}-morning.md",
       "status": "active",
-      "lastRun": "2026-07-23T09:54:15.407Z",
+      "lastRun": "2026-07-24T09:42:10.544Z",
       "createdAt": "2026-04-09"
     },
     {
