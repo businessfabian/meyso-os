@@ -17,6 +17,7 @@ Stand: 2026-04-30 (priorisiert)
 
 ### Meyso-Projekte
 - [ ] 👤 API-Keys rotieren: Gemini, PageSpeed, CRON_SECRET (Vercel Dashboard + Google Cloud Console)
+- [ ] 👤 GSC Service-Account-Key rotieren (meyso-490715-...json wurde im Chat geteilt, gilt als kompromittiert. Google Cloud Console, alten Key loeschen, neuen erzeugen, GOOGLE_SERVICE_ACCOUNT_JSON in .env.local und Vercel ersetzen)
 - [ ] 👤 sq-schmidt: Credentials rotieren nach .env.local Leak (RESEND_API_KEY + ADMIN_PASSWORD noch offen) -- SANITY_WRITE_TOKEN bereits rotiert (16.04.2026)
 - [x] sq-schmidt Auth-Middleware: middleware.ts schuetzt /admin/dashboard + /api/admin (d6998a8) ✓
 - [x] Session Secret (meyso-website): Fallback entfernt, SESSION_SECRET ist Pflicht (fb2e25d) ✓
@@ -96,6 +97,14 @@ Stand: 2026-04-30 (priorisiert)
 - [x] 👤 GitHub Template Repo markieren: meyso-kmu-template → Settings → Template repository ✓
 - [x] 🤖 Claude | meyso-website: npm audit fix (9 von 10 Vulnerabilities gefixt, 17b428f) ✓
   <!-- 1 verbleibende moderate Next.js Vuln benoetigt --force (version bump ausserhalb range), separat evaluieren -->
+- [ ] 🤖 Claude | SEO-Agent liefert seit Mai unvollstaendige Daten (entdeckt 31.07.2026 beim Dashboard-Bau)
+  <!-- Die Monthly-Runs laufen erfolgreich (Mai, Juni, Juli je "success"), aber:
+  (1) GSC-Daten fehlen in allen Reports seit Mai, im April waren sie noch da.
+      Verdacht: GSC_REFRESH_TOKEN abgelaufen. Secrets im GitHub Repo pruefen.
+  (2) AI-Visibility steht bei allen 5 Projekten auf "skipped".
+  (3) Desktop-Lighthouse-Werte unplausibel (meyso Juli: Mobile 86, Desktop 33),
+      sieht nach fehlgeschlagener Messung aus, nicht nach echten Werten.
+  Sichtbar im neuen Dashboard unter meyso.de/admin/seo. -->
 - [ ] 🤖 Claude | hirmax: npm audit fix (19 vulnerabilities: 9 moderate, 10 high)
   <!-- Achtung: erst pruefen was sich aendert, nicht blind --force laufen lassen -->
 - [x] 🤖 Claude | hirmax: package.json name fixen (aktuell: "meyso-kmu-template@1.0.0" → soll: "hirmax-scheibenbilder@1.0.0")
@@ -440,7 +449,20 @@ Q2/Q3 2026 wenn:
 
 ### SEO-Dashboard-Integration /admin/seo
 
-**Status:** Geparkt bis August 2026 (brauche 3+ Monate echte Agent-Daten)
+**Status:** ✅ ERLEDIGT 31.07.2026 (meyso-website c083e27)
+
+Umgesetzt, aber bewusst anders als unten geplant: statt Supabase-Layer plus
+Agent-Umbau liest /admin/seo die MD-Reports direkt von GitHub raw und parst
+sie (gleiches Muster wie /admin/tasks und /admin/workflows). Damit ca. 3h
+statt 10 bis 15h, kein Eingriff in den laufenden Agent, MD-Files bleiben
+Source of Truth. Phase 1 (Supabase) entfaellt damit, Phase 3 (Alerts, PDF,
+Forecasting) bleibt offen falls je gebraucht.
+
+Enthalten: Projekt-Karten mit Score und Trend, Lighthouse-Kacheln,
+Verlaufs-Chart ueber alle Laeufe, Technical SEO, Empfehlungen, Prioritaeten.
+Offen: visuelle Verifikation im eingeloggten Admin steht noch aus.
+
+**Urspruengliche Planung (historisch):** Geparkt bis August 2026 (brauche 3+ Monate echte Agent-Daten)
 
 **Ziel:**
 SEO-Monitoring-Daten aus dem Agent ins Admin-Dashboard bringen, grafisch und pro Projekt.
@@ -541,6 +563,43 @@ Phase 3: Optional
   <!-- units.nutzungs_typ ENUM, calculateRentalShare helper, rentalShare in ueberschuss.ts + mapping.ts, NutzungsTypSelect, RentalShareBanner, UnitsStatusList, MischnutzungHinweis Cockpit-Banner -->
 - [x] 🤖 Container-Test gegen Brigachtal-Realdaten erstellt (scripts/verify-against-brigachtal.ts, 26 Tests, 25/26 PASS -- Test 7 Tageszins-Diff bekannt)
 - [x] 🤖 5-Sprint-Audit (ueberschuss.ts, Anlage V mapping.ts, AfA-Berechnungen, Owner-Share-Logik, rentalShare-Logik)
+
+### meyso-website Juli 2026 (Audits + SEO, Sessions 14. bis 31.07.)
+
+Website-Audit (Wording, SEO, Umlaute) und Deep-Audit (A11y, Security, Mobile)
+auf den oeffentlichen Seiten, danach umgesetzt. Berichte liegen in
+meyso-website/docs/seo/analyses/.
+
+- [x] 🤖 SEO-Basis: Canonical-Bug (jede Seite zeigte auf die Startseite), Sitemap
+      dynamisch aus Sanity, kaputte Projekt-Slugs, OG-Image neu, /analyse indexierbar
+- [x] 🤖 Security-Header: CSP von wirkungslosem Report-Only auf enforced, HSTS,
+      Permissions-Policy, frame-ancestors, object-src, base-uri, form-action (e867f6c)
+- [x] 🤖 SSRF-Guard fuer /api/analyse, /api/report/generate und /api/contact (e00abb9)
+- [x] 🤖 Kalkulator-Route gehaertet: Rate-Limit, Honeypot, Validierung. Dabei stiller
+      Lead-Verlust gefunden und behoben (Formular meldete Erfolg trotz Fehler) (59652ae)
+- [x] 🤖 API-Key wurde bei jedem Call im Klartext geloggt (0dee6f7)
+- [x] 🤖 Portal-Passwoerter auf scrypt-Hashing mit Lazy-Migration, Rate-Limit,
+      Fallback-Secret entfernt (ad9f766). Review fand danach eine dritte Kopie des
+      Fallback-Secrets in invoices/download plus kaputten Logout (452674a)
+- [x] 🤖 A11y: Formular-Labels, Kalkulator aria-pressed/aria-live, Nav-Dropdown
+      tastaturbedienbar, Kontraste auf WCAG-Niveau, Touch-Targets
+- [x] 🤖 Recht: konkrete Fremdfirmen-Namen von allen 7 Stadt-Seiten entfernt (a633c09).
+      SK Fensterbau stand trotz frueherem Fix noch im Fliesstext.
+- [x] 🤖 SEO-Content: /analyse auf "website analyse" und "seo analyse" ausgerichtet,
+      VS, Bad Duerrheim und Donaueschingen mit verifizierten Fakten gestaerkt
+- [x] 👤 Sitemap in GSC eingereicht, 7 Kernseiten manuell zur Indexierung angestossen
+      <!-- Wirkung nach 2 Wochen messbar: Impressionen 3.661 auf 7.160, indexierte
+      Seiten 14 auf 19. /analyse war vorher "Google unbekannt", jetzt 3.984
+      Impressionen. Klicks noch flach, weil die neuen Rankings zu tief liegen. -->
+
+**Offen aus diesen Sessions:**
+- [ ] 🤖 Admin-Ende der Portal-Passwoerter: beim Setzen im Admin hashen statt Klartext,
+      Anzeige auf "Passwort neu setzen" umstellen (app/api/admin/clients/[id]/route.ts)
+- [ ] 🤖 Webhooks fail-closed (config-changed akzeptiert ohne Secret, deploy-webhook
+      hat gar keine Signaturpruefung). Bewusst uebersprungen, Nutzung unklar.
+- [ ] 🤖 Eigener Deep-Audit fuer Portal und Admin (im Juli-Audit ausgeklammert)
+- [ ] 👤 Google Business Profile vervollstaendigen: fehlender Baustein fuer die
+      lokalen Rankings (Local Pack ueber den organischen Treffern), siehe P1
 
 ### Rechtlich / Geschaeftlich
 - [x] Hirmax AGB (app/agb/page.tsx, 11 Paragraphen, April 2026)
