@@ -292,3 +292,36 @@ Alle grün.
 - **NIEDRIG:** 3 Meta-Tag-Warnung(en) auf Startseite.
 
 ---
+
+## Auto-Check 2026-08-01
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟡 81 | 🟢 98 |
+| SEO | 🟢 100 | 🟢 100 |
+| Accessibility | 🟢 95 | 🟢 95 |
+| Best Practices | 🟢 100 | 🟢 100 |
+
+**Schwächste Seite:** https://villa-nina-sardinia.vercel.app (Performance 79)
+
+**Core Web Vitals (Homepage, Mobile):**
+- LCP: 5.27s 🔴
+
+### Technical SEO
+
+❌ **Sitemap:** vercel.app-Subdomain ohne Custom-Domain, Sitemap nicht priorisiert
+✅ **Interne Links:** 9 geprüft, keine broken
+❌ **Schema.org:** vercel.app-Subdomain ohne Custom-Domain, Schema.org nicht priorisiert
+⚠️ **Meta-Tags:** 3 Warnung(en)
+  - Title sehr kurz: 19 Zeichen
+  - Description sehr kurz: 85 Zeichen
+  - Canonical-Tag fehlt
+
+### Priorisierte Empfehlungen
+
+- **MITTEL:** Mobile Performance 81. Optimierungs-Potential.
+- **NIEDRIG:** 3 Meta-Tag-Warnung(en) auf Startseite.
+
+---

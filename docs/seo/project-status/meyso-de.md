@@ -1,7 +1,7 @@
 # SEO-Status: meyso.de
 
 **Letzter manueller Audit:** (bisher nicht, erster Audit startet jetzt)
-**Letzter automatischer Check:** 2026-07-01
+**Letzter automatischer Check:** 2026-08-01
 **Betreut von:** Dave (Fabian Meyer)
 
 ---
@@ -343,5 +343,36 @@
 ### Priorisierte Empfehlungen
 
 - **MITTEL:** Mobile Performance 86. Optimierungs-Potential.
+
+---
+
+## Auto-Check 2026-08-01
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟡 86 | 🔴 32 |
+| SEO | 🟢 100 | 🔴 33 |
+| Accessibility | 🟢 94 | 🔴 30 |
+| Best Practices | 🟢 100 | 🔴 33 |
+
+**Schwächste Seite:** https://www.meyso.de/projekte (Performance 81)
+
+**Core Web Vitals (Homepage, Mobile):**
+- LCP: 3.63s 🟡
+
+### Technical SEO
+
+✅ **Sitemap:** 27 URLs, 10 geprüft, alle OK
+⚠️ **Interne Links:** 1 broken von 15
+  - https://www.meyso.de/projekte/sq-schmidt-qualit-tssicherung
+✅ **Schema.org:** LocalBusiness, FAQPage
+✅ **Meta-Tags:** vollständig
+
+### Priorisierte Empfehlungen
+
+- **MITTEL:** Mobile Performance 86. Optimierungs-Potential.
+- **HOCH:** 1 Broken Internal Links gefunden. Sofort fixen.
 
 ---
