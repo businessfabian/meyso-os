@@ -92,11 +92,17 @@ Jede Zeile listet **alle** Orte, an denen die Datenart heute liegt. Fett markier
 | **Reports (Wartung / Health)** | `lighthouseReport` (0 Dok.), `healthCheckResult` (1 Dok., **nicht im Schema registriert**) | `lighthouse_reports` (0 Zeilen), `uptime_monitors` (4), `uptime_events` (0), `backup_logs` (24) | Code referenziert `health_check_results`, **Tabelle existiert nicht** | UptimeRobot-API |
 | **Briefings** | - | - | **`meyso-os/docs/autonomous-workflows/briefings/` (rund 130 Dateien)**, `workflows.json` | - |
 | **Termine** | - | `reminders` (**0 Zeilen**), `client_contracts.next_invoice_due` | - | Kein Kalendersystem angebunden |
-| **Website-Inhalte** | **`blogPost` (2), `leistung` (2), `bewertung` (2), `settings` (1)** | `images` referenziert, **Tabelle existiert nicht** | `data/local-seo/*.ts` (7 Regionsseiten als Code) | Supabase Storage fuer `portfolioItem.imageUrl` |
+| **Website-Inhalte** | **`blogPost` (2), `leistung` (2), `bewertung` (2), `settings` (1)** | Storage-Bucket `images` (existiert) | `data/local-seo/*.ts` (7 Regionsseiten als Code) | Supabase Storage fuer `portfolioItem.imageUrl` |
 | **Logs und Verbrauch** | `systemLog` (0), `aiUsage` (4) | `system_logs` (2), `ai_usage` (1), `activity_log` (0), `client_activities` (0) | - | - |
 | **Portal-Zugaenge** | `portalAnfrage` (0), `pushSubscription` (0), `adminPushSubscription` (0) | `portal_users` (**0 Zeilen**), `portal_anfragen` (0), `admin_push_subscriptions` (0) | - | - |
 
-### 1.1 Sechs im Code referenzierte Tabellen existieren nicht
+### 1.1 Im Code referenzierte Tabellen, die nicht existieren
+
+**Korrigiert am 09.08.2026:** Die urspruengliche Fassung nannte sechs Tabellen.
+Die Nachpruefung fuer Runde 2 hat zwei davon widerlegt: `images` und `backups`
+sind **Storage-Buckets**, keine Tabellen. Der Suchausdruck erfasste
+`.from("...")` ohne den vorangehenden `.storage`. Beide Buckets existieren,
+Upload und Sicherung funktionieren. Es bleiben vier echte Faelle.
 
 Ueber PostgREST verifiziert, jeweils HTTP 404 mit `PGRST205`:
 
@@ -106,8 +112,8 @@ Ueber PostgREST verifiziert, jeweils HTTP 404 mit `PGRST205`:
 | `app_settings` | `app/admin/rechnung-vorschau/page.tsx` | Rechnungsvorschau ohne Absenderdaten |
 | `referrals` | `app/admin/analytics/page.tsx` via `/api/admin/referrals` | Empfehlungsbereich ohne Daten |
 | `push_subscriptions` | `lib/push.ts` und Portal | Kunden-Push nicht funktionsfaehig |
-| `images` | `/api/admin/upload` | Upload-Register ohne Eintraege |
-| `backups` | `/api/admin/backup` | Nur `backup_logs` wird real geschrieben |
+| ~~`images`~~ **Befund zurueckgezogen** | `/api/admin/upload` | Kein Fehler: das ist `supabaseAdmin.storage.from("images")`, also ein Storage-Bucket, kein Tabellenzugriff. Der Bucket existiert und ist oeffentlich. Der Upload funktioniert |
+| ~~`backups`~~ **Befund zurueckgezogen** | `/api/cron/backup` | Kein Fehler: ebenfalls ein Storage-Bucket, er existiert. `backup_logs` ist die zugehoerige Tabelle und wird korrekt geschrieben. Beides zusammen ist richtig so |
 
 Es existieren Migrationsdateien fuer `app_settings` (`supabase/migrations/20260412_app_settings.sql`) und `referrals` (`20260407_referrals.sql`). Die Migrationen sind also geschrieben, aber offensichtlich nie ausgefuehrt worden. Das Migrationsverzeichnis ist nicht der Stand der Datenbank.
 
