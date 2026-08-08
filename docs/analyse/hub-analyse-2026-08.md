@@ -179,7 +179,13 @@ Kernstueck der Analyse. Jede Zeile ist eine Information, die an mehr als einem O
 | 28 | `/admin/workflows/[id]/briefings/[date]` | Einzelbriefing | meyso-os | keiner | aktiv | Ja |
 | 29 | `/admin/einstellungen` | Passwort, Rechnungsdaten | `/api/admin/settings/invoice`, `change-password` | ja | aktiv | Ja |
 
-**Zusatzbefund Zugriffsschutz:** Es existiert **keine `middleware.ts`**. Von 29 Admin-Seiten enthalten nur zwei einen eigenen Guard (`login`, `clients/[slug]/config`). `app/admin/layout.tsx:41` prueft zwar das Cookie `admin_auth`, aber nur um die Shell wegzulassen, nicht um den Zugriff zu verweigern. Ein anonymer Abruf von `https://meyso.de/admin` und `https://meyso.de/admin/finanzen` liefert HTTP 200 mit **byte-identischem** Inhalt (22886 Bytes, MD5 `441221ba52cef5c464066ac878881732`), der **keine Kundendaten** enthaelt. Es ist also aktuell kein Datenabfluss nachweisbar, aber der Schutz ist nicht als Serverweiche gebaut, sondern haengt an einer einzelnen Layout-Verzweigung. Das ist einen eigenen, gezielten Sicherheits-Check wert.
+**Zusatzbefund Zugriffsschutz (korrigiert am 09.08.2026):** Der Zugriffsschutz ist zentral geloest und in Ordnung. Die urspruengliche Fassung dieses Abschnitts behauptete das Gegenteil, das war falsch.
+
+Die Ursache des Irrtums: Next.js 16 hat `middleware.ts` in **`proxy.ts`** umbenannt. Die Suche nach `middleware.ts` lief deshalb ins Leere, obwohl `meyso-website/proxy.ts` existiert und genau diese Aufgabe erfuellt. Der Matcher deckt alle Pfade ab, `/admin/*` ohne gueltiges `admin_auth`-Cookie wird per Redirect auf `/admin/login` geleitet, `/portal/*` entsprechend auf `/portal`. Zusaetzlich setzt die Datei die Sicherheits-Header.
+
+Nachgeprueft am 09.08.2026 gegen Produktion: `/admin` und `/admin/anfragen` antworten anonym mit **HTTP 307** auf `/admin/login`, die API-Routen mit **401**. Der byte-identische Inhalt, der in der ersten Erhebung auffiel, war schlicht die Login-Seite.
+
+Damit entfaellt Paket **T4** in seiner urspruenglichen Begruendung. Was bleibt: die 27 Admin-Seiten haben tatsaechlich keinen eigenen Guard, sie verlassen sich vollstaendig auf `proxy.ts`. Das ist eine legitime Architektur, aber eine einzelne Fehlkonfiguration am Matcher wuerde alles auf einmal oeffnen. Ein Test, der genau das absichert, waere sinnvoll.
 
 ---
 
@@ -424,7 +430,7 @@ Was **nicht** im Cockpit auftaucht, obwohl es Aufmerksamkeit braucht:
 | **8** | **Aufgaben anlegen erzwingt einen Medienbruch** | Die haeufigste Taetigkeit ist die einzige, die das Admin nicht kann | Kap. 7.2 E |
 | **9** | **Portal-Passwoerter im Klartext, Portal faktisch tot** | `PORTAL_JWT_SECRET` und `JWT_SECRET` sind weder lokal noch auf Vercel gesetzt, `getPortalSecret()` wirft. `portal_users` ist leer | D13, `portal/login/route.ts:21-24`, `vercel env ls` |
 | **10** | **Vier konkurrierende Statusleitern** | Jede Ansicht erzaehlt eine andere Geschichte ueber denselben Kunden | Kap. 7.2 B |
-| **11** | **Kein zentraler Zugriffsschutz** | 27 von 29 Seiten ohne eigenen Guard, keine `middleware.ts`. Aktuell kein Datenabfluss nachweisbar, aber der Schutz haengt an einer Layout-Verzweigung | Kap. 3 |
+| ~~11~~ | ~~Kein zentraler Zugriffsschutz~~ **Befund zurueckgezogen am 09.08.2026** | Der Schutz ist zentral in `proxy.ts` geloest, der Next.js-16-Nachfolger von `middleware.ts`. Anonym: `/admin` 307 auf Login, API 401. Kein Problem | Kap. 3 |
 | **12** | **Template haengt eine Major-Version zurueck, TEMPLATE_VERSION fehlt** | Neue Projekte starten auf Next.js 15, obwohl 16 laeuft. Regel 5 ist unerfuellt | Kap. 5.4 |
 
 ### 8.2 Vorschlag: Ziel-Datenmodell mit genau einem fuehrenden Ort
@@ -524,7 +530,7 @@ Was **nicht** im Cockpit auftaucht, obwohl es Aufmerksamkeit braucht:
 | **T1** | **Template auf Next.js 16 heben** | Angleich an meyso-website | **M** |
 | **T2** | **TEMPLATE_VERSION einfuehren** | Konstante, Bump-Regel, Anzeige im Betriebsbereich | **S** |
 | **T3** | **Onboarding-Runbook** | Die Schritte aus 5.2 als Checkliste im Repo, bis R1 sie ersetzt | **S** |
-| **T4** | **Zugriffsschutz pruefen** | `middleware.ts` mit Matcher auf `/admin` und `/portal`, eigener Sicherheits-Check | **M** |
+| ~~T4~~ | ~~Zugriffsschutz pruefen~~ **entfaellt** | `proxy.ts` leistet das bereits. Sinnvoll bliebe allein ein Test, der den Matcher gegen Fehlkonfiguration absichert | **S** |
 | **T5** | **Schweiz-Faehigkeit** | MWST statt Steuernummer, CHF, Land nicht mehr vorbelegt | **M** |
 
 **Empfohlene Reihenfolge**
