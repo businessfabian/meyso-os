@@ -342,6 +342,9 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 
 ---
 
+### meyso-website
+- [ ] ZZ Produktionstest Etappe G
+
 ## 📣 Affiliate-Roadmap (Halveo)
 
 > Ziel: Wachstum ueber Steuerberater- + Hausverwalter-Netzwerke und Bestandskunden-Empfehlungen.
