@@ -343,7 +343,6 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 ---
 
 ### meyso-website
-- [x] ZZ Produktionstest Etappe G
 
 ## 📣 Affiliate-Roadmap (Halveo)
 
