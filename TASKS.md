@@ -136,7 +136,7 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 ---
 
 ### meyso-website
-- [ ] ZZ Testaufgabe aus Etappe G
+- [x] ZZ Testaufgabe aus Etappe G
 - [ ] ZZ Testaufgabe aus Etappe G
 
 ## 🟢 P3 - Feature Backlog (Kundenprojekte)
