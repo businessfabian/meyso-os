@@ -43,6 +43,14 @@ Stand: 2026-04-30 (priorisiert)
 - [ ] 👤 Social Media API Keys konfigurieren (LinkedIn Developer Portal) - Social Poster ist fertig, wartet auf Keys
 - [ ] 👤 Lexware Export end-to-end testen (Testbestellung → XML Export → Import in Lexware bei Max)
 - [ ] 👤 Wartungsvertrag-Reaktionszeiten realistisch setzen (Achtung: Hauptjob)
+- [x] 🤖 Claude | meyso-website: Admin-Redesign Phase 5 und 6, alle 18 Seiten auf das Design-System und die Cockpit-Anatomie (Kopf, Metrikleiste, Flaeche) ✓
+- [x] 🤖 Claude | meyso-website: CRM-Luecken, naechster Schritt und Verlauf in der Kundenakte, automatisches Protokoll bei Versand, Kontaktpersonen ✓
+- [x] 🤖 Claude | meyso-website: Sicht-Harness, rendert die echten Admin-Bausteine und fotografiert sie (scripts/sicht) ✓
+- [x] 🤖 Claude | meyso-website: Backup-Umfang korrigiert, 13 Tabellen des laufenden Betriebs waren nicht gesichert ✓
+- [ ] 👤 Dave | meyso-website: Migration 20260814_kontaktpersonen.sql in Supabase einspielen (bis dahin zeigt der Kontaktblock in der Kundenakte nur einen Hinweis)
+- [ ] 👤 Dave | meyso-website: Rauchtest nach dem Deploy laufen lassen (node scripts/rauchtest-admin.mjs https://meyso.de), die Testpflicht aus docs/redesign.md verlangt ihn je Phase
+- [ ] 🤖 Claude | meyso-website: Kundenakte, Wartung und Outreach noch im Bild pruefen (die uebrigen sechs Seiten sind durch)
+- [ ] 🤖 Claude | meyso-website: die zwanzig wichtigsten Wachen zu echten Funktionstests machen, heute lesen 40 von 61 Testdateien nur Quelltext
 - [x] 🤖 Claude | meyso-website: middleware.ts zu proxy migrieren (Next.js 16 deprecation) (527f627) ✓
 - [x] 🤖 Claude | meyso-website: Rechts-Audit, Impressum auf § 5 DDG, VSBG-Hinweis, Datenschutzerklaerung nach Art 13 DSGVO vollstaendig (7a09c17, 14.04.2026) ✓
 - [x] 🤖 Claude | meyso-website: Next.js 16 Routing-Konflikt gefixt - report-API aus `clients/[slug]/` nach `client-reports/[slug]/` verschoben, Dev-Server startet wieder sauber (f33dbbd, 14.04.2026) ✓
@@ -192,7 +200,8 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
   <!-- CronJob IDs (Session): 07b25f68 / b6f169db / 31f67186. Aktivierung: docs/autonomous-workflows/activate-loops.md. Hinweis: durable=true ist session-only auf Windows. -->
 - [x] 🤖 Claude | meyso-website: /admin/workflows Dashboard (09.04.2026) ✓
   <!-- Zeigt Workflow-Uebersicht + Briefings-Viewer. Fetcht workflows.json + Briefings von GitHub raw URL. Sidebar-Nav hinzugefuegt. -->
-- [ ] 🤖 Claude | /admin/workflows: Manual Trigger Buttons (via GitHub Actions repository_dispatch)
+- [x] 🤖 Claude | /admin/workflows: Manual Trigger Buttons (via GitHub Actions repository_dispatch) ✓
+  <!-- Jetzt starten je Automation, danach 90 Sekunden automatisches Nachladen. -->
 - [x] 🤖 Claude | Autonomous: Loops Gemini Migration (09.04.2026 abends) ✓
   <!-- Autonomous Loops von OpenAI auf Gemini Flash migriert fuer bessere Kosten/Performance -->
 - [x] 🤖 Claude | Autonomous: npm audit auto-PR Loop als GitHub Actions Workflow gebaut (woechentlich, 5 Repos, .github/workflows/dependency-updates.yml) ✓
