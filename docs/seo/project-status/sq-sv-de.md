@@ -337,3 +337,35 @@ Alle grün.
 - **NIEDRIG:** 1 Meta-Tag-Warnung(en) auf Startseite.
 
 ---
+
+## Auto-Check 2026-09-01
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟡 86 | 🟢 99 |
+| SEO | 🟢 97 | 🟢 97 |
+| Accessibility | 🟡 86 | 🟢 91 |
+| Best Practices | 🟢 100 | 🟢 100 |
+
+**Schwächste Seite:** https://www.sq-sv.de/leistungen (Performance 81)
+
+**Core Web Vitals (Homepage, Mobile):**
+- LCP: 3.98s 🟡
+- CLS: 0.004 🟢
+
+### Technical SEO
+
+✅ **Sitemap:** 38 URLs, 10 geprüft, alle OK
+✅ **Interne Links:** 15 geprüft, keine broken
+✅ **Schema.org:** ProfessionalService
+⚠️ **Meta-Tags:** 1 Warnung(en)
+  - Title zu lang: 68 Zeichen
+
+### Priorisierte Empfehlungen
+
+- **MITTEL:** Mobile Performance 86. Optimierungs-Potential.
+- **NIEDRIG:** 1 Meta-Tag-Warnung(en) auf Startseite.
+
+---

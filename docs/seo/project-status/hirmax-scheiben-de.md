@@ -329,3 +329,36 @@ Standardmäßig alle grün, da Projekt frisch und sauber gebaut.
 - **NIEDRIG:** 2 Meta-Tag-Warnung(en) auf Startseite.
 
 ---
+
+## Auto-Check 2026-09-01
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟡 71 | 🔴 0 |
+| SEO | 🟢 100 | 🔴 0 |
+| Accessibility | 🟢 94 | 🔴 0 |
+| Best Practices | 🟢 96 | 🔴 0 |
+
+**Schwächste Seite:** https://www.hirmax-scheiben.de (Performance 71)
+
+**Core Web Vitals (Homepage, Mobile):**
+- LCP: 2.90s 🟡
+- CLS: 0.029 🟢
+
+### Technical SEO
+
+✅ **Sitemap:** 9 URLs, 9 geprüft, alle OK
+✅ **Interne Links:** 15 geprüft, keine broken
+✅ **Schema.org:** LocalBusiness
+⚠️ **Meta-Tags:** 2 Warnung(en)
+  - Description zu lang: 201 Zeichen
+  - Canonical-Tag fehlt
+
+### Priorisierte Empfehlungen
+
+- **MITTEL:** Mobile Performance 71. Optimierungs-Potential.
+- **NIEDRIG:** 2 Meta-Tag-Warnung(en) auf Startseite.
+
+---
