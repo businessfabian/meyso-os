@@ -72,6 +72,26 @@ Stand: 2026-04-30 (priorisiert)
   <!-- Alle 7 Quick Wins erledigt: NavClient aria-expanded+Focus-Trap, Submit Loading State (ffa47d7), Menge-Buttons aria-label, Progress-Bar role, Nav Backdrop-Blur, Card-Hover-Transition, Body-Font 15px→16px (94fc5b7).
   Context: npm run dev zeigt "The middleware file convention is deprecated. Please use proxy instead." Breaking change in kommenden Next.js Versionen. Migration path: https://nextjs.org/docs/messages/middleware-to-proxy -->
 
+### meyso-website: Belegkette
+<!-- Bauplan: Analysebericht docs/analyse/belege-vertraege-portal-2026-09.md (PR 16, Branch analyse/belege), Kapitel 10.4 und Steuerseite. Migrationen spielt Dave im SQL-Editor ein. -->
+- [x] 🤖 Claude | H1 Loeschsperre fuer Rechnungen und Portal-Link (PR 17, 03.09.2026) ✓
+- [x] 🤖 Claude | H2 Erster Wartungsmonat, Vorauszahlung ab Vertragsbeginn (PR 18, 03.09.2026) ✓
+- [x] 🤖 Claude | V0a Belegintegritaet: Nummernkreis in der DB, Entwurf und Festschreiben, Storno als Gegenbeleg, PDF-Hash, mail_log, Kill-Switch (PR 19, Migration 20260903_nummernkreis.sql, 03.09.2026) ✓
+- [x] 🤖 Claude | V0b Belegfundament: Positionen (invoice_items), fuenf Rechnungsarten, Firmenstammdaten firma.*, Kundennummer K-1001 ff., Land und Waehrung, Anschriftpflicht, Marke in lib/pdf/brand.ts (PR 20, Migration 20260903_v0b_belegfundament.sql, 03.09.2026) ✓
+  <!-- Protokolle: docs/finanzen/nummernkreis-2026.md, docs/finanzen/belegfundament-v0b.md. Sechs verwaiste PDFs liegen unter archiv/geloescht/. -->
+- [ ] 👤 Dave | Anschriften nachtragen: Villa Nina, Problemlos (auch E-Mail "t"), Ziegler. Ohne Strasse, PLZ, Ort ueberspringt der Lauf am 01.10.2026 diese Vertraege.
+- [ ] 🤖 V0c Aufraeumen: invoices.positionen entfernen, Testkunde aus DB, Bucket und Sanity, Altlasten aus V0a und V0b
+- [ ] 🤖 S1 Ausgabenbuchung je Zahlung (expenses mit Vertrag, Beleg, Privatanteil, EUeR-Zeile; Bucket belege; Ruecklagen)
+- [ ] 🤖 S2 Jahresmappe als ZIP (Einnahmen, Ausgaben, offene Posten, Anlagenverzeichnis, Summenblatt, alle Belege), nach V0 und S1
+- [ ] 🤖 S3 Monatlicher Waechter (erwartete Buchungen ohne Beleg, alte Eingaenge, alte offene Rechnungen, Paragraf-19-Stand, Ruecklagenluecke), nach S1
+- [ ] 🤖 V1 Angebote (Nummernkreis AN, Annahme per Einmal-Token, AGB-Stand aus firma.agb_stand)
+- [ ] 🤖 V2 Vertraege (Nummernkreis VT, Kuendigung mit Frist, Upload statt PDF), nach AGB-Klaerung Paragraf 12
+- [ ] 🤖 V3 Wiederkehrend (Vorschau 30 Tage, Erinnerung Stufe 2 mit Sperre, Widerspruch erste Faelligkeit, Paragraf-19-Waechter, Idempotenz-Test)
+- [ ] 🤖 V4 Kundenportal (Magic Link auf client_contacts, alte Auth-Reste entfernen), nach V1 und V2
+- [ ] 🤖 V5 Kundenakte (Umsatz je Kunde, Jahresuebersicht, eine offen-Definition, SQL-Gegenprobe als Dauertest)
+- [ ] 🤖 V6 Beratung (Stundensaetze aus firma.stundensatz_cents, Beratungsrechnung mit Menge und Einheit)
+- [ ] 🤖 V7 Ausland (Steuerhinweis je Land, Sperre fuer land != DE aufheben), Entscheidung Dave und Gabi
+
 ---
 
 ## 🟡 P2 - Naechste 2 Wochen (Tech Debt + Hardening)
