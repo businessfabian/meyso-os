@@ -86,8 +86,9 @@ Stand: 2026-04-30 (priorisiert)
   <!-- Protokoll docs/finanzen/ausgaben-s1.md. Mailbox jaehrlich einmal voll statt gezwoelftelt, deshalb 34 statt 39 Zeilen. -->
 - [x] 🤖 Claude | S2 Jahresmappe: Anlagenverzeichnis mit AfA, ZIP mit Summenblatt-PDF, fuenf CSV, allen Beleg-PDFs und Belegdateien mit Hashpruefung, Jahresuebersicht je Kunde (PR 24, Migration 20260904_s2_jahresmappe.sql, 04.09.2026) ✓
   <!-- Protokoll docs/finanzen/jahresmappe-s2.md. 2026-003 per Backfill nachgefertigt, Hashes der 12 Bestands-PDFs gesetzt. -->
-- [ ] 🤖 S3 (naechstes) Monatlicher Waechter (erwartete Buchungen ohne Beleg, alte Eingaenge, alte offene Rechnungen, Paragraf-19-Stand, Ruecklagenluecke), nach S1
-- [ ] 🤖 V1 Angebote (Nummernkreis AN, Annahme per Einmal-Token, AGB-Stand aus firma.agb_stand)
+- [x] 🤖 Claude | S3 Monatlicher Waechter: Tabelle laeufe mit Laufprotokoll, zehn Pruefungen, Kachel Buchhaltung auf HEUTE mit Jetzt pruefen, Cron am Monatsersten mit ntfy, Paragraf-19-Stufen mit Merker (PR 25, Migration 20260904_s3_waechter.sql, 04.09.2026) ✓
+  <!-- Protokoll docs/finanzen/waechter-s3.md. Erster Lauf gegen meyso.de: 38 Treffer, 34 ohne Beleg, Villa Nina und Problemlos ohne Anschrift zum 01.10. -->
+- [ ] 🤖 V1 (naechstes) Angebote (Bausteine als Preisquelle, Nummernkreis AN, PDF, Versand mit Annahme-Link, Annahme erzeugt Auftrag, AGB-Stand aus firma.agb_stand)
 - [ ] 🤖 V2 Vertraege (Nummernkreis VT, Kuendigung mit Frist, Upload statt PDF), nach AGB-Klaerung Paragraf 12
 - [ ] 🤖 V3 Wiederkehrend (Vorschau 30 Tage, Erinnerung Stufe 2 mit Sperre, Widerspruch erste Faelligkeit, Paragraf-19-Waechter, Idempotenz-Test)
   <!-- Notiz (Dave, 03.09.2026): rechnungslauf.letzter speichert nur den letzten Lauf. Mit Stufe 2 und dem 30-Tage-Ausblick wird daraus eine Laufhistorie, sonst ist am 02.10. nicht mehr sichtbar, was am 01.10. uebersprungen wurde. -->
