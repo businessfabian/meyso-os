@@ -80,11 +80,13 @@ Stand: 2026-04-30 (priorisiert)
 - [x] 🤖 Claude | V0b Belegfundament: Positionen (invoice_items), fuenf Rechnungsarten, Firmenstammdaten firma.*, Kundennummer K-1001 ff., Land und Waehrung, Anschriftpflicht, Marke in lib/pdf/brand.ts (PR 20, Migration 20260903_v0b_belegfundament.sql, 03.09.2026) ✓
   <!-- Protokolle: docs/finanzen/nummernkreis-2026.md, docs/finanzen/belegfundament-v0b.md. Sechs verwaiste PDFs liegen unter archiv/geloescht/. -->
 - [ ] 👤 Dave | Anschriften nachtragen: Villa Nina, Problemlos (auch E-Mail "t"), Ziegler. Ohne Strasse, PLZ, Ort ueberspringt der Lauf am 01.10.2026 diese Vertraege.
-- [ ] 🤖 V0c Aufraeumen: invoices.positionen entfernen, Testkunde aus DB, Bucket und Sanity, Altlasten aus V0a und V0b
+- [x] 🤖 Claude | V0c Bereinigung und Neumessung: Festschreiben und senden in einem Zug, Testkunde und Websire aus DB und Sanity, invoices.positionen und fuenf tote clients-Spalten weg, GitHub-Token-Fallback, E-Mail-Formpruefung, Klickstrecken neu gemessen (PR 21, Migration 20260903_v0c_bereinigung.sql, 04.09.2026) ✓
   <!-- Dazu (Dave, 03.09.2026): Kundendialog und Kunden-API pruefen das E-Mail-Format beim Speichern, Versand lehnt eine ungueltige Adresse mit klarer Meldung ab, Test dazu. Ausloeser: Problemlos hatte "t" als E-Mail. -->
-- [ ] 🤖 S1 Ausgabenbuchung je Zahlung (expenses mit Vertrag, Beleg, Privatanteil, EUeR-Zeile; Bucket belege; Ruecklagen)
-- [ ] 🤖 S2 Jahresmappe als ZIP (Einnahmen, Ausgaben, offene Posten, Anlagenverzeichnis, Summenblatt, alle Belege), nach V0 und S1
-- [ ] 🤖 S3 Monatlicher Waechter (erwartete Buchungen ohne Beleg, alte Eingaenge, alte offene Rechnungen, Paragraf-19-Stand, Ruecklagenluecke), nach S1
+- [x] 🤖 Claude | S1 Ausgaben je Zahlung mit Beleg: euer_kategorien, erwartete Buchungen aus Vertraegen (Cron am Monatsersten), Beleg-Bucket mit Hash, Ruecklagen, Einnahmen ohne Rechnung, EUeR ohne Hochrechnung. Nachhollauf 34 Zeilen ueber 271,27 EUR (PR 22, Migration 20260904_s1_ausgaben.sql, 04.09.2026) ✓
+  <!-- Protokoll docs/finanzen/ausgaben-s1.md. Mailbox jaehrlich einmal voll statt gezwoelftelt, deshalb 34 statt 39 Zeilen. -->
+- [x] 🤖 Claude | S2 Jahresmappe: Anlagenverzeichnis mit AfA, ZIP mit Summenblatt-PDF, fuenf CSV, allen Beleg-PDFs und Belegdateien mit Hashpruefung, Jahresuebersicht je Kunde (PR 24, Migration 20260904_s2_jahresmappe.sql, 04.09.2026) ✓
+  <!-- Protokoll docs/finanzen/jahresmappe-s2.md. 2026-003 per Backfill nachgefertigt, Hashes der 12 Bestands-PDFs gesetzt. -->
+- [ ] 🤖 S3 (naechstes) Monatlicher Waechter (erwartete Buchungen ohne Beleg, alte Eingaenge, alte offene Rechnungen, Paragraf-19-Stand, Ruecklagenluecke), nach S1
 - [ ] 🤖 V1 Angebote (Nummernkreis AN, Annahme per Einmal-Token, AGB-Stand aus firma.agb_stand)
 - [ ] 🤖 V2 Vertraege (Nummernkreis VT, Kuendigung mit Frist, Upload statt PDF), nach AGB-Klaerung Paragraf 12
 - [ ] 🤖 V3 Wiederkehrend (Vorschau 30 Tage, Erinnerung Stufe 2 mit Sperre, Widerspruch erste Faelligkeit, Paragraf-19-Waechter, Idempotenz-Test)
