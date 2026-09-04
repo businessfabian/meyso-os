@@ -88,8 +88,9 @@ Stand: 2026-04-30 (priorisiert)
   <!-- Protokoll docs/finanzen/jahresmappe-s2.md. 2026-003 per Backfill nachgefertigt, Hashes der 12 Bestands-PDFs gesetzt. -->
 - [x] 🤖 Claude | S3 Monatlicher Waechter: Tabelle laeufe mit Laufprotokoll, zehn Pruefungen, Kachel Buchhaltung auf HEUTE mit Jetzt pruefen, Cron am Monatsersten mit ntfy, Paragraf-19-Stufen mit Merker (PR 25, Migration 20260904_s3_waechter.sql, 04.09.2026) ✓
   <!-- Protokoll docs/finanzen/waechter-s3.md. Erster Lauf gegen meyso.de: 38 Treffer, 34 ohne Beleg, Villa Nina und Problemlos ohne Anschrift zum 01.10. -->
-- [ ] 🤖 V1 (naechstes) Angebote (Bausteine als Preisquelle, Nummernkreis AN, PDF, Versand mit Annahme-Link, Annahme erzeugt Auftrag, AGB-Stand aus firma.agb_stand)
-- [ ] 🤖 V2 Vertraege (Nummernkreis VT, Kuendigung mit Frist, Upload statt PDF), nach AGB-Klaerung Paragraf 12
+- [x] 🤖 Claude | V1 Angebote: Bausteine als Preisquelle, Nummernkreis AN, PDF mit Hash, Versand mit Annahme-Link, oeffentliche Annahme erzeugt Auftrag mit Zahlplan und vorgemerkter Wartung, Versionen, taeglicher Ablauf, Waechter-Pruefung 11 (PR 26, Migration 20260904_v1_angebote.sql, 04.09.2026) ✓
+  <!-- Protokoll docs/finanzen/angebote-v1.md. Probe an kontakt@meyso.de angenommen und wieder entfernt, AN-2026-001 als Luecke vermerkt. Klickstrecke 11 auf 5 Handgriffe. -->
+- [ ] 🤖 V2 (naechstes) Vertraege (Nummernkreis VT, Kuendigung mit Frist, Upload statt PDF), nach AGB-Klaerung Paragraf 12
 - [ ] 🤖 V3 Wiederkehrend (Vorschau 30 Tage, Erinnerung Stufe 2 mit Sperre, Widerspruch erste Faelligkeit, Paragraf-19-Waechter, Idempotenz-Test)
   <!-- Notiz (Dave, 03.09.2026): rechnungslauf.letzter speichert nur den letzten Lauf. Mit Stufe 2 und dem 30-Tage-Ausblick wird daraus eine Laufhistorie, sonst ist am 02.10. nicht mehr sichtbar, was am 01.10. uebersprungen wurde. -->
 - [ ] 🤖 V4 Kundenportal (Magic Link auf client_contacts, alte Auth-Reste entfernen), nach V1 und V2
