@@ -90,8 +90,10 @@ Stand: 2026-04-30 (priorisiert)
   <!-- Protokoll docs/finanzen/waechter-s3.md. Erster Lauf gegen meyso.de: 38 Treffer, 34 ohne Beleg, Villa Nina und Problemlos ohne Anschrift zum 01.10. -->
 - [x] 🤖 Claude | V1 Angebote: Bausteine als Preisquelle, Nummernkreis AN, PDF mit Hash, Versand mit Annahme-Link, oeffentliche Annahme erzeugt Auftrag mit Zahlplan und vorgemerkter Wartung, Versionen, taeglicher Ablauf, Waechter-Pruefung 11 (PR 26, Migration 20260904_v1_angebote.sql, 04.09.2026) ✓
   <!-- Protokoll docs/finanzen/angebote-v1.md. Probe an kontakt@meyso.de angenommen und wieder entfernt, AN-2026-001 als Luecke vermerkt. Klickstrecke 11 auf 5 Handgriffe. -->
-- [ ] 🤖 V2 (naechstes) Vertraege (Nummernkreis VT, Kuendigung mit Frist, Upload statt PDF), nach AGB-Klaerung Paragraf 12
-- [ ] 🤖 V3 Wiederkehrend (Vorschau 30 Tage, Erinnerung Stufe 2 mit Sperre, Widerspruch erste Faelligkeit, Paragraf-19-Waechter, Idempotenz-Test)
+- [x] 🤖 Claude | V2 Vertraege: client_contracts erweitert statt zweiter Tabelle, Nummernkreis VT, Vertragsbogen mit Hash im privaten Bucket, Fristrechnung ohne Zeitzone, Kuendigen getrennt von Sofortbeendigung, Bestaetigungsmail automatisch, Waechter-Pruefungen 12 und 13 (PR 29, Migration 20260904_v2_vertraege.sql, 04.09.2026) ✓
+  <!-- Protokoll docs/finanzen/vertraege-v2.md. Klickstrecke Vertrag beenden 5 Handgriffe mit 1 Medienbruch auf 3 ohne Bruch. Versand an Kunden gesperrt bis zur AGB-Pruefung, Schalter vertrag.versand_frei. -->
+- [ ] 🤖 V2-Nachlauf: AGB und Vertragstexte anwaltlich pruefen lassen, danach vertrag.versand_frei auf true (Unternehmen, Stammdaten, Vertraege)
+- [ ] 🤖 V3 (naechstes) Wiederkehrend (Vorschau 30 Tage, Erinnerung Stufe 2 mit Sperre, Widerspruch erste Faelligkeit, Paragraf-19-Waechter, Idempotenz-Test)
   <!-- Notiz (Dave, 03.09.2026): rechnungslauf.letzter speichert nur den letzten Lauf. Mit Stufe 2 und dem 30-Tage-Ausblick wird daraus eine Laufhistorie, sonst ist am 02.10. nicht mehr sichtbar, was am 01.10. uebersprungen wurde. -->
 - [ ] 🤖 V4 Kundenportal (Magic Link auf client_contacts, alte Auth-Reste entfernen), nach V1 und V2
 - [ ] 🤖 V5 Kundenakte (Umsatz je Kunde, Jahresuebersicht, eine offen-Definition, SQL-Gegenprobe als Dauertest)
