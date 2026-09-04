@@ -369,10 +369,16 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
       Bessere Alternative: strukturiertes Eingabeformular. Statt bauen: Vermieter traegt manuell ein.
 
 ### meyso-kmu-template (Template)
+- [x] 🤖 Claude | KI-Transparenzhinweis im Chat-Widget (Art. 50 Abs. 1 KI-VO, anwendbar seit 02.08.2026): Kopfzeile, erste Zeile im Verlauf, aria-label des Ausloesers, aus einer Quelle, ueberschreibbar aber nicht abschaltbar. System-Prompt verbietet, sich als Mensch auszugeben. TEMPLATE_VERSION eingefuehrt (1.1.0) (PR 1, 04.09.2026) ✓
+  <!-- Widget lief nirgends aktiv, Update war Vorsorge. Offen daraus: hirmax totes Flag, sq-schmidt Tawk.to im Konto pruefen, meyso.de Analyse-Widget ohne Kennzeichnung, Template-Build rot aus zwei alten Gruenden. -->
+- [ ] 🤖 Template-Build ist rot, unabhaengig vom KI-Hinweis: PricingTable ohne tiers in app/preise/page.tsx, lib/config.ts importiert @/meyso.config.local. Preistabelle braucht eine Inhaltsentscheidung (welche Platzhalter-Pakete)
 - [ ] 🤖 FAQ Admin-Seite (aktuell nur via Sanity Studio)
 - [ ] 🤖 Leistungen Admin-Seite (aktuell nur via Sanity Studio)
 - [ ] 🤖 Blog Modul testen (ist disabled, muss mit echten Daten validiert werden)
 - [ ] 🤖 Chat Widget: System-Prompt mit Leistungen aus Sanity anreichern
+- [ ] 👤 hirmax: totes Flag chatWidget in config/modules.ts. Es gibt kein modules/chat/ und keine Einbindung, das Flag auf true zu stellen bewirkt nichts. Entweder Widget nachziehen oder Flag entfernen
+- [ ] 👤 sq-schmidt: laeuft mit Tawk.to, nicht mit KI-Chat. Im Tawk-Konto pruefen, ob KI-Antworten zugeschaltet sind. Wenn ja, greift Art. 50 Abs. 1 und der Hinweis muss dort gesetzt werden
+- [ ] 🤖 meyso.de: das Analyse-Widget zeigt einen von Gemini erzeugten Text ohne Kennzeichnung (app/components/AnalyseWidget.tsx:99, app/api/analyse/route.ts:107). Direkte Interaktion mit einem KI-System, also kennzeichnen
 - [ ] 🤖 Galerie: Direkt-Upload im Admin statt Umweg ueber Sanity Studio
 
 ---
