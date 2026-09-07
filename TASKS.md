@@ -133,6 +133,8 @@ Stand: 2026-04-30 (priorisiert)
 - [ ] 🤖 Kundenakte (Umsatz je Kunde, Jahresuebersicht, eine offen-Definition, SQL-Gegenprobe als Dauertest)
 - [ ] 🤖 Beratung (Stundensaetze aus firma.stundensatz_cents, Beratungsrechnung mit Menge und Einheit)
   <!-- Kundenakte und Beratung standen bis 07.09.2026 als V5 und V6 hier, aus der alten Nummerierung. Die Nummern sind mit V4 Kundenportal, V5 Aenderungen und V6 Zubuchen belegt, deshalb ohne Nummer. Inhalt unveraendert, Einsortierung entscheidet Dave. -->
+- [ ] 🤖 Lokaler Supabase-Stack mit Seed, davor. Ziel: ein Rauchtest, der sich anmeldet und die Seiten hinter der Sitzung wirklich aufruft. Heute endet jeder Rauchtest bei /portal/anmelden, weil eine angemeldete Person nur zu einem echten Kunden gehoert und es keine Testzugaenge auf Kundendaten gibt. Genau deshalb ist die kaputte Dateiroute aus V5 durchgerutscht: 404 statt Datei, und niemand konnte es sehen. Umfang: supabase start mit config.toml, Seed mit zwei erfundenen Kunden, je einer Person je Rolle, Belegen, Vertraegen und Bausteinen, dazu ein Skript, das sich anmeldet und alle Portalrouten mit Sitzung abklappert. Damit werden auch die Bilder aus next start moeglich, die heute nur fuer Seiten ohne Sitzung gehen
+  <!-- Muster (Dave, 08.09.2026): "aus meyso-web". Unter D:\dev gibt es kein Repo dieses Namens. Der einzige lokale Supabase-Stack auf der Platte ist D:\dev\products\halveo mit supabase/config.toml, supabase/seeds und SEED_KEHRWOCHE.sql; dort steht allerdings im Kommentar, der lokale Port sei aktuell nicht genutzt, entwickelt werde gegen Remote-Staging. Vor dem Start bitte sagen, welches Repo gemeint ist. -->
 - [ ] 🤖 V7 Ausland (Steuerhinweis je Land, Sperre fuer land != DE aufheben), Entscheidung Dave und Gabi
 
 ---
