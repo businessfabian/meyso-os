@@ -106,7 +106,9 @@ Stand: 2026-04-30 (priorisiert)
 - [ ] 🤖 V3 Rueckstand a) Backstop unterscheidet den Leistungszeitraum statt irgendeiner Rechnung: lib/generate-invoices.ts:271-291 sucht nur nach einer Rechnung der letzten 25 Tage (300 bei jaehrlich) und schiebt next_invoice_due dann vor, ohne eine zu erzeugen. Ein Nachhollauf im selben Monat verbrennt dadurch genau den Monat, den er nachholen soll
 - [ ] 🤖 V3 Rueckstand b) Ein Lauf holt alle faelligen Zeitraeume auf statt einem: die Schleife laeuft einmal je Vertrag (lib/generate-invoices.ts:213) und schiebt danach um genau ein Intervall ab dueDate vor (:444). Nach einem uebersprungenen Monat hinkt der Vertrag dauerhaft einen Monat hinterher, der Rueckstand baut sich von selbst nie ab
   <!-- Befund vom 05.09.2026, nur geprueft. Der Ueberspringen-Zweig bei fehlender Anschrift (:295) laesst next_invoice_due korrekt stehen, es geht also kein Monat verloren. Beide Punkte gehoeren zusammen: (a) muss vor (b), sonst macht ein Nachhollauf es schlimmer. -->
-- [ ] 🤖 V4 Kundenportal (Magic Link auf client_contacts, alte Auth-Reste entfernen), nach V1 und V2
+- [ ] 🤖 V4 Kundenportal (Magic Link, Rollen, alte Auth-Reste entfernen), in Arbeit auf feat/v4-portal
+- [ ] 👤 Portal-Signatur auf ES256 umstellen, in dieser Reihenfolge: (1) App auf die neuen API-Schluessel migrieren (sb_publishable_ und sb_secret_), (2) eigenen ES256-Signing-Key in Supabase hinterlegen und PORTAL_DB_ALG=ES256 setzen, (3) erst danach das Legacy-Geheimnis widerrufen. Vorher nicht widerrufen: das Legacy-Geheimnis signiert auch anon und service_role, ein Widerruf legt die App still, bis die neuen Schluessel in Vercel sind
+  <!-- Befund 07.09.2026: JWKS liefert bereits einen ES256-Schluessel (kid 51e896b8), das Legacy-Geheimnis gilt weiter. V4 laeuft bis dahin auf HS256, siehe docs/portal.md. -->
 - [ ] 🤖 V5 Kundenakte (Umsatz je Kunde, Jahresuebersicht, eine offen-Definition, SQL-Gegenprobe als Dauertest)
 - [ ] 🤖 V6 Beratung (Stundensaetze aus firma.stundensatz_cents, Beratungsrechnung mit Menge und Einheit)
 - [ ] 🤖 V7 Ausland (Steuerhinweis je Land, Sperre fuer land != DE aufheben), Entscheidung Dave und Gabi
