@@ -146,6 +146,8 @@ Stand: 2026-04-30 (priorisiert)
        Vorbereitung ist gelaufen und muss nicht wiederholt werden. Klon liegt unter D:\dev\clients\meyso-web, voller Klon, Branch main, unveraendert, gleicher Pfad wie auf dem Mac. Docker fehlt auf diesem Rechner ganz (kein Binary, kein Dienst, kein Ordner), WSL hat keine Distribution. Das installiert Dave selbst, Docker Desktop mit WSL2. Die Supabase-CLI fehlt ebenfalls: Homebrew gibt es unter Windows nicht, Scoop und Chocolatey sind nicht installiert, winget kennt kein Supabase-Paket. Offen zur Entscheidung: npm i -D supabase (Version im Repo, kein neuer Paketmanager, auf dem Mac unveraendert nutzbar) oder Scoop nach der Supabase-Doku (Version haengt dann am Rechner).
        Portblock reserviert: 545xx, also 54520 shadow, 54521 api, 54522 db, 54523 studio, 54524 inbucket, 54527 analytics, 54529 pooler. halveo belegt faktisch 5432x (seine config.toml nennt nur db 54322 und shadow 54320, der Rest faellt auf die Vorgaben), meyso-web belegt 544xx ausgeschrieben. -->
 - [ ] 🤖 V7 (naechstes) Ausland (Steuerhinweis je Land, Sperre fuer land != DE aufheben), Entscheidung Dave und Gabi
+- [ ] 🤖 Fremdwaehrung, erst wenn ein Kunde in Franken vereinbart ist. Heute rechnen alle sieben Kunden in Euro, Ziegler seit dem 09.09.2026 auch (der Auftrag ist in Euro vereinbart). Umfang, wenn es soweit ist: CHF mit EZB-Kurs am Zuflusstag, Umrechnung im Zahlungseingang, EUR-Betrag in der Jahresmappe. Der Bogen kann CHF schon (lib/waehrung.ts), was fehlt ist die Umrechnung fuer Buchhaltung und Paragraf 19
+  <!-- Nicht gebaut, mit Absicht: ein Kurs, den niemand braucht, ist ein Kurs, den niemand prueft. Der EPC-Zahlungscode und der Dauerauftrag-Hinweis gibt es ohnehin nur bei Euro, das steht seit V0b so in lib/waehrung.ts. -->
 
 ---
 
