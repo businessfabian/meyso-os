@@ -106,7 +106,9 @@ Stand: 2026-04-30 (priorisiert)
 - [ ] 🤖 V3 Rueckstand a) Backstop unterscheidet den Leistungszeitraum statt irgendeiner Rechnung: lib/generate-invoices.ts:271-291 sucht nur nach einer Rechnung der letzten 25 Tage (300 bei jaehrlich) und schiebt next_invoice_due dann vor, ohne eine zu erzeugen. Ein Nachhollauf im selben Monat verbrennt dadurch genau den Monat, den er nachholen soll
 - [ ] 🤖 V3 Rueckstand b) Ein Lauf holt alle faelligen Zeitraeume auf statt einem: die Schleife laeuft einmal je Vertrag (lib/generate-invoices.ts:213) und schiebt danach um genau ein Intervall ab dueDate vor (:444). Nach einem uebersprungenen Monat hinkt der Vertrag dauerhaft einen Monat hinterher, der Rueckstand baut sich von selbst nie ab
   <!-- Befund vom 05.09.2026, nur geprueft. Der Ueberspringen-Zweig bei fehlender Anschrift (:295) laesst next_invoice_due korrekt stehen, es geht also kein Monat verloren. Beide Punkte gehoeren zusammen: (a) muss vor (b), sonst macht ein Nachhollauf es schlimmer. -->
-- [ ] 🤖 V4 Kundenportal (Magic Link, Rollen, alte Auth-Reste entfernen), in Arbeit auf feat/v4-portal
+- [ ] 🤖 V4 Kundenportal gebaut, PR 32 offen: https://github.com/businessfabian/meyso-website/pull/32 . Wartet auf Daves Wort. Vor dem Merge einspielen: 20260905_v4_portal.sql, danach 20260905_v4_portal_rls.sql
+  <!-- Magic Link ohne Passwort, mehrere Personen je Kunde mit Rollen, altes Portal vollstaendig entfernt. Mandantentrennung dreilagig: Wache, gehoertZumKunden, RLS ueber portal_client_id (das Portal liest mit anon, nicht mit service_role, sonst waere RLS Zierde). 1435 Tests gruen, Build gruen, Rauchtest gegen den lokalen Bau gruen. Doku docs/portal.md. Zwei Funde nebenbei: proxy.ts trug noch die Weiche des alten Portals und machte /portal/anmelden unerreichbar, und die drei Portaltabellen fehlten in der Wochensicherung. Offen nach dem Merge: Nachweis gegen Production, dass ein Token mit portal_client_id genau die Zeilen dieses Kunden liefert. -->
+- [ ] 🤖 V4 Nachlauf: Gestaltung des Portals, getrennt und spaeter. Heute traegt es das Markenlayout der Annahmeseite, mehr nicht
 - [ ] 👤 Portal-Signatur auf ES256 umstellen, in dieser Reihenfolge: (1) App auf die neuen API-Schluessel migrieren (sb_publishable_ und sb_secret_), (2) eigenen ES256-Signing-Key in Supabase hinterlegen und PORTAL_DB_ALG=ES256 setzen, (3) erst danach das Legacy-Geheimnis widerrufen. Vorher nicht widerrufen: das Legacy-Geheimnis signiert auch anon und service_role, ein Widerruf legt die App still, bis die neuen Schluessel in Vercel sind
   <!-- Befund 07.09.2026: JWKS liefert bereits einen ES256-Schluessel (kid 51e896b8), das Legacy-Geheimnis gilt weiter. V4 laeuft bis dahin auf HS256, siehe docs/portal.md. -->
 - [ ] 🤖 V5 Kundenakte (Umsatz je Kunde, Jahresuebersicht, eine offen-Definition, SQL-Gegenprobe als Dauertest)
@@ -448,7 +450,8 @@ Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt w
 
 - [ ] 🤖 DSGVO-Widget live (live Deep-Scan)
 - [ ] 🤖 Steckbrief-Widget mit Team-Size Preisrechner
-- [ ] 🤖 meyso Portal: Auth von JWT auf Supabase Auth migrieren
+- [x] 🤖 meyso Portal: Auth von JWT auf Supabase Auth migrieren ~~hinfaellig mit V4~~ ✓
+  <!-- Entschieden am 07.09.2026: nicht Supabase Auth, sondern Magic Link mit eigener Sitzung (lib/portal-sitzung.ts). Grund: eine Sitzung muss serverseitig widerrufbar sein, und die Supabase-Auth-Reste (callback, confirm, ensure-access) waren genau die Altlast, die V4 entfernt hat. Der alte JWT ist weg. -->
 - [ ] 🤖 Dokumente/Vertraege auf Supabase Storage (signed URLs)
 - [ ] 🤖 EN-to-DE Uebersetzung automatisieren (aktuell nur manuelle Scripts)
 - [ ] 🤖 Rate Limiting persistent machen (Upstash Redis): Reicht bei aktuellem Traffic
@@ -653,8 +656,10 @@ meyso-website/docs/seo/analyses/.
       Impressionen. Klicks noch flach, weil die neuen Rankings zu tief liegen. -->
 
 **Offen aus diesen Sessions:**
-- [ ] 🤖 Admin-Ende der Portal-Passwoerter: beim Setzen im Admin hashen statt Klartext,
-      Anzeige auf "Passwort neu setzen" umstellen (app/api/admin/clients/[id]/route.ts)
+- [x] 🤖 Admin-Ende der Portal-Passwoerter ~~hinfaellig mit V4~~ ✓
+      <!-- 07.09.2026: Es gibt keine Portal-Passwoerter mehr. clients.portal_password
+      faellt in 20260905_v4_portal.sql, portal_users ebenfalls, und die PATCH-Allowlist
+      kennt das Feld nicht mehr. Der Admin lädt Personen per Magic Link ein. -->
 - [ ] 🤖 Webhooks fail-closed (config-changed akzeptiert ohne Secret, deploy-webhook
       hat gar keine Signaturpruefung). Bewusst uebersprungen, Nutzung unklar.
 - [ ] 🤖 Eigener Deep-Audit fuer Portal und Admin (im Juli-Audit ausgeklammert)
