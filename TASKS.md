@@ -11,7 +11,7 @@ Stand: 2026-04-30 (priorisiert)
 > Geleakte Keys und fehlende Vertraege = echtes Risiko
 
 ### Halveo (heute/morgen)
-- [ ] 👤 Daniel-Mail rausschicken mit BETA-DANIEL Stripe-Coupon
+- [x] 👤 Daniel-Mail rausschicken mit BETA-DANIEL Stripe-Coupon
 - [ ] 👤 Smoke-Test H-6 + H-1 auf Production (Multi-Eigentuemer + Mischnutzung)
 - [ ] 👤 Telefonnummer im Impressum eintragen (Sipgate Nummer)
 
