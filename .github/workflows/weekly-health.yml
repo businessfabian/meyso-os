@@ -15,6 +15,16 @@ on:
 permissions:
   contents: write
 
+# pipefail in jedem Schritt (21.09.2026). Mit "shell: bash" ruft GitHub
+# jeden run-Schritt als "bash -eo pipefail" auf. Ohne diese Zeile ist es nur
+# "bash -e", und eine Pipe endet mit dem Exitcode ihres letzten Glieds: ein
+# Fehler vor dem Strich geht verloren, und der Schritt danach committet
+# trotzdem. Genau so ist am 21.09.2026 ein Commit mit roter Testsuite
+# durchgegangen, lokal, durch "vitest | tail".
+defaults:
+  run:
+    shell: bash
+
 jobs:
   weekly-health:
     runs-on: ubuntu-latest
@@ -54,10 +64,12 @@ jobs:
             npm ci --prefer-offline 2>&1 | tail -3 || true
 
             echo "Fuhre lint aus..."
-            LINT_OUTPUT=$(npm run lint 2>&1 | tail -5 || echo "lint fehlgeschlagen")
+            # Mit pipefail laeuft das echo, sobald lint Fehler meldet, und nicht
+            # erst, wenn tail scheitert. Die fuenf Zeilen stehen trotzdem davor.
+            LINT_OUTPUT=$(npm run lint 2>&1 | tail -5 || echo "(npm run lint endete mit einem Fehlercode)")
 
             echo "Fuhre npm audit aus..."
-            AUDIT_OUTPUT=$(npm audit 2>&1 | tail -8 || echo "audit fehlgeschlagen")
+            AUDIT_OUTPUT=$(npm audit 2>&1 | tail -8 || echo "(npm audit endete mit einem Fehlercode, meist heisst das: es gibt Befunde)")
 
             cd ..
           fi

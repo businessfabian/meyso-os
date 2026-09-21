@@ -16,6 +16,16 @@ on:
         type: boolean
         default: false
 
+# pipefail in jedem Schritt (21.09.2026). Mit "shell: bash" ruft GitHub
+# jeden run-Schritt als "bash -eo pipefail" auf. Ohne diese Zeile ist es nur
+# "bash -e", und eine Pipe endet mit dem Exitcode ihres letzten Glieds: ein
+# Fehler vor dem Strich geht verloren, und der Schritt danach committet
+# trotzdem. Genau so ist am 21.09.2026 ein Commit mit roter Testsuite
+# durchgegangen, lokal, durch "vitest | tail".
+defaults:
+  run:
+    shell: bash
+
 jobs:
   seo-check:
     runs-on: ubuntu-latest
