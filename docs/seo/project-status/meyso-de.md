@@ -1,7 +1,7 @@
 # SEO-Status: meyso.de
 
 **Letzter manueller Audit:** (bisher nicht, erster Audit startet jetzt)
-**Letzter automatischer Check:** 2026-09-01
+**Letzter automatischer Check:** 2026-10-01
 **Betreut von:** Dave (Fabian Meyer)
 
 ---
@@ -401,6 +401,38 @@
 
 ### Priorisierte Empfehlungen
 
+- **NIEDRIG:** 1 Meta-Tag-Warnung(en) auf Startseite.
+
+---
+
+## Auto-Check 2026-10-01
+
+### Lighthouse
+
+| Kategorie | Mobile | Desktop |
+|-----------|--------|---------|
+| Performance | 🟡 89 | 🟢 100 |
+| SEO | 🟢 100 | 🟢 100 |
+| Accessibility | 🟢 97 | 🟢 96 |
+| Best Practices | 🟢 100 | 🟢 100 |
+
+**Schwächste Seite:** https://www.meyso.de/leistungen/ki-automatisierung (Performance 86)
+
+**Core Web Vitals (Homepage, Mobile):**
+- LCP: 3.33s 🟡
+- CLS: 0.000 🟢
+
+### Technical SEO
+
+✅ **Sitemap:** 28 URLs, 10 geprüft, alle OK
+✅ **Interne Links:** 15 geprüft, keine broken
+✅ **Schema.org:** LocalBusiness
+⚠️ **Meta-Tags:** 1 Warnung(en)
+  - Description zu lang: 162 Zeichen
+
+### Priorisierte Empfehlungen
+
+- **MITTEL:** Mobile Performance 89. Optimierungs-Potential.
 - **NIEDRIG:** 1 Meta-Tag-Warnung(en) auf Startseite.
 
 ---
