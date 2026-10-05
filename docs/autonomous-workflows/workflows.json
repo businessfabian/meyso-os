@@ -30,7 +30,7 @@
       "cadenceHuman": "Montags 9:30 Uhr",
       "outputPattern": "briefings/{date}-health.md",
       "status": "active",
-      "lastRun": "2026-09-28T16:53:46.004Z",
+      "lastRun": "2026-10-05T17:18:06.757Z",
       "createdAt": "2026-04-09"
     },
     {
