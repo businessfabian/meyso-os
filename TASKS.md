@@ -6,6 +6,52 @@ Stand: 2026-04-30 (priorisiert)
 
 ---
 
+## Prioritäten Stand 09.10.2026
+
+### 1. Diese Woche, Kunden und Geld
+- [ ] Ziegler: Angebot Holz-nach-Mass-Rechner als Entwurf im Hub (Richtpreis-Spanne mit Anfrage, Preisgrundlage in Sanity, Anfragenliste mit Status, monatliche Betriebsgebühr als Wartung), Preis vorher mit Claude durchgehen
+- [ ] Ziegler: Termin für die Admin-Führung mit Lisa
+
+### 2. Bis Ende Oktober, Pflichten
+- [ ] Stripe (Halveo): Rechnungseinstellungen Allgemein speichern, § 19-Fußzeile, Standardvermerk, Steuernummer als Steuer-ID, Nummerierung fortlaufend auf Kontoebene mit Präfix HV, öffentlicher Name "Fabian Meyer, Halveo", Branding Halveo, Abrechnungsbeschreibung HALVEO; vor 24.10.
+  <!-- Zusammengefuehrt am 09.10.2026, vorher offen unter P1, Halveo (diese Woche). Wortlaut unveraendert: -->
+  <!-- 👤 Stripe Customer Portal Branding (Halveo-Logo hochladen) -->
+- [ ] Gabi: § 13b UStG auf Auslandsleistungen (Anthropic, Vercel, Stripe, Supabase, Resend), Halveo-Umsatz in der EÜR, EÜR-Kategorien
+- [ ] Wächter auf 0: 7 Belege Prüfung 26 (bestätigen Anthropic ONOUNKA5-0002 21,42, ONOUNKA5-0003 87,23, WIRmachenDRUCK 38961904-1 15,49; ablehnen 4 AGB/Widerruf), Claude- und Vercel-Rechnungen an belege@meyso.de (Prüfung 1), Rücklage (Prüfung 5)
+  <!-- Zusammengefuehrt am 09.10.2026, vorher offen unter P1, meyso-website: Belegkette, zwei Zeilen. Wortlaut unveraendert: -->
+  <!-- 👤 Dave | 7 Belege zu pruefen entscheiden (Register Ausgaben, Filter zu pruefen): die vier Nicht-Rechnungen ablehnen (AGB und Widerrufsbelehrung von mailbox.org, zwei AGB von WIRmachenDRUCK, je 0 Euro), die drei Rechnungen pruefen und bestaetigen (Anthropic ONOUNKA5-0002 21,42 Euro und ONOUNKA5-0003 87,23 Euro vom Maerz 2026, WIRmachenDRUCK 38961904-1 15,49 Euro vom April 2026). Die Betraege sind aus dem Text gelesen -->
+  <!-- 👤 Dave | Die Rechnungen zu den sieben offenen Erwartungen (Claude April bis September 2026, Vercel September 2026) an belege@meyso.de weiterleiten oder in den Ordner Rechnungen_rein legen. Sie liegen dort nicht, deshalb hat der Lauf sie nicht getroffen. Danach den Workflow von Hand oder nach dem Takt -->
+
+### 3. Danach, Hub mit Wirkung nach außen
+- [ ] Portal-Aufträge: Entscheidung offen
+- [ ] Max (Hirmax) als eigener Portal-Zugang, Rolle inhaber
+
+### 4. Wenn Luft ist
+- [ ] AVVs Resend, Sanity, Supabase, Vercel
+  <!-- Zusammengefuehrt am 09.10.2026, vorher offen unter P2, Rechtliches Hirmax, vier Zeilen. Der AVV zwischen Meyso und Hirmax bleibt dort. Wortlaut unveraendert: -->
+  <!-- 👤 Dave | AVV Vercel aktivieren (Self-Service vercel.com/legal/dpa) -->
+  <!-- 👤 Dave | AVV Supabase aktivieren (Self-Service supabase.com/legal/dpa) -->
+  <!-- 👤 Dave | AVV Resend aktivieren (Self-Service resend.com/legal/dpa) -->
+  <!-- 👤 Dave | AVV Sanity aktivieren (Self-Service sanity.io/legal/dpa) -->
+- [ ] Secrets in Bitwarden, meyso-os privat stellen
+- [ ] V9, V10 Teil B, V11, lokaler Stack, Outreach-Versand: warten auf Auslöser
+  <!-- Zusammengefuehrt am 09.10.2026, vorher offen unter P1, meyso-website: Belegkette, vier Zeilen mit ihren Kommentaren. V9 stand bis dahin nirgends in TASKS.md. Wortlaut unveraendert: -->
+  <!-- 🤖 V10 Teil B, E-Rechnungen ausstellen. Gekoppelt an V11, am selben Tag. Je Rechnung ein XML nach EN 16931 als Anhang neben dem PDF, Steuerkategorie je Fall (Inland regelbesteuert, Kleinunternehmer, Drittland) nach der deutschen XRechnung-Anleitung mit Beleg im PR, Validierung gegen den amtlichen Pruefdienst als Test, Storno und Anzahlung eingeschlossen -->
+  <!-- Einbettung ins PDF als ZUGFeRD nur, wenn der Renderer PDF/A-3 hergibt. Sonst bleibt es das getrennte XML, das ist gueltig. Zu pruefen ist das an @react-pdf/renderer, bevor jemand Zeit in die Einbettung steckt. -->
+  <!-- Als Kleinunternehmer ist Dave vom Ausstellen befreit, deshalb erst mit dem Wechsel zur Regelbesteuerung. Die Kopplung ist keine Bequemlichkeit: die Steuerkategorie im XML haengt daran, welche Besteuerung gilt, und vor dem Wechsel gaebe es die Angaben gar nicht, die EN 16931 verlangt. Deshalb V10 Teil B und V11 zusammen. -->
+  <!-- 🤖 V11 Regelbesteuerung, zusammen mit V10 E-Rechnung. Ausgeloest wird sie vom Waechter: sobald Pruefung 4 die 50 Prozent der Vorjahresgrenze meldet, ist es Zeit zu planen, nicht erst beim Ueberschreiten. Inhalt: Schalter mit Datum (ab wann Regelbesteuerung gilt, rueckwirkend nichts aendern), Steuerblock auf allen Belegen (Netto, Satz, Steuerbetrag, Brutto), Vorsteuer an den Ausgaben, EU mit Reverse Charge und damit auch das Ende der EU-Sperre aus V7 -->
+  <!-- Der Ausloeser steht schon: lib/waechter.ts Pruefung 4 kennt die Stufen 50, 80 und 100 Prozent je Grenze, und seit V7 rechnet sie nur mit steuerbaren Umsaetzen. Die 50-Prozent-Stufe ist damit ein brauchbares Signal und kein Fehlalarm durch Auslandsumsaetze. -->
+  <!-- 🤖 Lokaler Supabase-Stack mit Seed, vor der naechsten Portal-Etappe. Ziel: ein Rauchtest, der sich anmeldet und die Seiten hinter der Sitzung wirklich aufruft. Heute endet jeder Rauchtest bei /portal/anmelden, weil eine angemeldete Person nur zu einem echten Kunden gehoert und es keine Testzugaenge auf Kundendaten gibt. Genau deshalb ist die kaputte Dateiroute aus V5 durchgerutscht: 404 statt Datei, und niemand konnte es sehen. Umfang: supabase start mit config.toml, Seed mit zwei erfundenen Kunden, je einer Person je Rolle, Belegen, Vertraegen und Bausteinen, dazu ein Skript, das sich anmeldet und alle Portalrouten mit Sitzung abklappert. Damit werden auch die Bilder aus next start moeglich, die heute nur fuer Seiten ohne Sitzung gehen -->
+  <!-- Muster: businessfabian/meyso-web, geklont nach D:\dev\clients\meyso-web und angesehen. Was dort steht und hier fehlt: supabase/config.toml mit eigenen Ports (API 54421, DB 54422), die Skripte db:start, db:stop, db:push, db:reset auf die Supabase-CLI, seed ueber scripts/seed-site.ts, scripts/umgebung.ts als einzige Stelle, die den Secret Key liest und zwischen lokal und Cloud umschaltet (MEYSO_ENV), scripts/pruefe-anon.ts als Gegenprobe auf die anon-Sicht, und fuer den Rauchtest e2e:vorbereiten (seed plus Zustand herstellen) sowie e2e:server (vorbereiten, build, start) mit playwright.config.ts. e2e-vorbereiten bricht ab, wenn es gegen die Cloud laeuft, weil es sonst die echte Website veraendern wuerde. Genau diese Sperre brauchen wir hier auch. meyso-website hat bisher nur supabase/migrations, keine config.toml und keinen Seed. -->
+  <!-- Verschoben am 08.09.2026 auf Daves Wort, nicht gestrichen: vor der naechsten Portal-Etappe. V7 Ausland beruehrt das Portal nicht, deshalb geht es dazwischen.
+       Vorbereitung ist gelaufen und muss nicht wiederholt werden. Klon liegt unter D:\dev\clients\meyso-web, voller Klon, Branch main, unveraendert, gleicher Pfad wie auf dem Mac. Docker fehlt auf diesem Rechner ganz (kein Binary, kein Dienst, kein Ordner), WSL hat keine Distribution. Das installiert Dave selbst, Docker Desktop mit WSL2. Die Supabase-CLI fehlt ebenfalls: Homebrew gibt es unter Windows nicht, Scoop und Chocolatey sind nicht installiert, winget kennt kein Supabase-Paket. Offen zur Entscheidung: npm i -D supabase (Version im Repo, kein neuer Paketmanager, auf dem Mac unveraendert nutzbar) oder Scoop nach der Supabase-Doku (Version haengt dann am Rechner).
+       Portblock reserviert: 545xx, also 54520 shadow, 54521 api, 54522 db, 54523 studio, 54524 inbucket, 54527 analytics, 54529 pooler. halveo belegt faktisch 5432x (seine config.toml nennt nur db 54322 und shadow 54320, der Rest faellt auf die Vorgaben), meyso-web belegt 544xx ausgeschrieben. -->
+  <!-- 🤖 Echter Versandweg fuer Outreach, eigene Runde: gespeicherte Vorlagen statt eines Prompts im Code, Ratenbegrenzung je Empfaenger und je Tag, Kill-Switch wie bei Rechnung und Angebot, eigene mail_log-Art mit Person, Grundlage und Vorlage (die zwei Spalten liegen seit dem 10.09.2026 bereit und sind leer), Abmeldelink in jeder Mail und Verarbeitung des Widerspruchs. Ohne das bleibt es beim mailto-Weg, und der ist gesperrt, solange keine Grundlage steht -->
+
+**Fester Termin:** 02.11. morgens HEUTE prüfen, erster Rechnungslauf nach PR 95/97, Prüfung 27 und 28 müssen 0 zeigen.
+
+---
+
 ## 🔴 P0 - Sofort (Sicherheit + Rechtlich)
 
 > Geleakte Keys und fehlende Vertraege = echtes Risiko
@@ -31,7 +77,6 @@ Stand: 2026-04-30 (priorisiert)
 
 ### Halveo (diese Woche)
 - [ ] 👤 Anwalt-Termin buchen: Legal-Review AGB + AVV + Datenschutz
-- [ ] 👤 Stripe Customer Portal Branding (Halveo-Logo hochladen)
 - [ ] 🤖 H-3 + H-4 Tests schreiben: AfA-Calculator + Anlage V Mapping Unit-Tests
 
 ### Meyso-Projekte
@@ -81,7 +126,7 @@ Stand: 2026-04-30 (priorisiert)
   <!-- Protokolle: docs/finanzen/nummernkreis-2026.md, docs/finanzen/belegfundament-v0b.md. Sechs verwaiste PDFs liegen unter archiv/geloescht/. -->
 - [x] 👤 Dave | Anschriften nachgetragen: Villa Nina, Problemlos und Ziegler tragen jetzt Strasse, PLZ und Ort. Alle drei aktiven Vertraege sind damit vollstaendig, der Lauf am 01.10.2026 ueberspringt keinen mehr. Held bleibt ohne, ausgenommen (Lead) (09.09.2026) ✓
   <!-- Gelesen gegen Production am 09.09.2026: 9 Kunden, 3 ohne vollstaendige Anschrift, alle drei Leads (Held, MHK, PolicenDirect). Problemlos hat auch eine richtige E-Mail statt "t". -->
-- [ ] 👤 Dave | Die Anschrift von Villa Nina ist ein Platzhalter: "Musterstraße 1, 78086 Musterort". Der Ort gibt es nicht, die PLZ ist die von Brigachtal. Der Lauf am 01.10.2026 erzeugt damit eine Rechnung, deren Anschrift nicht stimmt, und Paragraf 14 UStG verlangt die richtige. Technisch laeuft es durch, das ist hier das Problem und nicht die Loesung
+- [x] 👤 Dave | Die Anschrift von Villa Nina ist ein Platzhalter: "Musterstraße 1, 78086 Musterort". Der Ort gibt es nicht, die PLZ ist die von Brigachtal. Der Lauf am 01.10.2026 erzeugt damit eine Rechnung, deren Anschrift nicht stimmt, und Paragraf 14 UStG verlangt die richtige. Technisch laeuft es durch, das ist hier das Problem und nicht die Loesung (09.10.2026: Adresse korrigiert) ✓
 - [x] 🤖 Claude | V0c Bereinigung und Neumessung: Festschreiben und senden in einem Zug, Testkunde und Websire aus DB und Sanity, invoices.positionen und fuenf tote clients-Spalten weg, GitHub-Token-Fallback, E-Mail-Formpruefung, Klickstrecken neu gemessen (PR 21, Migration 20260903_v0c_bereinigung.sql, 04.09.2026) ✓
   <!-- Dazu (Dave, 03.09.2026): Kundendialog und Kunden-API pruefen das E-Mail-Format beim Speichern, Versand lehnt eine ungueltige Adresse mit klarer Meldung ab, Test dazu. Ausloeser: Problemlos hatte "t" als E-Mail. -->
 - [x] 🤖 Claude | S1 Ausgaben je Zahlung mit Beleg: euer_kategorien, erwartete Buchungen aus Vertraegen (Cron am Monatsersten), Beleg-Bucket mit Hash, Ruecklagen, Einnahmen ohne Rechnung, EUeR ohne Hochrechnung. Nachhollauf 34 Zeilen ueber 271,27 EUR (PR 22, Migration 20260904_s1_ausgaben.sql, 04.09.2026) ✓
@@ -155,7 +200,6 @@ Stand: 2026-04-30 (priorisiert)
   <!-- Dabei ein Leck gefunden, aelter als diese Etappe: HEUTE blendete die zwei Geldkennzahlen aus, schickte sie aber im Antwortstrom mit, ebenso Geld im Monat und die stillen Kunden. Der Filter stand seit jeher im Browser; PR 49 hatte nur die Buchhaltungskachel auf die Serverseite gezogen. Es traf also auch assistenz. Behoben in PR 56, dort filtert die Seite, bevor etwas hinausgeht. -->
 - [ ] 🤖 Ratenbegrenzung nach Upstash, vor dem Outreach-Versand. Heute haelt createRateLimiter eine Map im Modulscope, also im Arbeitsspeicher der jeweiligen Lambda-Instanz: nichts wird geschrieben, ein Kaltstart setzt sie zurueck, und die Grenze gilt je Instanz statt global. Bei mehreren warmen Lambdas hat ein Anrufer effektiv mehr als die 3 je Adresse und 10 je IP der Portal-Anmeldung. Fuer eine Anmeldung ist das laestig, fuer einen Massenversand ist es die falsche Grundlage: ohne verlaessliche Zaehlung laesst sich weder eine Obergrenze je Tag halten noch nachweisen, dass sie gehalten wurde. Aufgefallen am 10.09.2026 beim Nachlesen der Portal-Anmeldung, dort war sie nicht die Ursache, nur nicht nachlesbar
   <!-- Umfang: ein gemeinsamer Zaehler ausserhalb des Prozesses (Upstash Redis oder dieselbe Rolle in einer Tabelle), dieselbe Schnittstelle wie createRateLimiter, damit die bestehenden Aufrufstellen unveraendert bleiben, und ein Rueckfall auf die Speicherfassung, wenn der Dienst nicht antwortet: eine gescheiterte Zaehlung darf keine Anmeldung verhindern. Dazu ein Protokolleintrag, wenn eine Grenze greift, sonst ist auch die neue Zaehlung nicht nachlesbar. -->
-- [ ] 🤖 Echter Versandweg fuer Outreach, eigene Runde: gespeicherte Vorlagen statt eines Prompts im Code, Ratenbegrenzung je Empfaenger und je Tag, Kill-Switch wie bei Rechnung und Angebot, eigene mail_log-Art mit Person, Grundlage und Vorlage (die zwei Spalten liegen seit dem 10.09.2026 bereit und sind leer), Abmeldelink in jeder Mail und Verarbeitung des Widerspruchs. Ohne das bleibt es beim mailto-Weg, und der ist gesperrt, solange keine Grundlage steht
 - [ ] 👤 Dave | Die Kandidatenliste des Crawlers auf ihre Grundlage nach DSGVO pruefen, bevor jemand sie systematisch abarbeitet: Informationspflicht nach Artikel 14 (die 82 wissen nicht, dass ihre Daten hier liegen), Eintrag im Verzeichnis der Verarbeitungstaetigkeiten, Aufbewahrungsdauer und Loeschung der Verworfenen. Die Technik steht jetzt, die Entscheidung nicht
 - [x] 🤖 Claude | Wartung oder Hosting steht in einem Angebot genau einmal (PR 63, 20.09.2026) ✓ Erst geprueft und belegt, dann die Regel.
   <!-- Zwei Wege fuehrten eine laufende Leistung ins Angebot und taten bei der Annahme Verschiedenes: die Vormerkung (angebote.wartung_monatlich_cents) wandert in den Auftrag und wird bei dessen Abnahme zum Vertrag, die Position (angebot_items.art monatlich) geht sofort an den Vertrag. -->
@@ -342,11 +386,6 @@ Stand: 2026-04-30 (priorisiert)
 - [ ] 🤖 Beratung (Stundensaetze aus firma.stundensatz_cents, Beratungsrechnung mit Menge und Einheit)
   <!-- Kundenakte und Beratung standen bis 07.09.2026 als V5 und V6 hier, aus der alten Nummerierung. Die Nummern sind mit V4 Kundenportal, V5 Aenderungen und V6 Zubuchen belegt, deshalb ohne Nummer. Inhalt unveraendert, Einsortierung entscheidet Dave. -->
 - [ ] 🤖 V6 Nachlauf: einen monatlichen Zusatz einzeln wieder abbestellen. Heute geht nur der ganze Vertrag, und der Verlauf sagt, was dazugekommen ist
-- [ ] 🤖 Lokaler Supabase-Stack mit Seed, vor der naechsten Portal-Etappe. Ziel: ein Rauchtest, der sich anmeldet und die Seiten hinter der Sitzung wirklich aufruft. Heute endet jeder Rauchtest bei /portal/anmelden, weil eine angemeldete Person nur zu einem echten Kunden gehoert und es keine Testzugaenge auf Kundendaten gibt. Genau deshalb ist die kaputte Dateiroute aus V5 durchgerutscht: 404 statt Datei, und niemand konnte es sehen. Umfang: supabase start mit config.toml, Seed mit zwei erfundenen Kunden, je einer Person je Rolle, Belegen, Vertraegen und Bausteinen, dazu ein Skript, das sich anmeldet und alle Portalrouten mit Sitzung abklappert. Damit werden auch die Bilder aus next start moeglich, die heute nur fuer Seiten ohne Sitzung gehen
-  <!-- Muster: businessfabian/meyso-web, geklont nach D:\dev\clients\meyso-web und angesehen. Was dort steht und hier fehlt: supabase/config.toml mit eigenen Ports (API 54421, DB 54422), die Skripte db:start, db:stop, db:push, db:reset auf die Supabase-CLI, seed ueber scripts/seed-site.ts, scripts/umgebung.ts als einzige Stelle, die den Secret Key liest und zwischen lokal und Cloud umschaltet (MEYSO_ENV), scripts/pruefe-anon.ts als Gegenprobe auf die anon-Sicht, und fuer den Rauchtest e2e:vorbereiten (seed plus Zustand herstellen) sowie e2e:server (vorbereiten, build, start) mit playwright.config.ts. e2e-vorbereiten bricht ab, wenn es gegen die Cloud laeuft, weil es sonst die echte Website veraendern wuerde. Genau diese Sperre brauchen wir hier auch. meyso-website hat bisher nur supabase/migrations, keine config.toml und keinen Seed. -->
-  <!-- Verschoben am 08.09.2026 auf Daves Wort, nicht gestrichen: vor der naechsten Portal-Etappe. V7 Ausland beruehrt das Portal nicht, deshalb geht es dazwischen.
-       Vorbereitung ist gelaufen und muss nicht wiederholt werden. Klon liegt unter D:\dev\clients\meyso-web, voller Klon, Branch main, unveraendert, gleicher Pfad wie auf dem Mac. Docker fehlt auf diesem Rechner ganz (kein Binary, kein Dienst, kein Ordner), WSL hat keine Distribution. Das installiert Dave selbst, Docker Desktop mit WSL2. Die Supabase-CLI fehlt ebenfalls: Homebrew gibt es unter Windows nicht, Scoop und Chocolatey sind nicht installiert, winget kennt kein Supabase-Paket. Offen zur Entscheidung: npm i -D supabase (Version im Repo, kein neuer Paketmanager, auf dem Mac unveraendert nutzbar) oder Scoop nach der Supabase-Doku (Version haengt dann am Rechner).
-       Portblock reserviert: 545xx, also 54520 shadow, 54521 api, 54522 db, 54523 studio, 54524 inbucket, 54527 analytics, 54529 pooler. halveo belegt faktisch 5432x (seine config.toml nennt nur db 54322 und shadow 54320, der Rest faellt auf die Vorgaben), meyso-web belegt 544xx ausgeschrieben. -->
 - [x] 🤖 Claude | V7 Ausland live: Rechnungen, Angebote und Vertraege an Kunden in Drittlaendern tragen den richtigen Steuervermerk, die Sperre faellt fuer sie, und der Paragraf-19-Waechter zaehlt nur steuerbare Umsaetze (PR 40, 09.09.2026, Migration 20260909_v7_ausland.sql) ✓
   <!-- Drei Faelle in lib/steuervermerk.ts: DE traegt den Paragrafen 19, Drittland den Leistungsort nach Paragraf 3a Absatz 2 mit ausgeschriebenem Land, EU wirft. Der Paragraf-19-Satz erscheint auf einem Drittlandsbeleg nirgends, er handelt von deutscher Umsatzsteuer und die faellt dort nicht an. EU wirft mit Absicht: dafuer braucht es USt-IdNr, Reverse Charge und die Zusammenfassende Meldung, und nichts davon ist hinterlegt. -->
   <!-- Die Texte stehen in app_settings (steuer.vermerk_de, steuer.vermerk_drittland mit {land}), Gabi kann sie ohne Deploy aendern. Der Landesname kommt aus Intl, nicht aus einer Liste im Code. In der Rechnungsmail steht der Vermerk nur im Drittland, im Inland bleibt die Mail wie vor V7. -->
@@ -369,8 +408,6 @@ Stand: 2026-04-30 (priorisiert)
   <!-- Umgebung am 01.10.2026, nur Namen gelesen (vercel env ls production, gh secret list, gh variable list). Der Leser laeuft als GitHub Action, nicht bei Vercel: IMAP_HOST, IMAP_USER und IMAP_PASSWORD sind GitHub-Secrets und vorhanden, dieselben wie im Finom-Weg; BELEGE_INBOUND_TOKEN fehlt dort. Der Ordnerpfad ist keine Variable, er steht im Code (INBOX/04_Finanzen/Rechnungen_rein), ebenso Port 993 und das Ziel https://meyso.de. In Vercel Production braucht der Endpunkt BELEGE_INBOUND_TOKEN (fehlt) und die vorhandenen Supabase-Werte. BELEGE_MAIL_KILL ist weder in Vercel noch als Repo-Variable gesetzt, also aktiv. ntfy faellt ohne NTFY_TOPIC auf meyso-dave zurueck, wie alle Meldungen. Migration eingespielt: 15 Bedingungen wie erwartet, anon bekommt auf beleg_mails 401 (42501). Suite unter Windows: 2874 gruen, 18 uebersprungen (ausland-belege ohne Poppler). Ein erster Lauf hatte sechs Zeitueberschreitungen unter Last; dieselben Dateien mit hoeherer Grenze und der zweite volle Lauf gruen. Code-Review der Aenderung: NEEDS WORK mit zwei mittleren Funden (Wurf bei unlesbarem Datum, Zaehlung der Wertemengen im Protokoll), beide behoben. -->
 - [x] 🤖 Runde 01.10.2026 abends, PR 86 live: Token an beiden Stellen geprueft (nur Namen), Squash-Merge d894132, Deploy 2ge4ysiog, ab 18:27 UTC liefert der Waechter per GET 26 Pruefungen. Rauchtest vier Rollen gegen meyso.de ohne 5xx, Methodenlauf in Production wie lokal. Jetzt pruefen: Lauf 41eeda44-959b-4474-84f3-3def59141ef0, 26 Pruefungen, 13 Treffer, Pruefung 26 ohne Treffer. Workflow von Hand mit 365 Tagen (Run 36908536963, erfolgreich): Ordner erreicht, 8 Mails gelesen, 14 Zeilen in beleg_mails, 9 Dateien hochgeladen, 0 automatisch belegt, 7 zu pruefen ✓
   <!-- 365 statt 14 Tage, weil die offenen Erwartungen bis April zurueckreichen; mit 14 Tagen haette der Lauf nur die zwei Mails vom 24.09. gesehen. Lauf in laeufe: 3e692b30-2603-4567-889b-dac4d3e354d7, Zaehlung 8 Mails, 0 belegt, 7 zu pruefen, 3 schon da, 2 ohne Anhang, 2 abgewiesen, 0 Fehler. Die 14 Zeilen: 7 zu pruefen (Anthropic Rechnung ONOUNKA5-0002 vom 23.03.2026 21,42 Euro, ONOUNKA5-0003 vom 25.03.2026 87,23 Euro, WIRmachenDRUCK Rechnung 38961904-1 vom 08.04.2026 15,49 Euro, dazu vier Nicht-Rechnungen mit 0 Euro: AGB und Widerrufsbelehrung von mailbox.org, zwei AGB von WIRmachenDRUCK). 3 bereits vorhanden (die Mailbox.org-Rechnung MBO-1149137-26 liegt mit demselben SHA-256 schon an der belegten Buchung; die zwei Anthropic-Quittungen tragen dieselbe Rechnungsnummer wie die Rechnung in derselben Mail). 2 ohne Anhang (eine Testmail vom 24.09., eine Einladung von Resend). 2 abgewiesen (signature.asc, PGP-Signatur, nicht geoeffnet). Keine der sieben offenen Erwartungen (Claude April bis September, Vercel September) wurde getroffen: ihre Rechnungen liegen nicht im Ordner. Die Anthropic-Rechnungen vom Maerz sind nicht schon gebucht, unter den belegten Buchungen ist keine von Anthropic. ausland-belege laeuft in keiner CI, kein Workflow fuehrt vitest aus. -->
-- [ ] 👤 Dave | 7 Belege zu pruefen entscheiden (Register Ausgaben, Filter zu pruefen): die vier Nicht-Rechnungen ablehnen (AGB und Widerrufsbelehrung von mailbox.org, zwei AGB von WIRmachenDRUCK, je 0 Euro), die drei Rechnungen pruefen und bestaetigen (Anthropic ONOUNKA5-0002 21,42 Euro und ONOUNKA5-0003 87,23 Euro vom Maerz 2026, WIRmachenDRUCK 38961904-1 15,49 Euro vom April 2026). Die Betraege sind aus dem Text gelesen
-- [ ] 👤 Dave | Die Rechnungen zu den sieben offenen Erwartungen (Claude April bis September 2026, Vercel September 2026) an belege@meyso.de weiterleiten oder in den Ordner Rechnungen_rein legen. Sie liegen dort nicht, deshalb hat der Lauf sie nicht getroffen. Danach den Workflow von Hand oder nach dem Takt
 - [x] 🤖 Nachlese PR 86, Entscheidung Dave: AGB und Widerrufsbelehrungen werden zu Buchungen zu pruefen mit 0 Euro (vier von sieben im ersten Lauf). Vorschlag: Anhaenge, deren Name AGB, Widerruf, Withdrawal oder Terms traegt, als abgewiesen protokollieren, mit Grund und ohne Buchung. Nicht nach dem Text entscheiden: ein gescanntes PDF ohne Text waere sonst auch kein Beleg (05.10.2026: entschieden und gebaut, Dateiname mit AGB, Widerruf, Withdrawal, Terms oder Conditions und im Text weder Betrag noch Rechnungsnummer, ohne lesbaren Text mit dem Grund "Dateiname, kein Text"; PR 88 gemergt als 282c2c5) ✓
 - [x] 🤖 Nachlese PR 86, ohne Termin: ist ein Anhang erst nach dem Hochladen bereits vorhanden (gleiche Rechnungsnummer), bleibt seine Datei unverbunden im Eingang des Buckets, im ersten Lauf zwei Anthropic-Quittungen. Wie bei abgewiesen entfernen, wenn keine Zeile in beleg_mails auf sie zeigt (05.10.2026: am Ende jedes Laufs, nur Dateien aelter als 30 Minuten, hoechstens 25 auf einmal; PR 88 gemergt, der erste Lauf danach hat die zwei Quittungen entfernt) ✓
 - [x] 🤖 Nachlese PR 86, nach Daves Wort: ein GitHub-Workflow, der vitest auf Pull Requests laufen laesst, mit poppler-utils, damit ausland-belege seine 18 inhaltlichen Proben ausserhalb des Macs ueberhaupt laeuft. Heute laeuft kein Test in einer CI (05.10.2026: tests.yml mit tsc, eslint und vitest; PR 89 gemergt als a282e89, CI auf main gruen in 4:07) ✓
@@ -426,11 +463,6 @@ Stand: 2026-04-30 (priorisiert)
 - [ ] 🤖 Nachlese PR 86, ohne Termin: Pruefung 26 durch ladeWaechter testen, wie PR 87 die 25 (eine 8 Tage alte Zeile in beleg_mails mit einer Buchung zu_pruefen, erwartet nr 26 und anzahl 1, ohne_beleg ohne diese Buchung, bei einem Fehler der Tabelle der Quellen-Treffer). Dazu der Kopf von lib/waechter.ts, der noch von zehn Pruefungen spricht
 - [x] 👤 Dave | Pruefung 26 zaehlt volle 24 Stunden seit dem Ablegen, wie 2, 3 und 10; 22 und 25 zaehlen Kalendertage. Beispiel: abgelegt am 17.09. um 23 Uhr, Lauf am 25.09. um 10 Uhr, heute keine Meldung, nach Kalendertagen eine. So lassen und nur den Kommentar ("ab dem Tag") angleichen, oder nach Kalendertagen zaehlen? (01.10.2026, Befund 9 entschieden: Kalendertage wie 22 und 25, umgestellt samt Test in PR 86; 2, 3 und 10 bleiben, eigene P3-Zeile) ✓
 - [ ] 🤖 Testrechnungen mit zwei Seiten: im ausland-belege-Test haben Rechnung und Storno eine zweite Seite, auf der nur "Vielen Dank fuer die Zusammenarbeit!", der Werteslogan und "Fabian Meyer · Meyso" stehen (lib/invoice-pdf.tsx). Pruefen, ob eine echte Wartungsrechnung genauso umbricht. Aufgefallen im Review zu PR 86, nicht angefasst
-- [ ] 🤖 V10 Teil B, E-Rechnungen ausstellen. Gekoppelt an V11, am selben Tag. Je Rechnung ein XML nach EN 16931 als Anhang neben dem PDF, Steuerkategorie je Fall (Inland regelbesteuert, Kleinunternehmer, Drittland) nach der deutschen XRechnung-Anleitung mit Beleg im PR, Validierung gegen den amtlichen Pruefdienst als Test, Storno und Anzahlung eingeschlossen
-  <!-- Einbettung ins PDF als ZUGFeRD nur, wenn der Renderer PDF/A-3 hergibt. Sonst bleibt es das getrennte XML, das ist gueltig. Zu pruefen ist das an @react-pdf/renderer, bevor jemand Zeit in die Einbettung steckt. -->
-  <!-- Als Kleinunternehmer ist Dave vom Ausstellen befreit, deshalb erst mit dem Wechsel zur Regelbesteuerung. Die Kopplung ist keine Bequemlichkeit: die Steuerkategorie im XML haengt daran, welche Besteuerung gilt, und vor dem Wechsel gaebe es die Angaben gar nicht, die EN 16931 verlangt. Deshalb V10 Teil B und V11 zusammen. -->
-- [ ] 🤖 V11 Regelbesteuerung, zusammen mit V10 E-Rechnung. Ausgeloest wird sie vom Waechter: sobald Pruefung 4 die 50 Prozent der Vorjahresgrenze meldet, ist es Zeit zu planen, nicht erst beim Ueberschreiten. Inhalt: Schalter mit Datum (ab wann Regelbesteuerung gilt, rueckwirkend nichts aendern), Steuerblock auf allen Belegen (Netto, Satz, Steuerbetrag, Brutto), Vorsteuer an den Ausgaben, EU mit Reverse Charge und damit auch das Ende der EU-Sperre aus V7
-  <!-- Der Ausloeser steht schon: lib/waechter.ts Pruefung 4 kennt die Stufen 50, 80 und 100 Prozent je Grenze, und seit V7 rechnet sie nur mit steuerbaren Umsaetzen. Die 50-Prozent-Stufe ist damit ein brauchbares Signal und kein Fehlalarm durch Auslandsumsaetze. -->
 
 ## 🟡 P2 - Naechste 2 Wochen (Tech Debt + Hardening)
 
@@ -492,11 +524,7 @@ Max' Seite:
 - [ ] 👤 Max | Verarbeitungsverzeichnis Hirmax anlegen (Art. 30 DSGVO, Vorlage LfDI BW)
 - [ ] 👤 Max | Hirmax TOMs dokumentieren (Art. 32 DSGVO)
 
-Meyso-Seite (Reihenfolge der vier Self-Service-AVVs egal, Meyso-Hirmax zuletzt weil er auf die Subunternehmer-Liste der anderen verweist):
-- [ ] 👤 Dave | AVV Vercel aktivieren (Self-Service vercel.com/legal/dpa)
-- [ ] 👤 Dave | AVV Supabase aktivieren (Self-Service supabase.com/legal/dpa)
-- [ ] 👤 Dave | AVV Resend aktivieren (Self-Service resend.com/legal/dpa)
-- [ ] 👤 Dave | AVV Sanity aktivieren (Self-Service sanity.io/legal/dpa)
+Meyso-Seite (die vier Self-Service-AVVs stehen seit 09.10.2026 oben in den Prioritaeten, Reihenfolge egal; Meyso-Hirmax zuletzt, weil er auf die Subunternehmer-Liste der anderen verweist):
 - [ ] 👤 Dave | AVV zwischen Meyso und Hirmax erstellen (DOCX, verweist auf Subunternehmer-Liste der vier oberen AVVs)
 
 ---
@@ -933,7 +961,7 @@ Phase 3: Optional
 > Bereits oben einsortiert nach Prioritaet. Hier nochmal gesammelt:
 
 - [ ] 👤 API-Keys rotieren (P0)
-- [ ] 👤 Rechtliches Hirmax: DSGVO (Max) + 5x AVV (Dave) (P2, siehe Rechtliches-Hirmax Block)
+- [ ] 👤 Rechtliches Hirmax: DSGVO (Max) + AVV Meyso-Hirmax (Dave) (P2, siehe Rechtliches-Hirmax Block; die vier Self-Service-AVVs stehen oben in den Prioritaeten)
 - [ ] 👤 Hirmax in Sanity anlegen (P1)
 - [ ] 👤 Sanity CORS Hirmax pruefen (P1)
 - [ ] 👤 Google Business Profile (P1)
@@ -1005,6 +1033,8 @@ meyso-website/docs/seo/analyses/.
 - [x] Wartungsvertraege an Felix (SQ Schmidt) + Max (Hirmax) verschickt
 - [x] Nebentaetigkeit schriftlich genehmigt (April 2026)
 - [x] ELSTER Fragebogen eingereicht, Steuernummer beantragt
+- [x] Ziegler: Website-Rechnung bezahlt und Auftrag abgeschlossen (09.10.2026)
+- [x] Ziegler: Shop-Rechnung 400 EUR gestellt (09.10.2026)
 
 ### Sicherheit
 - [x] .env.local in .gitignore (meyso-website)
