@@ -17,6 +17,13 @@ Stand: 2026-04-30 (priorisiert)
   <!-- Zusammengefuehrt am 09.10.2026, vorher offen unter P1, Halveo (diese Woche). Wortlaut unveraendert: -->
   <!-- 👤 Stripe Customer Portal Branding (Halveo-Logo hochladen) -->
 - [ ] Gabi: § 13b UStG auf Auslandsleistungen (Anthropic, Vercel, Stripe, Supabase, Resend), Halveo-Umsatz in der EÜR, EÜR-Kategorien
+- [ ] Gabi: Lauf-Rechnungen seit 07.09. ohne § 19-Satz, Neuausstellung nötig?
+  <!-- Anlage, gelesen am 09.10.2026 an den gespeicherten PDFs, der Hash jedes PDF gegen die Rechnungszeile geprueft. Auswahl aus laeufe (art rechnungen, ergebnis.zeilen "erzeugt"), gegengeprueft ueber die Rechnungen mit Vertrag in den Zeitfenstern der Laeufe: beide Quellen gleich. 34 Laeufe seit 07.09.2026, zwei davon ohne Ergebnis abgebrochen (12.09. und 13.09.), in ihren Fenstern keine Rechnung. Kunden als Kundennummer, weil dieses Repo oeffentlich ist.
+  | Nummer | Lauf | Kunde | Land | Land auf dem PDF | Betrag | Gesamtbetrag im PDF | Versand | Status | Seiten | Steuervermerk im PDF |
+  |---|---|---|---|---|---|---|---|---|---|---|
+  | 2026-019 | 01.10.2026 06:00 | K-1003 | DE | keins | 20,00 EUR | 20,00 € | 01.10.2026 06:00 per Mail | bezahlt | 2 | keiner, auch keine Spur davon |
+  | 2026-020 | 01.10.2026 06:00 | K-1001 | DE | keins | 18,00 EUR | 18,00 € | 01.10.2026 06:00 per Mail | bezahlt | 2 | keiner, auch keine Spur davon |
+  Gesucht wurde der volle Satz aus lib/steuervermerk.ts und aus app_settings (beide gleich: "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.", ebenso der Drittlandsvermerk) und jede Spur davon (§ 19, UStG, Umsatzsteuer, Kleinunternehmer, § 3a, Leistungsort). Ursache: der Lauf gibt dem PDF keinen Steuervermerk mit (lib/generate-invoices.ts), der Fix wird PR 99. -->
 - [ ] Wächter auf 0: 7 Belege Prüfung 26 (bestätigen Anthropic ONOUNKA5-0002 21,42, ONOUNKA5-0003 87,23, WIRmachenDRUCK 38961904-1 15,49; ablehnen 4 AGB/Widerruf), Claude- und Vercel-Rechnungen an belege@meyso.de (Prüfung 1), Rücklage (Prüfung 5)
   <!-- Zusammengefuehrt am 09.10.2026, vorher offen unter P1, meyso-website: Belegkette, zwei Zeilen. Wortlaut unveraendert: -->
   <!-- 👤 Dave | 7 Belege zu pruefen entscheiden (Register Ausgaben, Filter zu pruefen): die vier Nicht-Rechnungen ablehnen (AGB und Widerrufsbelehrung von mailbox.org, zwei AGB von WIRmachenDRUCK, je 0 Euro), die drei Rechnungen pruefen und bestaetigen (Anthropic ONOUNKA5-0002 21,42 Euro und ONOUNKA5-0003 87,23 Euro vom Maerz 2026, WIRmachenDRUCK 38961904-1 15,49 Euro vom April 2026). Die Betraege sind aus dem Text gelesen -->
