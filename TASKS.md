@@ -1009,7 +1009,7 @@ Phase 3: Optional
 - [x] 🤖 Internationalisierung (i18n) fuer mehrsprachige Kunden
 - [x] 🤖 A/B Testing fuer Landing Pages
 - [x] 🤖 Booking-Modul mit Cal.com vollstaendig integrieren
-- [ ] 🤖 Pricing-Modul mit Stripe Payment Links
+- [x] 🤖 Pricing-Modul mit Stripe Payment Links
 
 ### toolradar
 - [x] 🤖 User Accounts: Kunden koennen eigene Tool-Listen speichern
