@@ -1007,7 +1007,7 @@ Phase 3: Optional
 
 ### meyso-kmu-template
 - [ ] 🤖 Internationalisierung (i18n) fuer mehrsprachige Kunden
-- [ ] 🤖 A/B Testing fuer Landing Pages
+- [x] 🤖 A/B Testing fuer Landing Pages
 - [x] 🤖 Booking-Modul mit Cal.com vollstaendig integrieren
 - [ ] 🤖 Pricing-Modul mit Stripe Payment Links
 
