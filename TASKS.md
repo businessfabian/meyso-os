@@ -1012,7 +1012,7 @@ Phase 3: Optional
 - [ ] 🤖 Pricing-Modul mit Stripe Payment Links
 
 ### toolradar
-- [ ] 🤖 User Accounts: Kunden koennen eigene Tool-Listen speichern
+- [x] 🤖 User Accounts: Kunden koennen eigene Tool-Listen speichern
 - [x] 🤖 API fuer Tool-Daten (Partner-Integration)
 - [x] 🤖 Vergleichs-Feature: Tool A vs Tool B Seite
 - [ ] 🤖 Chrome Extension: DSGVO-Check direkt im Browser
