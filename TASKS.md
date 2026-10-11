@@ -1006,7 +1006,7 @@ Phase 3: Optional
 - [ ] 🤖 E-Mail Templates visuell editierbar (Drag & Drop Builder)
 
 ### meyso-kmu-template
-- [ ] 🤖 Internationalisierung (i18n) fuer mehrsprachige Kunden
+- [x] 🤖 Internationalisierung (i18n) fuer mehrsprachige Kunden
 - [x] 🤖 A/B Testing fuer Landing Pages
 - [x] 🤖 Booking-Modul mit Cal.com vollstaendig integrieren
 - [ ] 🤖 Pricing-Modul mit Stripe Payment Links
