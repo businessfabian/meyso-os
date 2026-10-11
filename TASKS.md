@@ -100,6 +100,11 @@ Stand: 2026-04-30 (priorisiert)
 - [ ] 👤 Lexware Export end-to-end testen (Testbestellung → XML Export → Import in Lexware bei Max)
 - [ ] 👤 Wartungsvertrag-Reaktionszeiten realistisch setzen (Achtung: Hauptjob)
 - [x] 🤖 Claude | meyso-website: Admin-Redesign Phase 5 und 6, alle 18 Seiten auf das Design-System und die Cockpit-Anatomie (Kopf, Metrikleiste, Flaeche) ✓
+- [x] 🤖 Claude | meyso-website: Admin-Gestaltung nach Figma, Stufe 3: HEUTE, Kundenliste, Kundenakte, Angebotsdialog und Bausteine in AdminUI.tsx (PR 102, Squash eefa4c5, Deploy meyso-website-q9fvhc7vg, 11.10.2026) ✓
+  <!-- Merge fest auf den Kopf a674f37, CI-Lauf 38139612409 gruen. Alter Deploy meyso-website-iy9t8qbei (dda8129), neuer Deploy meyso-website-q9fvhc7vg gehoert zu eefa4c5, meyso.de zeigt darauf. Rauchtest vier Rollen gegen meyso.de ohne 5xx: inhaber 104 Routen, partner 104 (84 durch, 1 mit 403), assistenz 102 (48 durch, 51 mit 403), vertrieb 102 (50 durch, 46 mit 403). Sichtbarkeitslauf gegen meyso.de: nichts durchgekommen. Auf meyso.de als inhaber nur lesend: Angebotsdialog bei K-1012 listet nach dem Laden 24 Bausteine, Kundenliste zeigt SQ Schmidt mit "192 EUR / Jahr" und "Starter & Hosting", Selbstpruefung HEUTE, Kundenliste, Kundenakte bei 1366 und 390 ohne Befund. Pruefung aller Seiten, Register und Dialoge vor dem Merge: docs/analyse/admin-gestaltung/rest/pruefung.md. -->
+- [ ] 🤖 Claude | meyso-website: Senden ohne Rueckfrage bei noch nicht gesendeter Rechnung (FinanzenClient.tsx, erneutSenden sendet sofort, nur "Erneut senden" fragt nach)
+- [ ] 🤖 Claude | meyso-website: Rund 15 Dialoge mit eigenem Fuss auf den gemeinsamen Fuss umstellen (Liste in docs/analyse/admin-gestaltung/rest/pruefung.md)
+- [ ] 🤖 Claude | meyso-website: Platzhalter "Keine Bausteine hinterlegt" waehrend des Ladens durch "Bausteine werden geladen" ersetzen (AngebotDialog.tsx)
 - [x] 🤖 Claude | meyso-website: CRM-Luecken, naechster Schritt und Verlauf in der Kundenakte, automatisches Protokoll bei Versand, Kontaktpersonen ✓
 - [x] 🤖 Claude | meyso-website: Sicht-Harness, rendert die echten Admin-Bausteine und fotografiert sie (scripts/sicht) ✓
 - [x] 🤖 Claude | meyso-website: Backup-Umfang korrigiert, 13 Tabellen des laufenden Betriebs waren nicht gesichert ✓
