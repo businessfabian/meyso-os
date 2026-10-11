@@ -1013,7 +1013,7 @@ Phase 3: Optional
 
 ### toolradar
 - [ ] 🤖 User Accounts: Kunden koennen eigene Tool-Listen speichern
-- [ ] 🤖 API fuer Tool-Daten (Partner-Integration)
+- [x] 🤖 API fuer Tool-Daten (Partner-Integration)
 - [x] 🤖 Vergleichs-Feature: Tool A vs Tool B Seite
 - [ ] 🤖 Chrome Extension: DSGVO-Check direkt im Browser
 
